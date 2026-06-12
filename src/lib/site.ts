@@ -42,6 +42,7 @@ export const NAV_GROUPS: NavGroup[] = [
       { id: 'home', label: 'Home', href: '/', emoji: '🏠', blurb: 'The front door to your AI training.' },
       { id: 'getting-started', label: 'Getting Started', href: '/getting-started/', emoji: '🚀', blurb: 'Get logged in and running in five minutes.' },
       { id: 'modes', label: 'The Three Modes', href: '/modes/', emoji: '🎛️', blurb: 'Chat, Cowork, and Code — when to use each.' },
+      { id: 'models', label: 'Choosing Your Model', href: '/models/', emoji: '🧠', blurb: 'Haiku, Sonnet, Opus, Fable — the right brain for the job.' },
     ],
   },
   {
