@@ -1,0 +1,13 @@
+---
+// "Key takeaways" box — slot should contain a <ul> bullet list.
+---
+<section
+  class="my-6 rounded-[12px] border border-border bg-card px-5 py-4"
+>
+  <p class="m-0 mb-2 text-sm font-bold uppercase tracking-wide text-gold">
+    🔑 Key takeaways
+  </p>
+  <div class="text-text [&_ul]:m-0 [&_ul]:list-disc [&_ul]:pl-5 [&_li]:mb-1.5 [&_li]:leading-relaxed [&_li:last-child]:mb-0">
+    <slot />
+  </div>
+</section>

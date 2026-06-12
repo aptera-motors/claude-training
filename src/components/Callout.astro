@@ -1,0 +1,32 @@
+---
+// Dashed-border note box, themed by variant.
+interface Props {
+  variant?: 'gold' | 'chat' | 'cowork' | 'code';
+  title?: string;
+}
+const { variant = 'gold', title } = Astro.props;
+
+const styles: Record<string, string> = {
+  gold: 'border-gold/60 text-gold',
+  chat: 'border-chat/60 text-chat',
+  cowork: 'border-cowork/60 text-cowork',
+  code: 'border-code/60 text-code',
+};
+const cls = styles[variant] ?? styles.gold;
+const [borderCls, textCls] = cls.split(' ');
+---
+<aside
+  class:list={[
+    'my-6 rounded-[12px] border-2 border-dashed bg-card/40 px-5 py-4',
+    borderCls,
+  ]}
+>
+  {
+    title ? (
+      <p class:list={['m-0 mb-2 font-bold', textCls]}>{title}</p>
+    ) : null
+  }
+  <div class="leading-relaxed text-text [&_p]:m-0 [&_p+p]:mt-2">
+    <slot />
+  </div>
+</aside>

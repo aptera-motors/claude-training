@@ -1,0 +1,176 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import Tldr from '../../components/Tldr.astro';
+import TryItNow from '../../components/TryItNow.astro';
+import KeyTakeaways from '../../components/KeyTakeaways.astro';
+import CopyPrompt from '../../components/CopyPrompt.astro';
+import Callout from '../../components/Callout.astro';
+---
+<BaseLayout
+  title="Prompting 101"
+  description="Write prompts that get you great results — every time."
+  pageId="prompting"
+  readMinutes={7}
+>
+  <PageHeader
+    icon="✍️"
+    title="Prompting 101"
+    subtitle="Stop treating Claude like a search engine. Start treating it like the world's most patient coworker."
+    readMinutes={7}
+  />
+
+  <Tldr>
+    <p>
+      The difference between a mediocre Claude response and a great one is almost always the prompt, not Claude. Give it context, a clear task, a format, and any constraints — and it'll knock it out of the park. This page shows you exactly how.
+    </p>
+  </Tldr>
+
+  <!-- The golden rule -->
+  <section class="prose-content mb-10">
+    <h2>The golden rule</h2>
+    <p>
+      <strong>Talk to Claude like a smart new coworker, not a search engine.</strong>
+    </p>
+    <p>
+      A search engine wants keywords. Claude wants context. If you walked up to a sharp colleague on their first week and said "email supplier," they'd stare at you. Give them a situation, a goal, and what done looks like — and they'll run with it. Same deal here.
+    </p>
+    <p>
+      The more you treat Claude like a person you're briefing, the better the output. Full sentences. Real context. Clear ask. It's not more work — it's just different work, and it pays off fast.
+    </p>
+  </section>
+
+  <!-- The 4 ingredients -->
+  <section class="mb-10">
+    <h2 class="mb-2 text-2xl font-bold tracking-tight">The 4 ingredients of a great prompt</h2>
+    <p class="mb-5 text-muted">You don't need all four every time — but the more you include, the less back-and-forth you'll do.</p>
+
+    <div class="grid gap-4 sm:grid-cols-2">
+      <div class="rounded-[12px] border border-gold/40 bg-gold/5 p-5">
+        <p class="m-0 mb-1 text-xs font-bold uppercase tracking-widest text-gold">1 · Context</p>
+        <p class="m-0 font-semibold text-text">What's the situation?</p>
+        <p class="mt-2 m-0 text-sm text-muted leading-relaxed">Who are you, what's going on, who is the audience? Claude can't read your mind — but it CAN read your prompt.</p>
+        <p class="mt-2 m-0 text-sm italic text-dim">"I'm a manufacturing engineer at an EV startup writing to a parts supplier who's been slow on deliveries…"</p>
+      </div>
+      <div class="rounded-[12px] border border-gold/40 bg-gold/5 p-5">
+        <p class="m-0 mb-1 text-xs font-bold uppercase tracking-widest text-gold">2 · Task</p>
+        <p class="m-0 font-semibold text-text">What do you want?</p>
+        <p class="mt-2 m-0 text-sm text-muted leading-relaxed">Be specific. "Write an email" is vague. "Write a firm but polite follow-up email asking for a new delivery date" is a task.</p>
+        <p class="mt-2 m-0 text-sm italic text-dim">"…write a firm but polite follow-up email asking for a committed delivery date by end of week."</p>
+      </div>
+      <div class="rounded-[12px] border border-gold/40 bg-gold/5 p-5">
+        <p class="m-0 mb-1 text-xs font-bold uppercase tracking-widest text-gold">3 · Format</p>
+        <p class="m-0 font-semibold text-text">How do you want it?</p>
+        <p class="mt-2 m-0 text-sm text-muted leading-relaxed">Email, bullet list, table, short paragraph, numbered steps? Claude defaults to whatever it thinks fits — tell it what you actually need.</p>
+        <p class="mt-2 m-0 text-sm italic text-dim">"Format it as a professional email with a subject line."</p>
+      </div>
+      <div class="rounded-[12px] border border-gold/40 bg-gold/5 p-5">
+        <p class="m-0 mb-1 text-xs font-bold uppercase tracking-widest text-gold">4 · Constraints</p>
+        <p class="m-0 font-semibold text-text">Length, tone, audience?</p>
+        <p class="mt-2 m-0 text-sm text-muted leading-relaxed">Word limits, reading level, what to avoid, what to emphasize. Constraints aren't limits — they're shortcuts to the right answer.</p>
+        <p class="mt-2 m-0 text-sm italic text-dim">"Keep it under 100 words. Don't sound passive-aggressive."</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Before/after comparisons -->
+  <section class="mb-10">
+    <h2 class="mb-2 text-2xl font-bold tracking-tight">Weak → Strong: real Aptera examples</h2>
+    <p class="mb-6 text-muted">Same request. Completely different result.</p>
+
+    <!-- Manufacturing -->
+    <div class="mb-6">
+      <p class="mb-3 text-sm font-bold uppercase tracking-widest text-dim">Manufacturing</p>
+      <div class="grid gap-3 sm:grid-cols-2">
+        <div class="rounded-[12px] border-2 border-red-900/60 bg-red-950/20 p-4">
+          <p class="m-0 mb-2 text-xs font-bold uppercase tracking-wide text-red-400">Weak</p>
+          <p class="m-0 text-sm italic text-muted leading-relaxed">"Write an email to a supplier about late parts."</p>
+        </div>
+        <div class="rounded-[12px] border-2 border-gold/60 bg-gold/5 p-4">
+          <p class="m-0 mb-2 text-xs font-bold uppercase tracking-wide text-gold">Strong</p>
+          <p class="m-0 text-sm italic text-muted leading-relaxed">"I'm a manufacturing engineer at Aptera Motors. Our aluminum extrusion supplier (Acme Parts) is three weeks late on a critical door frame order that's holding up production. Write a professional but firm email asking them to commit to a delivery date by end of week. Keep it under 120 words. Tone: serious, not angry."</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Finance -->
+    <div class="mb-6">
+      <p class="mb-3 text-sm font-bold uppercase tracking-widest text-dim">Finance</p>
+      <div class="grid gap-3 sm:grid-cols-2">
+        <div class="rounded-[12px] border-2 border-red-900/60 bg-red-950/20 p-4">
+          <p class="m-0 mb-2 text-xs font-bold uppercase tracking-wide text-red-400">Weak</p>
+          <p class="m-0 text-sm italic text-muted leading-relaxed">"Summarize this spreadsheet."</p>
+        </div>
+        <div class="rounded-[12px] border-2 border-gold/60 bg-gold/5 p-4">
+          <p class="m-0 mb-2 text-xs font-bold uppercase tracking-wide text-gold">Strong</p>
+          <p class="m-0 text-sm italic text-muted leading-relaxed">"I'm preparing for a Q3 budget review with the CFO. Here's our departmental spend data [paste data]. Summarize the top three budget variances, flag anything over 15% off target, and suggest two questions the CFO is likely to ask. Format as a bullet list, plain language — no jargon."</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Marketing -->
+    <div class="mb-6">
+      <p class="mb-3 text-sm font-bold uppercase tracking-widest text-dim">Marketing</p>
+      <div class="grid gap-3 sm:grid-cols-2">
+        <div class="rounded-[12px] border-2 border-red-900/60 bg-red-950/20 p-4">
+          <p class="m-0 mb-2 text-xs font-bold uppercase tracking-wide text-red-400">Weak</p>
+          <p class="m-0 text-sm italic text-muted leading-relaxed">"Write a social media post about our car."</p>
+        </div>
+        <div class="rounded-[12px] border-2 border-gold/60 bg-gold/5 p-4">
+          <p class="m-0 mb-2 text-xs font-bold uppercase tracking-wide text-gold">Strong</p>
+          <p class="m-0 text-sm italic text-muted leading-relaxed">"Write a LinkedIn post announcing that Aptera's solar-assisted EV can travel up to 40 miles a day on sunshine alone. Target audience: sustainability-minded professionals who aren't car people. Tone: exciting but grounded, no hype words like 'revolutionary' or 'game-changing.' Max 150 words. End with a question to drive comments."</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Iteration -->
+  <section class="prose-content mb-10">
+    <h2>The first answer is a draft</h2>
+    <p>
+      Nobody — not even the best prompt writers — gets a perfect result on the first try every time. That's not a bug, it's the workflow. Claude is designed for conversation, not one-shot queries.
+    </p>
+    <p>
+      After you get a first response, try any of these follow-ups:
+    </p>
+    <ul>
+      <li>"Make it shorter — aim for half the length."</li>
+      <li>"The tone is too formal. Make it sound like I actually wrote it."</li>
+      <li>"Give me three variations of the opening line."</li>
+      <li>"What's missing from this? What would you add?"</li>
+    </ul>
+    <p>
+      Three rounds of back-and-forth beats one heroic mega-prompt every time. Iterate like you'd polish a document with a smart editor — because that's basically what's happening.
+    </p>
+  </section>
+
+  <!-- Give it your stuff -->
+  <section class="prose-content mb-10">
+    <h2>Give it your stuff</h2>
+    <p>
+      Want the output to actually sound like you? Paste examples. Paste your own past emails, documents, or templates into the prompt. Say "write in this style" and hand it a sample. Claude is a fast learner — it'll mirror your voice, format, and vocabulary better than any setting or toggle.
+    </p>
+    <p>
+      Same goes for templates. Have a report format you always use? Drop it in and say "fill this in based on [data]." Let Claude do the formatting grunt work while you do the thinking.
+    </p>
+  </section>
+
+  <Callout variant="chat" title="Pro tip: start with the goal, not the format">
+    <p>
+      Instead of "write me a table of X," try "I need to compare X across these five options — what's the best way to present this?" Claude will often suggest a format you hadn't considered, and it's usually better.
+    </p>
+  </Callout>
+
+  <TryItNow title="Your first strong prompt">
+    <p>Copy this template, fill in the brackets, and send it:</p>
+    <CopyPrompt text="I'm a [your role] at Aptera Motors. [Describe the situation in 1–2 sentences.] I need you to [specific task]. Format it as [email / bullet list / table / short paragraph]. Keep it [under X words / concise / detailed]. Tone should be [professional / casual / direct / friendly]. Audience: [who will read this]." />
+  </TryItNow>
+
+  <KeyTakeaways>
+    <ul>
+      <li>Talk like you're briefing a smart coworker: Context + Task + Format + Constraints = great prompts.</li>
+      <li>Weak prompts get generic answers. One sentence of real context changes everything.</li>
+      <li>Iteration is the point — treat every first response as a rough draft and keep the conversation going.</li>
+    </ul>
+  </KeyTakeaways>
+</BaseLayout>

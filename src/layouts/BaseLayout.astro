@@ -1,0 +1,236 @@
+---
+import '../styles/global.css';
+import { NAV_GROUPS, PAGE_ORDER, prevNext, href, PROGRESS_KEY } from '../lib/site';
+
+interface Props {
+  title: string;
+  description: string;
+  pageId: string;
+  readMinutes?: number;
+}
+const { title, description, pageId } = Astro.props;
+const { prev, next } = prevNext(pageId);
+const pagefindBase = href('/pagefind/');
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title} · Aptera AI Academy</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><circle cx='8' cy='8' r='6' fill='%23F5C518'/></svg>" />
+    <link href={`${pagefindBase}pagefind-ui.css`} rel="stylesheet" />
+  </head>
+  <body class="min-h-screen bg-canvas text-text">
+    <!-- Mobile top bar -->
+    <div
+      class="sticky top-0 z-40 flex items-center justify-between border-b border-border bg-canvas/95 px-4 py-3 backdrop-blur lg:hidden"
+    >
+      <a href={href('/')} class="flex items-center gap-2 font-bold">
+        <span class="inline-block h-2.5 w-2.5 rounded-full bg-gold shadow-[0_0_8px_2px_rgba(245,197,24,0.6)]"></span>
+        Aptera AI Academy
+      </a>
+      <button
+        id="nav-toggle"
+        type="button"
+        aria-label="Open navigation"
+        class="rounded-lg border border-border px-3 py-1.5 text-text"
+      >
+        ☰
+      </button>
+    </div>
+
+    <div class="mx-auto flex w-full max-w-[1400px]">
+      <!-- Sidebar -->
+      <aside
+        id="sidebar"
+        class="fixed inset-y-0 left-0 z-50 hidden w-72 -translate-x-full flex-col overflow-y-auto border-r border-border bg-card px-5 py-6 transition-transform lg:sticky lg:top-0 lg:flex lg:h-screen lg:translate-x-0"
+      >
+        <div class="mb-6 flex items-center justify-between">
+          <a href={href('/')} class="flex items-center gap-2.5 text-lg font-extrabold tracking-tight">
+            <span class="inline-block h-3 w-3 rounded-full bg-gold shadow-[0_0_10px_2px_rgba(245,197,24,0.6)]"></span>
+            Aptera AI Academy
+          </a>
+          <button
+            id="nav-close"
+            type="button"
+            aria-label="Close navigation"
+            class="rounded-lg border border-border px-2 py-1 text-muted lg:hidden"
+          >
+            ✕
+          </button>
+        </div>
+
+        <nav class="flex-1 space-y-6 text-[0.95rem]">
+          {
+            NAV_GROUPS.map((group) => (
+              <div>
+                <p class="mb-2 px-2 text-xs font-bold uppercase tracking-widest text-dim">
+                  {group.title}
+                </p>
+                <ul class="space-y-0.5">
+                  {group.pages.map((page) => (
+                    <li>
+                      <a
+                        href={href(page.href)}
+                        data-pageid={page.id}
+                        class:list={[
+                          'nav-link group flex items-center gap-2 rounded-lg px-2.5 py-1.5 transition-colors hover:bg-card-hover',
+                          page.id === pageId
+                            ? 'bg-card-hover font-semibold text-gold'
+                            : 'text-muted hover:text-text',
+                        ]}
+                      >
+                        <span class="text-base">{page.emoji}</span>
+                        <span class="flex-1">{page.label}</span>
+                        <span class="nav-check hidden text-gold" aria-hidden="true">✓</span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))
+          }
+        </nav>
+
+        <!-- Search -->
+        <div class="mt-6 border-t border-border pt-4">
+          <p class="mb-2 px-2 text-xs font-bold uppercase tracking-widest text-dim">Search</p>
+          <div id="search"></div>
+          <p id="search-fallback" class="hidden px-2 text-xs text-dim">
+            Search works after the site is built.
+          </p>
+        </div>
+      </aside>
+
+      <!-- Backdrop for mobile drawer -->
+      <div id="nav-backdrop" class="fixed inset-0 z-40 hidden bg-black/60 lg:hidden"></div>
+
+      <!-- Main content -->
+      <main class="min-w-0 flex-1 px-5 py-8 sm:px-8 lg:px-12 lg:py-12">
+        <div class="mx-auto w-full max-w-[760px]">
+          <div data-pagefind-body>
+            <slot />
+          </div>
+
+          <!-- Prev / Next -->
+          {
+            (prev || next) && (
+              <nav class="mt-14 grid gap-3 border-t border-border pt-8 sm:grid-cols-2">
+                {prev ? (
+                  <a
+                    href={href(prev.href)}
+                    class="rounded-[12px] border border-border bg-card px-4 py-3 transition-colors hover:border-gold/50 hover:bg-card-hover"
+                  >
+                    <span class="block text-xs text-dim">← Previous</span>
+                    <span class="block font-semibold text-text">{prev.emoji} {prev.label}</span>
+                  </a>
+                ) : (
+                  <span />
+                )}
+                {next ? (
+                  <a
+                    href={href(next.href)}
+                    class="rounded-[12px] border border-border bg-card px-4 py-3 text-right transition-colors hover:border-gold/50 hover:bg-card-hover sm:col-start-2"
+                  >
+                    <span class="block text-xs text-dim">Next →</span>
+                    <span class="block font-semibold text-text">{next.label} {next.emoji}</span>
+                  </a>
+                ) : null}
+              </nav>
+            )
+          }
+
+          <footer class="mt-12 border-t border-border pt-6 text-center text-xs text-dim">
+            Aptera AI Academy · Built for the crew that builds the sun-powered future.
+          </footer>
+        </div>
+      </main>
+    </div>
+
+    <!-- Progress tracking + nav drawer -->
+    <script define:vars={{ pageId, progressKey: PROGRESS_KEY }}>
+      // ---- Progress tracking ----
+      function readProgress() {
+        try {
+          const raw = localStorage.getItem(progressKey);
+          const arr = raw ? JSON.parse(raw) : [];
+          return Array.isArray(arr) ? arr : [];
+        } catch {
+          return [];
+        }
+      }
+      function writeProgress(arr) {
+        try {
+          localStorage.setItem(progressKey, JSON.stringify(arr));
+        } catch {
+          /* ignore */
+        }
+      }
+      // Record this page visit.
+      const visited = readProgress();
+      if (pageId && !visited.includes(pageId)) {
+        visited.push(pageId);
+        writeProgress(visited);
+      }
+      // Mark visited pages in the sidebar with a gold check.
+      const current = readProgress();
+      document.querySelectorAll('.nav-link').forEach((link) => {
+        const id = link.getAttribute('data-pageid');
+        if (id && current.includes(id)) {
+          const check = link.querySelector('.nav-check');
+          if (check) check.classList.remove('hidden');
+        }
+      });
+      // Expose a tiny helper for other scripts/pages.
+      window.apteraProgress = {
+        key: progressKey,
+        get: readProgress,
+        count: () => readProgress().length,
+        has: (id) => readProgress().includes(id),
+      };
+
+      // ---- Mobile nav drawer ----
+      const sidebar = document.getElementById('sidebar');
+      const backdrop = document.getElementById('nav-backdrop');
+      function openNav() {
+        sidebar?.classList.remove('hidden', '-translate-x-full');
+        sidebar?.classList.add('flex');
+        backdrop?.classList.remove('hidden');
+      }
+      function closeNav() {
+        sidebar?.classList.add('-translate-x-full');
+        backdrop?.classList.add('hidden');
+        if (window.innerWidth < 1024) sidebar?.classList.remove('flex');
+      }
+      document.getElementById('nav-toggle')?.addEventListener('click', openNav);
+      document.getElementById('nav-close')?.addEventListener('click', closeNav);
+      backdrop?.addEventListener('click', closeNav);
+    </script>
+
+    <!-- Pagefind UI: only present after build. Degrade gracefully in dev. -->
+    <script define:vars={{ pagefindBase }}>
+      (function () {
+        const mount = document.getElementById('search');
+        const fallback = document.getElementById('search-fallback');
+        const js = pagefindBase + 'pagefind-ui.js';
+        const probe = document.createElement('script');
+        probe.type = 'module';
+        probe.src = js;
+        probe.onload = () => {
+          try {
+            // PagefindUI is registered as a global by the UI bundle.
+            new window.PagefindUI({ element: '#search', showSubResults: true, resetStyles: false });
+          } catch {
+            if (fallback) fallback.classList.remove('hidden');
+          }
+        };
+        probe.onerror = () => {
+          if (fallback) fallback.classList.remove('hidden');
+        };
+        document.head.appendChild(probe);
+      })();
+    </script>
+  </body>
+</html>

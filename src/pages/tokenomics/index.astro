@@ -1,0 +1,206 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import Tldr from '../../components/Tldr.astro';
+import TryItNow from '../../components/TryItNow.astro';
+import CopyPrompt from '../../components/CopyPrompt.astro';
+import KeyTakeaways from '../../components/KeyTakeaways.astro';
+import Callout from '../../components/Callout.astro';
+---
+<BaseLayout
+  title="Tokenomics"
+  description="How Claude usage is priced, how to pick the right model, and the habits that keep costs sane while getting better results."
+  pageId="tokenomics"
+  readMinutes={5}
+>
+  <PageHeader
+    icon="🪙"
+    title="Tokenomics"
+    subtitle="Great results without burning money. Here's what you actually need to know."
+    readMinutes={5}
+  />
+
+  <Tldr>
+    <p>
+      Claude charges per <strong>token</strong> (roughly ¾ of a word). Every message in and out costs tokens.
+      Pick the right-sized model for the job, keep conversations focused, and you'll get
+      <em>better</em> answers for less money. Win-win.
+    </p>
+  </Tldr>
+
+  <!-- What is a token -->
+  <div class="prose-content">
+    <h2>What even is a token?</h2>
+    <p>
+      Think of tokens as chunks of text — roughly ¾ of a word each. "Aerodynamics" is one token.
+      "Hey Claude, can you help me with this?" is about ten. Claude reads your whole message
+      (tokens in) and writes a reply (tokens out). Both sides of that exchange get tallied.
+    </p>
+    <p>
+      This is not a reason to avoid using Claude. It's a reason to use it <strong>smartly</strong>.
+      A focused 50-token ask that gets the right answer on the first try beats a rambling
+      500-token saga that needs three rounds of back-and-forth.
+    </p>
+  </div>
+
+  <!-- Model picker -->
+  <div class="prose-content">
+    <h2>Pick the right model</h2>
+    <p>
+      Anthropic makes three flavors of Claude. Same brain, different horsepower — and different price tags.
+      Reach for the right one and you'll finish faster <em>and</em> spend less.
+    </p>
+  </div>
+
+  <!-- 3-column model cards -->
+  <div class="my-6 grid gap-4 sm:grid-cols-3">
+    <!-- Haiku -->
+    <div class="rounded-[12px] border border-border bg-card p-5">
+      <div class="mb-3 text-2xl">⚡</div>
+      <h3 class="m-0 mb-1 text-lg font-bold text-gold">Haiku</h3>
+      <p class="mb-3 text-sm font-medium text-muted">Fast & cheap</p>
+      <p class="m-0 text-sm leading-relaxed text-text">
+        <strong class="text-text">Reach for it when…</strong> you need a quick rewrite,
+        a short answer, a yes/no check, or you're doing something repetitive dozens of times.
+        Haiku is the espresso shot — small, fast, gets the job done.
+      </p>
+    </div>
+    <!-- Sonnet -->
+    <div class="rounded-[12px] border-2 border-gold/60 bg-gold/5 p-5">
+      <div class="mb-3 text-2xl">🚗</div>
+      <h3 class="m-0 mb-1 text-lg font-bold text-gold">Sonnet</h3>
+      <p class="mb-3 text-sm font-medium text-muted">The daily driver · best balance</p>
+      <p class="m-0 text-sm leading-relaxed text-text">
+        <strong class="text-text">Reach for it when…</strong> you're doing real work —
+        summarizing a meeting, drafting an email, analyzing a doc, building something in
+        Co-Work mode. 90% of your Claude time belongs here.
+      </p>
+    </div>
+    <!-- Opus -->
+    <div class="rounded-[12px] border border-border bg-card p-5">
+      <div class="mb-3 text-2xl">🏋️</div>
+      <h3 class="m-0 mb-1 text-lg font-bold text-text">Opus</h3>
+      <p class="mb-3 text-sm font-medium text-muted">The heavyweight</p>
+      <p class="m-0 text-sm leading-relaxed text-text">
+        <strong class="text-text">Reach for it when…</strong> the problem is genuinely hard:
+        deep financial analysis, complex multi-step reasoning, evaluating tradeoffs with lots
+        of context. Bring out the big gun when the job demands it.
+      </p>
+    </div>
+  </div>
+
+  <!-- Cheat-sheet table -->
+  <div class="prose-content">
+    <h3>Quick cheat sheet: task → model</h3>
+  </div>
+  <div class="my-4 overflow-x-auto rounded-[12px] border border-border">
+    <table class="w-full text-sm">
+      <thead>
+        <tr class="border-b border-border bg-card">
+          <th class="px-4 py-3 text-left font-semibold text-text">Task</th>
+          <th class="px-4 py-3 text-left font-semibold text-text">Role at Aptera</th>
+          <th class="px-4 py-3 text-left font-semibold text-gold">Model</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-border">
+        <tr class="hover:bg-card-hover">
+          <td class="px-4 py-3 text-text">Quick email rewrite</td>
+          <td class="px-4 py-3 text-muted">Anyone</td>
+          <td class="px-4 py-3 font-medium text-gold">Haiku ⚡</td>
+        </tr>
+        <tr class="hover:bg-card-hover">
+          <td class="px-4 py-3 text-text">Summarize a meeting recording</td>
+          <td class="px-4 py-3 text-muted">Ops / any team lead</td>
+          <td class="px-4 py-3 font-medium text-gold">Sonnet 🚗</td>
+        </tr>
+        <tr class="hover:bg-card-hover">
+          <td class="px-4 py-3 text-text">Draft a supplier RFQ</td>
+          <td class="px-4 py-3 text-muted">Procurement / Supply Chain</td>
+          <td class="px-4 py-3 font-medium text-gold">Sonnet 🚗</td>
+        </tr>
+        <tr class="hover:bg-card-hover">
+          <td class="px-4 py-3 text-text">Complex variance analysis</td>
+          <td class="px-4 py-3 text-muted">Finance</td>
+          <td class="px-4 py-3 font-medium text-gold">Opus 🏋️</td>
+        </tr>
+        <tr class="hover:bg-card-hover">
+          <td class="px-4 py-3 text-text">Translate a short label / instruction</td>
+          <td class="px-4 py-3 text-muted">Manufacturing / Assembly</td>
+          <td class="px-4 py-3 font-medium text-gold">Haiku ⚡</td>
+        </tr>
+        <tr class="hover:bg-card-hover">
+          <td class="px-4 py-3 text-text">Write a Jira epic with acceptance criteria</td>
+          <td class="px-4 py-3 text-muted">Engineering / PM</td>
+          <td class="px-4 py-3 font-medium text-gold">Sonnet 🚗</td>
+        </tr>
+        <tr class="hover:bg-card-hover">
+          <td class="px-4 py-3 text-text">Deep research on a regulation or standard</td>
+          <td class="px-4 py-3 text-muted">Legal / Compliance</td>
+          <td class="px-4 py-3 font-medium text-gold">Opus 🏋️</td>
+        </tr>
+        <tr class="hover:bg-card-hover">
+          <td class="px-4 py-3 text-text">Batch-format 50 part descriptions</td>
+          <td class="px-4 py-3 text-muted">Supply Chain / Eng</td>
+          <td class="px-4 py-3 font-medium text-gold">Haiku ⚡</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Habits -->
+  <div class="prose-content">
+    <h2>Habits that save money (and get better answers)</h2>
+    <p>
+      The biggest lever isn't model choice — it's how you structure your conversations.
+      A few small habits compound into dramatically better results.
+    </p>
+    <ul>
+      <li>
+        <strong>Start a fresh chat when you change topics.</strong> Every message in a
+        conversation gets re-read from scratch on every turn. A 40-message thread about
+        solar panel specs is expensive context to drag into a totally different HR question.
+      </li>
+      <li>
+        <strong>Be specific up front.</strong> "Write a three-sentence summary of this
+        status update for the exec team" costs one round-trip. "Summarize this" usually costs
+        three — one attempt plus two rounds of "make it shorter / more formal / less jargon."
+      </li>
+      <li>
+        <strong>Don't paste the whole PDF.</strong> You don't need to. Paste the one section
+        that's relevant. Claude reads everything you give it every single time.
+      </li>
+      <li>
+        <strong>Batch related questions.</strong> If you have five questions about the same
+        document, ask all five at once. Five separate chats = five times the overhead.
+      </li>
+    </ul>
+  </div>
+
+  <Callout variant="gold" title="Context windows, simply">
+    <p>
+      Everything in your conversation — every message you've sent, every reply Claude gave —
+      gets re-processed from the top on every single turn. That's why long, unfocused chats
+      get expensive and sometimes start drifting. A fresh chat isn't just cheaper; it often
+      gives sharper answers because Claude isn't hauling around 30 messages of old context.
+    </p>
+  </Callout>
+
+  <TryItNow title="See the difference yourself">
+    <p>
+      Paste the <strong>focused prompt</strong> into Claude, note the answer. Then paste the
+      <strong>rambling one</strong>. Which got there faster?
+    </p>
+    <p class="mt-3 font-semibold text-chat">The focused ask:</p>
+    <CopyPrompt text="Rewrite this sentence to be more confident and under 20 words: 'We are hoping to potentially explore the possibility of launching a pilot program sometime in Q3 if conditions allow.'" />
+    <p class="mt-4 font-semibold text-muted">The rambling version (costs more, takes longer):</p>
+    <CopyPrompt text="Hey so I have this sentence in a doc and I'm not totally sure if it's the right vibe, like it feels a bit wishy-washy? Can you maybe look at it and tell me what you think and potentially rewrite it? Here it is: 'We are hoping to potentially explore the possibility of launching a pilot program sometime in Q3 if conditions allow.' I think it needs to sound more confident but I'm not sure, what do you think is the best approach here?" />
+  </TryItNow>
+
+  <KeyTakeaways>
+    <ul>
+      <li>Tokens are the currency — every word in and out counts. Use Claude smartly, not sparingly.</li>
+      <li>Match the model to the job: Haiku for quick tasks, Sonnet for daily work, Opus for heavy analysis.</li>
+      <li>Fresh chats are cheaper <em>and</em> better — don't drag stale context into a new topic.</li>
+    </ul>
+  </KeyTakeaways>
+</BaseLayout>

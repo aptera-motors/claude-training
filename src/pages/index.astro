@@ -1,0 +1,148 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Tldr from '../components/Tldr.astro';
+import { NAV_GROUPS, PAGE_ORDER, href, TOTAL_PAGES } from '../lib/site';
+
+// First three "START HERE" pages drive the step cards.
+const steps = [
+  PAGE_ORDER.find((p) => p.id === 'getting-started')!,
+  PAGE_ORDER.find((p) => p.id === 'modes')!,
+  PAGE_ORDER.find((p) => p.id === 'prompting')!,
+];
+// All pages except Home for the big grid.
+const allPages = PAGE_ORDER.filter((p) => p.id !== 'home');
+---
+<BaseLayout
+  title="Home"
+  description="Aptera AI Academy — level up with Claude. Internal AI training for every team at Aptera Motors."
+  pageId="home"
+>
+  <!-- Hero -->
+  <section class="mb-12">
+    <p class="mb-3 text-sm font-bold uppercase tracking-widest text-gold">
+      Aptera AI Academy
+    </p>
+    <h1 class="m-0 text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl">
+      Get really, really good at
+      <span class="text-gold">working with Claude.</span>
+    </h1>
+    <p class="mt-4 max-w-[60ch] text-lg leading-relaxed text-muted">
+      This is your home base for using AI at Aptera. No PhD required — just
+      practical skills that hand the boring stuff to a robot so you can do the
+      work only you can do.
+    </p>
+    <div class="mt-6 flex flex-wrap gap-3">
+      <a
+        href={href('/getting-started/')}
+        class="rounded-[12px] bg-gold px-5 py-2.5 font-semibold text-canvas transition-opacity hover:opacity-90"
+      >
+        Start training →
+      </a>
+      <a
+        href={href('/modes/')}
+        class="rounded-[12px] border border-border bg-card px-5 py-2.5 font-semibold text-text transition-colors hover:border-gold/50 hover:bg-card-hover"
+      >
+        Explore the three modes
+      </a>
+    </div>
+  </section>
+
+  <Tldr>
+    <p>
+      Aptera gave every team access to Claude. This site teaches you the
+      <strong>three ways to use it</strong>, how to <strong>write prompts that
+      work</strong>, and what's <strong>safe to share</strong> — in bite-sized,
+      skimmable pages. Start at Getting Started and click Next at the bottom of
+      each page.
+    </p>
+  </Tldr>
+
+  <!-- Start your training -->
+  <section class="mb-14">
+    <h2 class="mb-5 text-2xl font-bold tracking-tight">Start your training</h2>
+    <div class="grid gap-4 sm:grid-cols-3">
+      {
+        steps.map((step, i) => (
+          <a
+            href={href(step.href)}
+            class="group rounded-[12px] border border-border bg-card p-5 transition-colors hover:border-gold/50 hover:bg-card-hover"
+          >
+            <div class="mb-3 flex items-center justify-between">
+              <span class="text-3xl">{step.emoji}</span>
+              <span class="text-sm font-bold text-dim">Step {i + 1}</span>
+            </div>
+            <h3 class="m-0 font-bold text-text group-hover:text-gold">
+              {step.label}
+            </h3>
+            <p class="mt-1.5 text-sm leading-relaxed text-muted">{step.blurb}</p>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- Everything on this site -->
+  <section class="mb-14">
+    <h2 class="mb-5 text-2xl font-bold tracking-tight">Everything on this site</h2>
+    <div class="grid gap-3 sm:grid-cols-2">
+      {
+        allPages.map((page) => (
+          <a
+            href={href(page.href)}
+            class="group flex items-start gap-3 rounded-[12px] border border-border bg-card p-4 transition-colors hover:border-gold/50 hover:bg-card-hover"
+          >
+            <span class="text-2xl leading-none">{page.emoji}</span>
+            <span class="min-w-0">
+              <span class="block font-semibold text-text group-hover:text-gold">
+                {page.label}
+              </span>
+              <span class="block text-sm leading-snug text-muted">{page.blurb}</span>
+            </span>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- Progress widget -->
+  <section class="mb-14">
+    <div class="rounded-[12px] border border-gold/40 bg-gold/5 p-6">
+      <h2 class="m-0 text-xl font-bold tracking-tight">Your progress</h2>
+      <p class="mt-2 text-muted">
+        You've visited
+        <span id="progress-count" class="font-bold text-gold">0</span>
+        of {TOTAL_PAGES} pages.
+      </p>
+      <div class="mt-4 h-2.5 w-full overflow-hidden rounded-full bg-card">
+        <div id="progress-bar" class="h-full rounded-full bg-gold transition-all" style="width: 0%"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why AI at Aptera -->
+  <section class="mb-6">
+    <h2 class="mb-3 text-2xl font-bold tracking-tight">Why AI at Aptera?</h2>
+    <div class="prose-content text-muted">
+      <p>
+        We're building a car that runs on sunlight. That's hard enough without
+        spending half your week wrestling spreadsheets, summarizing threads, or
+        formatting docs. So we put Claude in everyone's toolbox — not to replace
+        anyone, but to clear the runway. Hand off the tedious stuff, keep the
+        interesting stuff, and ship the future a little faster. Class is in
+        session.
+      </p>
+    </div>
+  </section>
+
+  <script is:inline define:vars={{ total: TOTAL_PAGES }}>
+    // Read progress (set by the layout) and render the widget.
+    function render() {
+      const count = window.apteraProgress ? window.apteraProgress.count() : 0;
+      const countEl = document.getElementById('progress-count');
+      const barEl = document.getElementById('progress-bar');
+      if (countEl) countEl.textContent = String(count);
+      if (barEl) barEl.style.width = Math.min(100, (count / total) * 100) + '%';
+    }
+    render();
+  </script>
+</BaseLayout>

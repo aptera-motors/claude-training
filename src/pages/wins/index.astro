@@ -1,0 +1,114 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import { getCollection, render } from 'astro:content';
+
+const winEntries = (await getCollection('wins')).sort(
+  (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+);
+const wins = await Promise.all(
+  winEntries.map(async (win) => ({ data: win.data, Content: (await render(win)).Content }))
+);
+
+const modeLabel: Record<string, string> = {
+  chat: 'Chat',
+  cowork: 'Co-Work',
+  code: 'Code',
+};
+
+const modeColor: Record<string, string> = {
+  chat: 'bg-chat-dim text-chat border border-chat/40',
+  cowork: 'bg-cowork-dim text-cowork border border-cowork/40',
+  code: 'bg-code-dim text-code border border-code/40',
+};
+
+const mailtoBody = encodeURIComponent(
+  [
+    'What I did:',
+    '',
+    'Which mode (Chat / Co-Work / Code):',
+    '',
+    'Time saved (rough estimate):',
+    '',
+    "OK to publish my name? (Yes / No, use 'A team member' instead):",
+  ].join('\r\n')
+);
+
+const mailto = `mailto:jake@aptera.us?subject=AI%20Win%20Submission&body=${mailtoBody}`;
+---
+<BaseLayout
+  title="Win Gallery"
+  description="Real AI wins from real Aptera teams. Get inspired — then submit your own."
+  pageId="wins"
+  readMinutes={3}
+>
+  <PageHeader
+    icon="🏆"
+    title="Win Gallery"
+    subtitle="Real time saved. Real problems solved. Real Aptera people using Claude to do more with less drag."
+    readMinutes={3}
+  />
+
+  <p class="mb-8 text-muted leading-relaxed">
+    Every win below is something someone on our team actually did. Browse for inspiration, steal the approach, then add your own at the bottom.
+  </p>
+
+  <!-- Win card grid -->
+  <div class="grid gap-5 sm:grid-cols-2">
+    {wins.map(({ data, Content }) => {
+      const win = { data };
+      const mode = win.data.mode.toLowerCase();
+      const modeChip = modeColor[mode] ?? 'bg-card text-muted border border-border';
+      const modeText = modeLabel[mode] ?? win.data.mode;
+      return (
+        <article class="flex flex-col rounded-[12px] border border-border bg-card p-5 transition-colors hover:border-gold/40 hover:bg-card-hover">
+          <h2 class="m-0 mb-3 text-lg font-bold leading-snug text-text">
+            {win.data.title}
+          </h2>
+
+          <div class="mb-4 flex flex-wrap gap-2">
+            <!-- Who + team badge -->
+            <span class="rounded-full bg-card-hover px-3 py-1 text-xs font-medium text-muted border border-border">
+              {win.data.who} · {win.data.team}
+            </span>
+            <!-- Mode chip -->
+            <span class:list={['rounded-full px-3 py-1 text-xs font-semibold', modeChip]}>
+              {modeText}
+            </span>
+            <!-- Time saved chip -->
+            {win.data.timeSaved ? (
+              <span class="rounded-full bg-gold/10 px-3 py-1 text-xs font-semibold text-gold border border-gold/30">
+                ⏱ {win.data.timeSaved}
+              </span>
+            ) : null}
+          </div>
+
+          <div class="prose-content flex-1 text-sm leading-relaxed text-muted [&_p]:m-0 [&_p+p]:mt-2">
+            <Content />
+          </div>
+        </article>
+      );
+    })}
+  </div>
+
+  <!-- Submit your win -->
+  <section class="mt-14 rounded-[12px] border-2 border-gold/50 bg-gold/5 px-6 py-8 text-center">
+    <p class="mb-1 text-4xl">🏆</p>
+    <h2 class="m-0 mb-3 text-2xl font-extrabold tracking-tight text-text">
+      Got a win? We want it.
+    </h2>
+    <p class="mx-auto mb-6 max-w-[52ch] leading-relaxed text-muted">
+      Saved an hour? Solved a problem in minutes that used to take days? Turned a dreaded task into a one-liner? That counts. Submit it and get your name in lights.
+    </p>
+    <a
+      href={mailto}
+      class="inline-block rounded-[12px] bg-gold px-6 py-3 font-bold text-canvas transition-opacity hover:opacity-90"
+    >
+      Submit your win →
+    </a>
+    <p class="mt-4 text-xs text-dim">
+      Opens a pre-filled email to jake@aptera.us. Takes about 2 minutes.
+    </p>
+  </section>
+
+</BaseLayout>

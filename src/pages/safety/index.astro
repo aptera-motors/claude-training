@@ -1,0 +1,111 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import Tldr from '../../components/Tldr.astro';
+import KeyTakeaways from '../../components/KeyTakeaways.astro';
+import Callout from '../../components/Callout.astro';
+import { href } from '../../lib/site';
+---
+<BaseLayout
+  title="Safety & Data"
+  description="Using Claude responsibly at Aptera — what to share, what to keep close, and how to verify what Claude gives back."
+  pageId="safety"
+  readMinutes={5}
+>
+  <PageHeader
+    icon="🛡️"
+    title="Safety & Data"
+    subtitle="Claude is a powerful coworker — not a magic oracle. Two rules cover 90% of it: be careful what you share, and verify what you ship."
+    readMinutes={5}
+  />
+
+  <Tldr>
+    <p>
+      Don't paste passwords, customer PII, or NDA-covered material into Claude. Do verify numbers, dates, and legal/financial claims before sending them anywhere. On enterprise accounts, your conversations don't train the model. When in doubt, ask Jake.
+    </p>
+  </Tldr>
+
+  <div class="prose-content">
+
+    <h2>Claude is a coworker, not a crystal ball</h2>
+    <p>
+      Think of Claude like a brilliant new hire who reads fast, writes well, and never sleeps — but who also occasionally makes things up with complete confidence. (We call that <a href={href('/glossary/')}>hallucination</a>.) That's not a dealbreaker; it just means you treat Claude's output the same way you'd treat a first draft from any colleague: useful, but worth a second look before it goes anywhere official.
+    </p>
+    <p>
+      Two rules cover the vast majority of situations. Master these and you're good:
+    </p>
+    <ol class="list-decimal pl-5 mb-4 leading-relaxed">
+      <li class="mb-2"><strong>Be careful what you share.</strong> Claude can only work with what you give it — so give it the right stuff.</li>
+      <li class="mb-2"><strong>Verify what you ship.</strong> You own anything you send out. Claude helps you draft; you're responsible for what's in it.</li>
+    </ol>
+
+    <h2>Never paste these ❌</h2>
+    <p>Some things just don't belong in a chat window with any AI tool:</p>
+    <ul class="list-none pl-0 mb-4 space-y-2">
+      <li class="flex gap-2"><span class="text-red-400 font-bold shrink-0">❌</span><span><strong>Passwords, API keys, or credentials</strong> — of any kind, for any system.</span></li>
+      <li class="flex gap-2"><span class="text-red-400 font-bold shrink-0">❌</span><span><strong>Customer PII in bulk</strong> — names, emails, addresses, purchase records. One name in a one-off question is different from a CSV dump.</span></li>
+      <li class="flex gap-2"><span class="text-red-400 font-bold shrink-0">❌</span><span><strong>NDA-covered material you wouldn't forward externally</strong> — if you'd hesitate to email it to a vendor, don't paste it into Claude.</span></li>
+      <li class="flex gap-2"><span class="text-red-400 font-bold shrink-0">❌</span><span><strong>Unreleased financial data or board materials</strong> — earnings, forecasts, M&A details.</span></li>
+    </ul>
+
+    <h2>These are totally fine ✓</h2>
+    <p>Don't overthink it. All of this is fair game:</p>
+    <ul class="list-none pl-0 mb-4 space-y-2">
+      <li class="flex gap-2"><span class="text-green-400 font-bold shrink-0">✓</span><span><strong>Internal docs and presentations</strong> — specs, slide decks, process guides.</span></li>
+      <li class="flex gap-2"><span class="text-green-400 font-bold shrink-0">✓</span><span><strong>Your own drafts</strong> — emails, reports, proposals you're working on.</span></li>
+      <li class="flex gap-2"><span class="text-green-400 font-bold shrink-0">✓</span><span><strong>Publicly available information</strong> — product pages, press releases, industry articles.</span></li>
+      <li class="flex gap-2"><span class="text-green-400 font-bold shrink-0">✓</span><span><strong>Anonymized data</strong> — "we had 47 support tickets this week" is fine; a spreadsheet with customer emails is not.</span></li>
+      <li class="flex gap-2"><span class="text-green-400 font-bold shrink-0">✓</span><span><strong>Code and configs</strong> — as long as they don't contain embedded secrets.</span></li>
+    </ul>
+
+    <h2>Verify before you ship</h2>
+    <p>
+      Claude can be <em>confidently wrong</em>. It might cite a made-up statistic, get a date wrong by a year, or invent a part number that doesn't exist — all while sounding completely authoritative. This is <a href={href('/glossary/')}>hallucination</a>, and it's a known quirk of how large language models work.
+    </p>
+    <p>The fix is simple: double-check the things that matter.</p>
+    <ul>
+      <li><strong>Numbers and percentages</strong> — always sanity-check against your source data.</li>
+      <li><strong>Dates and deadlines</strong> — confirm against the actual calendar or doc.</li>
+      <li><strong>Part numbers and specs</strong> — verify in the system of record before passing on.</li>
+      <li><strong>Legal and financial claims</strong> — run these past the relevant team before they leave Aptera.</li>
+    </ul>
+    <p>
+      You own what you send. If Claude helped you write it, that's great — but you're the one who signed off. Make it count.
+    </p>
+
+    <h2>Your data &amp; the model</h2>
+    <p>
+      Short version: <strong>your conversations at work do not train Claude.</strong>
+    </p>
+    <p>
+      Aptera uses enterprise/work accounts. Anthropic's enterprise terms explicitly exclude conversation data from model training. What you type into Claude at work stays out of the training pipeline. You're not inadvertently teaching the model your trade secrets.
+    </p>
+    <p>
+      If you use a personal Claude account on your own time, that's governed by personal account terms — a different story. Stick to the work account for work stuff and you're covered.
+    </p>
+
+    <h2>When in doubt, ask Jake</h2>
+    <p>
+      Genuinely unsure whether something is safe to share? Email <a href="mailto:jake@aptera.us">jake@aptera.us</a>. There are no dumb questions here — only unlogged incidents. A quick "hey, is this okay?" takes 30 seconds. Cleaning up an overshare takes considerably longer.
+    </p>
+
+  </div>
+
+  <Callout variant="code" title="⚡ Extra care with Claude Code">
+    <p>
+      Claude Code doesn't just chat — it executes real commands on real systems. It can create files, delete things, run scripts, and push code. Before you let it proceed with any operation that touches your filesystem or a remote service, <strong>read the plan it proposes</strong>. Pay extra attention to anything destructive: deleting files, overwriting configs, resetting databases. When in doubt, ask it to explain what a command does before running it.
+    </p>
+  </Callout>
+
+  <KeyTakeaways>
+    <ul>
+      <li>Never paste passwords, bulk PII, or NDA-covered material into Claude.</li>
+      <li>Internal docs, your own drafts, public info, and anonymized data are all fine.</li>
+      <li>Claude can hallucinate — always verify numbers, dates, part numbers, and legal/financial claims before they go anywhere official.</li>
+      <li>On enterprise accounts, your conversations are not used to train the model.</li>
+      <li>Claude Code runs real commands — review its plan before letting it execute anything destructive.</li>
+      <li>Unsure? Email <a href="mailto:jake@aptera.us" class="text-gold underline underline-offset-2">jake@aptera.us</a>. No dumb questions.</li>
+    </ul>
+  </KeyTakeaways>
+
+</BaseLayout>

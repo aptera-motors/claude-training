@@ -1,0 +1,189 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import Tldr from '../../components/Tldr.astro';
+import TryItNow from '../../components/TryItNow.astro';
+import CopyPrompt from '../../components/CopyPrompt.astro';
+import KeyTakeaways from '../../components/KeyTakeaways.astro';
+import Callout from '../../components/Callout.astro';
+---
+<BaseLayout
+  title="Apps Compared"
+  description="Claude desktop app vs. website vs. phone app — which one to use and when."
+  pageId="apps"
+  readMinutes={5}
+>
+  <PageHeader
+    icon="⚖️"
+    title="Apps Compared"
+    subtitle="Same Claude brain. Three different doors in. Here's which one to knock on."
+    readMinutes={5}
+  />
+
+  <Tldr>
+    <p>
+      Claude lives in a <strong>desktop app</strong>, a <strong>website</strong>, and a
+      <strong>phone app</strong>. They all chat. But only the desktop app can touch your
+      local files, run Schedules, and power Co-Work connectors like Jira and Ramp.
+      Phone wins when you're out in the world and need a camera.
+    </p>
+  </Tldr>
+
+  <!-- Intro -->
+  <div class="prose-content">
+    <h2>Same brain, three doors in</h2>
+    <p>
+      No matter which app you open, you're talking to the same Claude — same models,
+      same smarts, same data policies. The difference is what each surface can <em>connect to</em>.
+      Think of it like your work laptop vs. your phone vs. the browser on the conference room TV.
+      Same you, different superpowers available.
+    </p>
+  </div>
+
+  <!-- Capability matrix -->
+  <div class="prose-content">
+    <h2>What can each app actually do?</h2>
+  </div>
+  <div class="my-4 overflow-x-auto rounded-[12px] border border-border">
+    <table class="w-full text-sm">
+      <thead>
+        <tr class="border-b border-border bg-card">
+          <th class="px-4 py-3 text-left font-semibold text-text">Capability</th>
+          <th class="px-4 py-3 text-center font-semibold text-text">Desktop 🖥️</th>
+          <th class="px-4 py-3 text-center font-semibold text-text">Web 🌐</th>
+          <th class="px-4 py-3 text-center font-semibold text-text">Phone 📱</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-border text-center">
+        <tr class="hover:bg-card-hover">
+          <td class="px-4 py-3 text-left text-text">Chat &amp; Artifacts</td>
+          <td class="px-4 py-3 font-bold text-gold">✓</td>
+          <td class="px-4 py-3 font-bold text-gold">✓</td>
+          <td class="px-4 py-3 font-bold text-gold">✓</td>
+        </tr>
+        <tr class="hover:bg-card-hover">
+          <td class="px-4 py-3 text-left text-text">File uploads (PDF, Word, images…)</td>
+          <td class="px-4 py-3 font-bold text-gold">✓</td>
+          <td class="px-4 py-3 font-bold text-gold">✓</td>
+          <td class="px-4 py-3 font-bold text-gold">✓</td>
+        </tr>
+        <tr class="hover:bg-card-hover">
+          <td class="px-4 py-3 text-left text-text">Projects (persistent memory per project)</td>
+          <td class="px-4 py-3 font-bold text-gold">✓</td>
+          <td class="px-4 py-3 font-bold text-gold">✓</td>
+          <td class="px-4 py-3 font-bold text-gold">✓</td>
+        </tr>
+        <tr class="hover:bg-card-hover">
+          <td class="px-4 py-3 text-left text-text">Co-Work connectors (Jira, Confluence, Ramp…)</td>
+          <td class="px-4 py-3 font-bold text-gold">✓ Best</td>
+          <td class="px-4 py-3 text-muted">～ Limited</td>
+          <td class="px-4 py-3 text-dim">✗</td>
+        </tr>
+        <tr class="hover:bg-card-hover">
+          <td class="px-4 py-3 text-left text-text">Local file-system access (create files in Documents)</td>
+          <td class="px-4 py-3 font-bold text-gold">✓ Only</td>
+          <td class="px-4 py-3 text-dim">✗</td>
+          <td class="px-4 py-3 text-dim">✗</td>
+        </tr>
+        <tr class="hover:bg-card-hover">
+          <td class="px-4 py-3 text-left text-text">Schedules &amp; Routines</td>
+          <td class="px-4 py-3 font-bold text-gold">✓ Only</td>
+          <td class="px-4 py-3 text-dim">✗</td>
+          <td class="px-4 py-3 text-dim">✗</td>
+        </tr>
+        <tr class="hover:bg-card-hover">
+          <td class="px-4 py-3 text-left text-text">Voice conversations</td>
+          <td class="px-4 py-3 text-dim">✗</td>
+          <td class="px-4 py-3 text-dim">✗</td>
+          <td class="px-4 py-3 font-bold text-gold">✓</td>
+        </tr>
+        <tr class="hover:bg-card-hover">
+          <td class="px-4 py-3 text-left text-text">Camera / photo input</td>
+          <td class="px-4 py-3 text-dim">✗</td>
+          <td class="px-4 py-3 text-dim">✗</td>
+          <td class="px-4 py-3 font-bold text-gold">✓</td>
+        </tr>
+        <tr class="hover:bg-card-hover">
+          <td class="px-4 py-3 text-left text-text">Claude Code (terminal / dev)</td>
+          <td class="px-4 py-3 text-muted">Separate CLI</td>
+          <td class="px-4 py-3 text-dim">✗</td>
+          <td class="px-4 py-3 text-dim">✗</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="mt-2 text-xs text-dim">
+    ✓ = fully supported · ～ = partial / web-only version · ✗ = not available
+  </p>
+
+  <!-- Which should I use -->
+  <div class="prose-content">
+    <h2>Which should I use?</h2>
+    <p>Three personas, three answers — find yourself:</p>
+  </div>
+
+  <div class="my-6 grid gap-4 sm:grid-cols-3">
+    <!-- Daily power user -->
+    <div class="rounded-[12px] border border-border bg-card p-5">
+      <div class="mb-2 text-2xl">🖥️</div>
+      <h3 class="m-0 mb-2 font-bold text-text">The Daily Driver</h3>
+      <p class="m-0 text-sm leading-relaxed text-muted">
+        You're at your desk most of the day. You want Claude in Jira, Confluence, and your
+        file system. You might set up a morning briefing or an end-of-day summary.
+      </p>
+      <p class="mt-3 text-sm font-semibold text-gold">→ Desktop app, all day long.</p>
+    </div>
+    <!-- Occasional web user -->
+    <div class="rounded-[12px] border border-border bg-card p-5">
+      <div class="mb-2 text-2xl">🌐</div>
+      <h3 class="m-0 mb-2 font-bold text-text">The Occasional Asker</h3>
+      <p class="m-0 text-sm leading-relaxed text-muted">
+        You don't live in Claude but you want it handy when you need it. No install,
+        no setup — just open a tab and go. Works great for one-off drafts and quick questions.
+      </p>
+      <p class="mt-3 text-sm font-semibold text-gold">→ claude.ai in your browser.</p>
+    </div>
+    <!-- On the road -->
+    <div class="rounded-[12px] border border-border bg-card p-5">
+      <div class="mb-2 text-2xl">📱</div>
+      <h3 class="m-0 mb-2 font-bold text-text">On the Road / In the Shop</h3>
+      <p class="m-0 text-sm leading-relaxed text-muted">
+        You're on the floor, at a supplier site, or in a meeting room without your laptop.
+        Snap a photo of a part label, a spec sheet, or a whiteboard and ask Claude about it.
+        Voice mode keeps your hands free.
+      </p>
+      <p class="mt-3 text-sm font-semibold text-gold">→ Phone app, no contest.</p>
+    </div>
+  </div>
+
+  <Callout variant="gold" title="Heads up: Schedules run locally">
+    <p>
+      Schedules and Routines are <strong>local automations</strong> — they live on your
+      machine, inside the desktop app. That means they only run while your computer is on
+      and the Claude app is open. Close the laptop, the schedule sleeps. They are not
+      cloud jobs that run in the background on Anthropic's servers. If you need something
+      to fire overnight or on weekends, plan accordingly.
+    </p>
+  </Callout>
+
+  <TryItNow title="Get set up in 5 minutes">
+    <p>
+      Install the desktop app and connect one tool you actually use. Pick one from this prompt
+      and follow Claude's instructions:
+    </p>
+    <CopyPrompt text="I just installed the Claude desktop app. Walk me through connecting it to Jira so I can search issues and create tasks without leaving this chat. I'm not technical — give me step-by-step instructions with screenshots described." />
+    <p class="mt-4 text-muted">
+      Already on desktop? Try the phone app too — snap a photo of something on your desk and ask:
+    </p>
+    <CopyPrompt text="What is this? [photo of component/label/part]. Give me a plain-English explanation of what it does and why it matters." />
+  </TryItNow>
+
+  <KeyTakeaways>
+    <ul>
+      <li>All three apps use the same Claude — the difference is what they can connect to and access.</li>
+      <li>Desktop is the power seat: local files, Schedules, and full Co-Work connector support live here.</li>
+      <li>Phone is the field tool — camera input and voice make it uniquely useful away from your desk.</li>
+    </ul>
+  </KeyTakeaways>
+</BaseLayout>

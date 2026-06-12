@@ -1,0 +1,17 @@
+---
+// "Try it now" exercise block — distinct teal-tinted style.
+interface Props {
+  title?: string;
+}
+const { title = 'Try it now' } = Astro.props;
+---
+<section
+  class="my-6 rounded-[12px] border border-chat/50 bg-chat-dim/30 px-5 py-4"
+>
+  <p class="m-0 mb-2 text-sm font-bold uppercase tracking-wide text-chat">
+    🧪 {title}
+  </p>
+  <div class="leading-relaxed text-text [&_p]:m-0 [&_p+p]:mt-2 [&_ol]:my-2 [&_ol]:pl-5 [&_ul]:my-2 [&_ul]:pl-5">
+    <slot />
+  </div>
+</section>

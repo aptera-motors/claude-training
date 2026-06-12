@@ -1,0 +1,47 @@
+---
+// Renders a prompt in italic with a copy-to-clipboard button.
+interface Props {
+  text: string;
+}
+const { text } = Astro.props;
+---
+<div
+  class="copy-prompt my-5 rounded-[12px] border border-border bg-card px-5 py-4"
+>
+  <p class="prompt-text m-0 pr-2 italic leading-relaxed text-text">
+    {text}
+  </p>
+  <button
+    type="button"
+    class="copy-btn mt-3 inline-flex items-center gap-1.5 rounded-lg border border-border bg-card-hover px-3 py-1.5 text-sm font-medium text-muted transition-colors hover:border-gold/60 hover:text-gold"
+    data-copy={text}
+  >
+    📋 Copy
+  </button>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('.copy-btn').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const text = btn.getAttribute('data-copy') ?? '';
+      try {
+        await navigator.clipboard.writeText(text);
+      } catch {
+        // Fallback for non-secure contexts
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        ta.remove();
+      }
+      const original = btn.innerHTML;
+      btn.innerHTML = '✅ Copied!';
+      btn.classList.add('text-gold', 'border-gold/60');
+      setTimeout(() => {
+        btn.innerHTML = original;
+        btn.classList.remove('text-gold', 'border-gold/60');
+      }, 1500);
+    });
+  });
+</script>
