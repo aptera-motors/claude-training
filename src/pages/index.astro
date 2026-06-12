@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Tldr from '../components/Tldr.astro';
-import { NAV_GROUPS, PAGE_ORDER, href, TOTAL_PAGES } from '../lib/site';
+import { NAV_GROUPS, PAGE_ORDER, href, TOTAL_PAGES, PROGRESS_KEY } from '../lib/site';
 
 // First three "START HERE" pages drive the step cards.
 const steps = [
@@ -134,15 +134,26 @@ const allPages = PAGE_ORDER.filter((p) => p.id !== 'home');
     </div>
   </section>
 
-  <script is:inline define:vars={{ total: TOTAL_PAGES }}>
-    // Read progress (set by the layout) and render the widget.
+  <script is:inline define:vars={{ total: TOTAL_PAGES, progressKey: PROGRESS_KEY }}>
+    // Render the progress widget. Runs on DOMContentLoaded so the layout's
+    // tracking script (later in the body) has already recorded this visit.
     function render() {
-      const count = window.apteraProgress ? window.apteraProgress.count() : 0;
+      let count = 0;
+      try {
+        const arr = JSON.parse(localStorage.getItem(progressKey) || '[]');
+        if (Array.isArray(arr)) count = arr.length;
+      } catch {
+        /* ignore */
+      }
       const countEl = document.getElementById('progress-count');
       const barEl = document.getElementById('progress-bar');
       if (countEl) countEl.textContent = String(count);
       if (barEl) barEl.style.width = Math.min(100, (count / total) * 100) + '%';
     }
-    render();
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', render);
+    } else {
+      render();
+    }
   </script>
 </BaseLayout>
