@@ -405,6 +405,55 @@
         line-height: 1.6;
       }
 
+      /* ---- Resource cards ---- */
+      .resources {
+        display: grid;
+        gap: 1rem;
+        margin: 1.5rem 0;
+      }
+      @media (min-width: 700px) {
+        .resources {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      .resource {
+        border: 1px solid var(--border);
+        background: var(--card);
+        border-radius: var(--radius);
+        padding: 1.2rem 1.3rem;
+        transition: border-color 0.15s, background 0.15s;
+      }
+      .resource:hover {
+        border-color: rgba(245, 197, 24, 0.5);
+        background: var(--card-hover);
+      }
+      .resource h3 {
+        margin: 0 0 0.2rem;
+        font-size: 1.15rem;
+      }
+      .resource h3 a {
+        text-decoration: none;
+      }
+      .resource .res-meta {
+        margin: 0 0 0.6rem;
+        font-size: 0.8rem;
+        color: var(--dim);
+        font-weight: 600;
+      }
+      .resource .res-meta a {
+        color: var(--muted);
+      }
+      .resource p {
+        margin: 0 0 0.85rem;
+        font-size: 0.96rem;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+      .resource .res-link {
+        font-size: 0.9rem;
+        font-weight: 600;
+      }
+
       @media (max-width: 640px) {
         html {
           font-size: 16px;
@@ -792,6 +841,43 @@
           </p>
         </div>
 
+        <h3>Design the Loop Before You Run It</h3>
+        <p>
+          A loop is only as good as its design. A sloppy one produces weak output
+          — and worse, it can quietly burn through a lot of tokens before anyone
+          notices. Two ideas from the broader Claude community are worth
+          borrowing:
+        </p>
+        <ul>
+          <li>
+            <strong>Prove "done" — don't assume it.</strong> The strongest loops
+            demand <em>evidence</em> before calling a task complete — a passing
+            test, a regression check, a measurable margin — rather than trusting
+            the model's own say-so. That "show your proof" discipline is the
+            backbone of the loops in the
+            <a href="https://signals.forwardfuture.ai/loop-library/"
+              >Loop Library</a
+            >.
+          </li>
+          <li>
+            <strong>Don't let a loop grade its own homework.</strong> When the
+            "are we done?" check is judged by the same model doing the work,
+            that's a blind spot. A simple fix is a review council — have a
+            <em>different</em> model evaluate whether the goal was actually met.
+            This insight comes from Kevin Simback's
+            <a href="https://github.com/ksimback/looper">Looper</a>.
+          </li>
+        </ul>
+
+        <div class="callout">
+          <p class="callout-title">✅ A quick readiness test</p>
+          <p>
+            Before you run a loop, make sure you can answer two questions: "What
+            proof tells me this is done?" and "Who checks the work?" If you can't
+            answer both, the loop isn't ready yet.
+          </p>
+        </div>
+
         <h3>Who Is This For at Aptera?</h3>
         <p>
           Here's the thing — you don't need to know how to code to build an
@@ -865,6 +951,66 @@
             quietly, in the background — freeing you up for the work that actually
             needs a human.
           </p>
+        </div>
+      </section>
+
+      <hr class="rule" />
+
+      <!-- ============ RESOURCES ============ -->
+      <section>
+        <span class="part-label">Go Deeper</span>
+        <h2>Resources</h2>
+        <p>
+          Two community-built tools that pair perfectly with this training — one
+          for grabbing loops that already work, and one for designing your own the
+          right way.
+        </p>
+        <div class="resources">
+          <div class="resource">
+            <h3>
+              <a href="https://signals.forwardfuture.ai/loop-library/"
+                >📚 Loop Library</a
+              >
+            </h3>
+            <p class="res-meta">
+              Forward Future · shared by
+              <a href="https://x.com/MatthewBerman/status/2067682870009925736"
+                >@MatthewBerman</a
+              >
+            </p>
+            <p>
+              A curated, copyable library of 30+ ready-to-run agent loops across
+              engineering, operations, evaluation, content, and design. Every loop
+              ships with built-in checks, evidence requirements, and clear
+              stopping conditions. Browse it, copy a loop, or submit your own.
+            </p>
+            <a
+              class="res-link"
+              href="https://signals.forwardfuture.ai/loop-library/"
+              >signals.forwardfuture.ai/loop-library →</a
+            >
+          </div>
+          <div class="resource">
+            <h3>
+              <a href="https://github.com/ksimback/looper">🛠️ Looper</a>
+            </h3>
+            <p class="res-meta">
+              Open source · by
+              <a href="https://x.com/KSimback/status/2067874418232119347"
+                >Kevin Simback (@KSimback)</a
+              >
+            </p>
+            <p>
+              A loop <em>design</em> coach for Claude Code. Run
+              <code>/looper</code> and it interviews you, sharpens your goal,
+              builds a verification rubric, recommends a different model as an
+              independent judge, sets guardrails and a token budget, and hands you
+              a portable, repeatable loop. Great for designing your own loop well.
+            </p>
+            <a class="res-link" href="https://github.com/ksimback/looper"
+              >github.com/ksimback/looper →</a
+            >
+          </div>
         </div>
       </section>
 
