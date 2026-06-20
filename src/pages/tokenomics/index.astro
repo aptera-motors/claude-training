@@ -6,6 +6,7 @@ import TryItNow from '../../components/TryItNow.astro';
 import CopyPrompt from '../../components/CopyPrompt.astro';
 import KeyTakeaways from '../../components/KeyTakeaways.astro';
 import Callout from '../../components/Callout.astro';
+import { href } from '../../lib/site';
 ---
 <BaseLayout
   title="Tokenomics"
@@ -47,13 +48,13 @@ import Callout from '../../components/Callout.astro';
   <div class="prose-content">
     <h2>Pick the right model</h2>
     <p>
-      Anthropic makes three flavors of Claude. Same brain, different horsepower — and different price tags.
+      Anthropic makes four models of Claude. Same brain, different horsepower — and different price tags.
       Reach for the right one and you'll finish faster <em>and</em> spend less.
     </p>
   </div>
 
-  <!-- 3-column model cards -->
-  <div class="my-6 grid gap-4 sm:grid-cols-3">
+  <!-- model cards -->
+  <div class="my-6 grid gap-4 sm:grid-cols-2">
     <!-- Haiku -->
     <div class="rounded-[12px] border border-border bg-card p-5">
       <div class="mb-3 text-2xl">⚡</div>
@@ -85,6 +86,18 @@ import Callout from '../../components/Callout.astro';
         <strong class="text-text">Reach for it when…</strong> the problem is genuinely hard:
         deep financial analysis, complex multi-step reasoning, evaluating tradeoffs with lots
         of context. Bring out the big gun when the job demands it.
+      </p>
+    </div>
+    <!-- Fable -->
+    <div class="rounded-[12px] border border-border bg-card p-5">
+      <div class="mb-3 text-2xl">🧙</div>
+      <h3 class="m-0 mb-1 text-lg font-bold text-text">Fable</h3>
+      <p class="mb-3 text-sm font-medium text-muted">The frontier · premium</p>
+      <p class="m-0 text-sm leading-relaxed text-text">
+        <strong class="text-text">Reach for it when…</strong> the job is huge and multi-step —
+        especially when you want one model to <strong>orchestrate</strong> a team of cheaper ones.
+        Powerful and pricey; overkill for everyday tasks. More in
+        <a href={href('/models/')}>Choosing Your Model</a>.
       </p>
     </div>
   </div>
@@ -178,10 +191,11 @@ import Callout from '../../components/Callout.astro';
 
   <Callout variant="gold" title="Context windows, simply">
     <p>
-      Everything in your conversation — every message you've sent, every reply Claude gave —
-      gets re-processed from the top on every single turn. That's why long, unfocused chats
-      get expensive and sometimes start drifting. A fresh chat isn't just cheaper; it often
-      gives sharper answers because Claude isn't hauling around 30 messages of old context.
+      Every turn re-reads the whole conversation from the top, so long, unfocused chats cost
+      more and can start to drift. Want the full picture — how the window fills and when to
+      compact? See the
+      <a href={href('/context-window/')} class="font-semibold underline underline-offset-2">Context Window</a>
+      lesson.
     </p>
   </Callout>
 
@@ -199,7 +213,7 @@ import Callout from '../../components/Callout.astro';
   <KeyTakeaways>
     <ul>
       <li>Tokens are the currency — every word in and out counts. Use Claude smartly, not sparingly.</li>
-      <li>Match the model to the job: Haiku for quick tasks, Sonnet for daily work, Opus for heavy analysis.</li>
+      <li>Match the model to the job: Haiku for quick tasks, Sonnet for daily work, Opus for heavy analysis, Fable for the biggest multi-step projects.</li>
       <li>Fresh chats are cheaper <em>and</em> better — don't drag stale context into a new topic.</li>
     </ul>
   </KeyTakeaways>

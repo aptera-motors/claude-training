@@ -3,4 +3,4 @@ term: Context window
 letter: C
 ---
 
-The context window is how much text Claude can see at once, measured in tokens. Haiku has 200K tokens, Sonnet has 200K, and Opus has 200K. Think of it as short-term memory: if you paste a 100-page document and then ask a question, Claude can reference the whole thing without forgetting earlier parts.
+The context window is how much text Claude can see at once, measured in tokens. It's large — hundreds of thousands of tokens, varying by model — but finite. Think of it as short-term memory: paste a 100-page document and Claude can reference the whole thing. Because quality can dip as it fills, very long sessions may need compaction.

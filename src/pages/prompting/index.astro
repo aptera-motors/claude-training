@@ -6,6 +6,7 @@ import TryItNow from '../../components/TryItNow.astro';
 import KeyTakeaways from '../../components/KeyTakeaways.astro';
 import CopyPrompt from '../../components/CopyPrompt.astro';
 import Callout from '../../components/Callout.astro';
+import { href } from '../../lib/site';
 ---
 <BaseLayout
   title="Prompting 101"
@@ -149,7 +150,7 @@ import Callout from '../../components/Callout.astro';
       <li>"What's missing from this? What would you add?"</li>
     </ul>
     <p>
-      Three rounds of back-and-forth beats one heroic mega-prompt every time. Iterate like you'd polish a document with a smart editor — because that's basically what's happening.
+      Three rounds of back-and-forth beats one heroic mega-prompt every time. Iterate like you'd polish a document with a smart editor — because that's basically what's happening. This habit has a name and a lesson of its own: <a href={href('/manual-looping/')}>Manual Looping</a>.
     </p>
   </section>
 
