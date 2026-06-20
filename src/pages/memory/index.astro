@@ -1,0 +1,175 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import Tldr from '../../components/Tldr.astro';
+import KeyTakeaways from '../../components/KeyTakeaways.astro';
+import Callout from '../../components/Callout.astro';
+import CopyPrompt from '../../components/CopyPrompt.astro';
+import TryItNow from '../../components/TryItNow.astro';
+import { href } from '../../lib/site';
+---
+<BaseLayout
+  title="Memory & Projects"
+  description="Your context window resets every session. Memory and Projects are how Claude carries what matters from one conversation to the next — so you stop re-explaining yourself."
+  pageId="memory"
+  readMinutes={6}
+>
+  <PageHeader
+    icon="💾"
+    title="Memory & Projects"
+    subtitle="Your context window resets every session. Memory and Projects are how Claude carries what matters from one conversation to the next — so you stop re-explaining yourself."
+    readMinutes={6}
+  />
+
+  <Tldr>
+    <p>
+      The <a class="text-gold underline" href={href('/context-window/')}>context window</a>
+      is short-term memory — one session, then gone. To carry things across chats,
+      Claude has two tools: <strong>Memory</strong> (it automatically remembers
+      facts about you and your work) and <strong>Projects</strong> (persistent
+      workspaces that hold your instructions and reference files). Add
+      <strong>files and skills</strong> for durable outputs and repeatable
+      workflows, and you've got a real memory system.
+    </p>
+  </Tldr>
+
+  <!-- Short vs long term -->
+  <section class="prose-content">
+    <h2>Short-term vs. long-term</h2>
+    <p>
+      Think of the context window as Claude's desk: everything you're actively
+      working on is spread out on it during a session — and it's cleared when you
+      leave. That's perfect for the task at hand, but it means a brand-new
+      conversation starts with a blank desk. <strong>Memory and Projects are the
+      filing cabinet</strong> — where the important stuff lives between sessions so
+      you're not starting from scratch every time.
+    </p>
+  </section>
+
+  <!-- Memory -->
+  <section class="prose-content">
+    <h2>Memory: Claude remembers you</h2>
+    <p>
+      Claude can automatically build up a memory of the things that matter about
+      you — your role, your preferences, the projects you keep coming back to, how
+      you like things formatted. It surfaces that context in future conversations,
+      so you don't have to reintroduce yourself or re-explain your job every time.
+      It quietly improves the more you work together.
+    </p>
+    <p>
+      Crucially, memory is <strong>scoped</strong>: each Project keeps its own
+      separate memory, so your "supplier onboarding" context doesn't bleed into
+      your "board deck" context.
+    </p>
+  </section>
+
+  <Callout variant="gold" title="🔒 You're in control">
+    <p>
+      You can review, edit, and clear what Claude remembers — or turn memory off
+      entirely. And the same rule from <a class="text-gold underline" href={href('/safety/')}>Safety &amp; Data</a>
+      still applies: don't hand Claude passwords, bulk PII, or NDA material just
+      because memory is convenient. Memory is for working context, not a vault for
+      secrets.
+    </p>
+  </Callout>
+
+  <!-- Projects -->
+  <section class="prose-content">
+    <h2>Projects: a workspace that remembers</h2>
+    <p>
+      A <strong>Project</strong> is a persistent workspace inside the Claude apps.
+      You set it up once with two things:
+    </p>
+    <ul>
+      <li><strong>Instructions</strong> — who you are, the tone and format you want, the rules that should apply to every chat in the workspace.</li>
+      <li><strong>Knowledge files</strong> — the specs, templates, guidelines, or data Claude should always be able to reference.</li>
+    </ul>
+    <p>
+      From then on, <em>every conversation inside that Project inherits the
+      context automatically</em>. You skip the setup and go straight to the
+      question — and Claude pulls the relevant bits of your uploaded files into the
+      conversation as needed. (Projects live in Co-Work — see
+      <a class="text-gold underline" href={href('/modes/')}>The Three Modes</a>.)
+    </p>
+  </section>
+
+  <Callout variant="cowork" title="🏭 An Aptera example">
+    <p>
+      Spin up a <strong>"Supplier Onboarding"</strong> Project. Drop in the W-9
+      template, the Aptera Supplier Questionnaire, and the quality-cert
+      requirements, and set the instruction: <em>"You help onboard new suppliers;
+      keep a professional-but-warm tone."</em> Now every onboarding email you draft
+      in that Project already knows the deliverables and the voice — no re-pasting,
+      every time.
+    </p>
+  </Callout>
+
+  <!-- Files & skills -->
+  <section class="prose-content">
+    <h2>Files &amp; skills: the durable layer</h2>
+    <p>
+      For things that must truly last, reach past Claude's built-in memory:
+    </p>
+    <ul>
+      <li><strong>Save outputs to files.</strong> A finished doc, runbook, or config belongs in a file (or Confluence/SharePoint), not buried in a chat that you might lose.</li>
+      <li><strong>Build a skill</strong> for any repeatable, multi-step workflow you run again and again — see <a class="text-gold underline" href={href('/connectors/')}>Connectors &amp; Skills</a>.</li>
+    </ul>
+  </section>
+
+  <Callout variant="code" title="⌨️ For Claude Code users">
+    <p>
+      In Claude Code, persistent instructions and project facts live in files
+      (like a <code>CLAUDE.md</code> or a memory directory) committed alongside the
+      code — so every session starts already knowing the project's conventions.
+      Same idea as Projects, version-controlled.
+    </p>
+  </Callout>
+
+  <!-- Which to use -->
+  <section class="prose-content">
+    <h2>Which kind of memory do I use?</h2>
+    <p>Four layers, from most temporary to most durable:</p>
+  </section>
+
+  <div class="my-6 grid gap-4 sm:grid-cols-2">
+    <div class="rounded-[12px] border border-chat/50 bg-card p-5">
+      <div class="mb-2 text-2xl">🪟</div>
+      <h3 class="m-0 mb-1 text-lg font-bold text-chat">Context window</h3>
+      <p class="m-0 text-sm leading-relaxed text-muted">One conversation. Automatic and finite — it resets when the session ends.</p>
+    </div>
+    <div class="rounded-[12px] border border-gold/50 bg-card p-5">
+      <div class="mb-2 text-2xl">💾</div>
+      <h3 class="m-0 mb-1 text-lg font-bold text-gold">Memory</h3>
+      <p class="m-0 text-sm leading-relaxed text-muted">Facts about you and your work, carried across all your chats. Automatic — and you can edit or clear it.</p>
+    </div>
+    <div class="rounded-[12px] border border-cowork/50 bg-card p-5">
+      <div class="mb-2 text-2xl">🗂️</div>
+      <h3 class="m-0 mb-1 text-lg font-bold text-cowork">Projects</h3>
+      <p class="m-0 text-sm leading-relaxed text-muted">A body of work. Your instructions + reference files, shared by every chat in the workspace.</p>
+    </div>
+    <div class="rounded-[12px] border border-code/50 bg-card p-5">
+      <div class="mb-2 text-2xl">🛠️</div>
+      <h3 class="m-0 mb-1 text-lg font-bold text-code">Files &amp; skills</h3>
+      <p class="m-0 text-sm leading-relaxed text-muted">Durable outputs and repeatable workflows — saved on purpose, reused on demand.</p>
+    </div>
+  </div>
+
+  <TryItNow title="Set up your first Project">
+    <p>
+      In the Claude app, create a Project for something you do repeatedly. Add any
+      templates or reference docs, then paste this as the Project instructions —
+      fill in the brackets:
+    </p>
+    <CopyPrompt text="You help me with [initiative / recurring task]. Background: [what it is, who's involved, the key constraints]. Always [tone / format rules]. Use the files in this project as the source of truth for [specs / templates / data]. Assume this context in every chat — don't make me re-explain it." />
+  </TryItNow>
+
+  <KeyTakeaways>
+    <ul>
+      <li>The context window is short-term (one session); Memory and Projects are how Claude remembers across sessions.</li>
+      <li><strong>Memory</strong> automatically carries facts about you and your work between chats — and you can review, edit, or turn it off.</li>
+      <li><strong>Projects</strong> are persistent workspaces: set instructions + add knowledge files once, and every chat inherits them.</li>
+      <li>For anything that must truly last, save it to files or build a skill.</li>
+      <li>Memory is for working context, not secrets — the same Safety rules apply.</li>
+    </ul>
+  </KeyTakeaways>
+</BaseLayout>

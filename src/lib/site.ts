@@ -52,6 +52,7 @@ export const NAV_GROUPS: NavGroup[] = [
       { id: 'manual-looping', label: 'Manual Looping', href: '/manual-looping/', emoji: '🔁', blurb: 'Stop one-shot prompting — iterate to great results.' },
       { id: 'tokenomics', label: 'Tokenomics', href: '/tokenomics/', emoji: '🪙', blurb: 'What tokens are and why they matter.' },
       { id: 'context-window', label: 'Context Window', href: '/context-window/', emoji: '🪟', blurb: "Claude's working memory — and how to manage it." },
+      { id: 'memory', label: 'Memory & Projects', href: '/memory/', emoji: '💾', blurb: 'How Claude remembers across sessions — and how to make it stick.' },
       { id: 'agentic-looping', label: 'Agentic Looping', href: '/agentic-looping/', emoji: '🤖', blurb: 'Let Claude run its own loop until the job is done.' },
       { id: 'apps', label: 'Apps Compared', href: '/apps/', emoji: '⚖️', blurb: 'Which Claude app for which job.' },
       { id: 'm365', label: 'M365 Plugins', href: '/m365/', emoji: '📎', blurb: 'Claude inside the Microsoft tools you already use.' },
