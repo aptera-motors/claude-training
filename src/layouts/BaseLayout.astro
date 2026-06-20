@@ -11,6 +11,12 @@ interface Props {
 const { title, description, pageId } = Astro.props;
 const { prev, next } = prevNext(pageId);
 const pagefindBase = href('/pagefind/');
+
+// Social / canonical metadata
+const fullTitle = `${title} · Aptera AI Academy`;
+const me = PAGE_ORDER.find((p) => p.id === pageId);
+const canonical = new URL(href(me?.href ?? '/'), Astro.site).href;
+const ogImage = new URL(href('/og.png'), Astro.site).href;
 ---
 <!doctype html>
 <html lang="en">
@@ -19,6 +25,22 @@ const pagefindBase = href('/pagefind/');
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <title>{title} · Aptera AI Academy</title>
+    <link rel="canonical" href={canonical} />
+
+    <!-- Open Graph / social preview -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Aptera AI Academy" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><circle cx='8' cy='8' r='6' fill='%23F5C518'/></svg>" />
     <link href={`${pagefindBase}pagefind-ui.css`} rel="stylesheet" />
   </head>
