@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="PAGE_DESCRIPTION" />
+    <title>PAGE_TITLE · Aptera AI Academy</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><circle cx='8' cy='8' r='6' fill='%23F5C518'/></svg>"
+    />
+    <style>
+      :root {
+        color-scheme: dark;
+        --canvas: #0d0e11;
+        --card: #16181d;
+        --card-hover: #1e2129;
+        --border: #2a2d36;
+        --text: #e8eaf0;
+        --muted: #7a7f8e;
+        --dim: #4a4f5e;
+        --gold: #f5c518;
+        --chat: #4ecdc4;
+        --cowork: #a78bfa;
+        --code: #f97316;
+        --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica,
+          Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+        --radius: 12px;
+      }
+      * { box-sizing: border-box; }
+      html {
+        font-size: 17px;
+        background-color: var(--canvas);
+        color: var(--text);
+        font-family: var(--font-sans);
+        scroll-behavior: smooth;
+      }
+      body { margin: 0; min-height: 100vh; background-color: var(--canvas); }
+      a { color: var(--gold); text-underline-offset: 2px; }
+
+      /* Top bar */
+      .topbar {
+        position: sticky; top: 0; z-index: 40;
+        display: flex; align-items: center; justify-content: space-between;
+        gap: 1rem; border-bottom: 1px solid var(--border);
+        background-color: rgba(13, 14, 17, 0.95); backdrop-filter: blur(8px);
+        padding: 0.85rem 1.5rem;
+      }
+      .brand {
+        display: flex; align-items: center; gap: 0.65rem;
+        font-weight: 800; letter-spacing: -0.01em; color: var(--text);
+        text-decoration: none; font-size: 1.05rem;
+      }
+      .brand-dot {
+        display: inline-block; height: 0.75rem; width: 0.75rem;
+        border-radius: 9999px; background: var(--gold);
+        box-shadow: 0 0 10px 2px rgba(245, 197, 24, 0.6);
+      }
+      .tag {
+        border: 1px solid var(--border); background: var(--card);
+        color: var(--muted); border-radius: 9999px; padding: 0.3rem 0.8rem;
+        font-size: 0.78rem; font-weight: 600; white-space: nowrap;
+      }
+
+      /* Layout */
+      .wrap { max-width: 880px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
+
+      /* Page header */
+      header.page {
+        margin-bottom: 2.25rem; border-bottom: 1px solid var(--border);
+        padding-bottom: 1.5rem;
+      }
+      .page-eyebrow {
+        display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.85rem;
+      }
+      .page-eyebrow .icon { font-size: 2.4rem; line-height: 1; }
+      .read-badge {
+        border: 1px solid var(--border); background: var(--card);
+        color: var(--muted); border-radius: 9999px; padding: 0.25rem 0.75rem;
+        font-size: 0.78rem; font-weight: 500;
+      }
+      h1 {
+        margin: 0; font-size: 2.3rem; font-weight: 800;
+        letter-spacing: -0.02em; line-height: 1.1;
+      }
+      .subtitle {
+        margin: 0.9rem 0 0; max-width: 60ch; font-size: 1.15rem;
+        line-height: 1.6; color: var(--muted);
+      }
+      .byline {
+        margin-top: 0.75rem; font-size: 0.85rem; color: var(--dim);
+        font-weight: 600; letter-spacing: 0.02em;
+      }
+
+      /* Prose */
+      h2 {
+        font-size: 1.7rem; font-weight: 800; letter-spacing: -0.01em;
+        margin: 0 0 0.25rem; color: var(--text);
+      }
+      h3 { font-size: 1.22rem; font-weight: 700; margin: 2rem 0 0.6rem; color: var(--text); }
+      p { line-height: 1.72; margin: 0 0 1.1rem; color: var(--text); }
+      ul { margin: 0 0 1.1rem; padding-left: 1.4rem; list-style: disc; }
+      li { line-height: 1.72; margin-bottom: 0.5rem; }
+      strong { color: var(--text); font-weight: 700; }
+      code {
+        background: var(--card); border: 1px solid var(--border);
+        border-radius: 6px; padding: 0.1rem 0.35rem; font-size: 0.9em;
+      }
+      hr.rule { border: 0; border-top: 1px solid var(--border); margin: 2.75rem 0; }
+
+      .part-label {
+        display: inline-block; font-size: 0.78rem; font-weight: 800;
+        letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold);
+        margin-bottom: 0.5rem;
+      }
+
+      /* Pull quote */
+      blockquote {
+        margin: 1.75rem 0; padding: 1.1rem 1.4rem;
+        border-left: 3px solid var(--gold); background: rgba(245, 197, 24, 0.05);
+        border-radius: 0 var(--radius) var(--radius) 0;
+      }
+      blockquote p { margin: 0; font-size: 1.08rem; font-style: italic; line-height: 1.6; color: var(--text); }
+      blockquote cite { display: block; margin-top: 0.7rem; font-style: normal; font-size: 0.9rem; font-weight: 600; color: var(--gold); }
+
+      /* Copyable prompt */
+      .prompt {
+        margin: 1.4rem 0; border: 1px solid var(--border); background: var(--card);
+        border-radius: var(--radius); padding: 1.1rem 1.25rem;
+      }
+      .prompt p { margin: 0; font-style: italic; line-height: 1.65; color: var(--text); }
+      .copy-btn {
+        margin-top: 0.85rem; display: inline-flex; align-items: center; gap: 0.4rem;
+        border: 1px solid var(--border); background: var(--card-hover);
+        color: var(--muted); border-radius: 8px; padding: 0.4rem 0.8rem;
+        font-size: 0.85rem; font-weight: 600; font-family: inherit; cursor: pointer;
+        transition: color 0.15s, border-color 0.15s;
+      }
+      .copy-btn:hover, .copy-btn.copied { color: var(--gold); border-color: rgba(245, 197, 24, 0.6); }
+
+      /* Callout (set border/title color per variant: gold/chat/cowork/code) */
+      .callout {
+        margin: 1.5rem 0; border: 2px dashed rgba(245, 197, 24, 0.6);
+        background: rgba(22, 24, 29, 0.4); border-radius: var(--radius); padding: 1rem 1.25rem;
+      }
+      .callout .callout-title { margin: 0 0 0.5rem; font-weight: 700; color: var(--gold); }
+      .callout p:last-child { margin-bottom: 0; }
+
+      /* Key-takeaway / bottom-line box */
+      .takeaway {
+        margin: 1.5rem 0; border: 1px solid var(--border); background: var(--card);
+        border-radius: var(--radius); padding: 1.1rem 1.3rem;
+      }
+      .takeaway .takeaway-title {
+        margin: 0 0 0.5rem; font-size: 0.82rem; font-weight: 800;
+        text-transform: uppercase; letter-spacing: 0.06em; color: var(--gold);
+      }
+      .takeaway p:last-child { margin-bottom: 0; }
+
+      /* Table (accent thead/first-col per topic; cowork shown here) */
+      .table-wrap { margin: 1.5rem 0; overflow-x: auto; border: 1px solid var(--border); border-radius: var(--radius); }
+      table { width: 100%; border-collapse: collapse; font-size: 0.96rem; }
+      th, td { text-align: left; padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); line-height: 1.55; vertical-align: top; }
+      thead th { background: var(--card-hover); color: var(--cowork); font-weight: 700; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.05em; }
+      tbody tr:last-child td { border-bottom: 0; }
+      tbody td:first-child { font-weight: 700; color: var(--cowork); white-space: nowrap; }
+
+      /* Sidebar — floats right on desktop, collapses inline on mobile */
+      .context-sidebar {
+        border: 1px solid var(--border); background: var(--card);
+        border-left: 3px solid var(--chat); border-radius: var(--radius);
+        padding: 1.1rem 1.25rem;
+      }
+      .context-sidebar .sb-eyebrow {
+        margin: 0 0 0.35rem; font-size: 0.74rem; font-weight: 800;
+        text-transform: uppercase; letter-spacing: 0.08em; color: var(--chat);
+      }
+      .context-sidebar h3 { margin: 0 0 0.6rem; font-size: 1.1rem; }
+      .context-sidebar p { font-size: 0.95rem; line-height: 1.6; color: var(--muted); }
+      .context-sidebar p strong { color: var(--text); }
+      .context-sidebar p:last-child { margin-bottom: 0; }
+      @media (min-width: 1024px) {
+        .context-sidebar { float: right; width: 290px; margin: 0.4rem 0 1.25rem 2rem; }
+      }
+      .clearfix::after { content: ""; display: block; clear: both; }
+
+      footer.page {
+        margin-top: 3rem; border-top: 1px solid var(--border); padding-top: 1.5rem;
+        text-align: center; font-size: 0.8rem; color: var(--dim); line-height: 1.6;
+      }
+      @media (max-width: 640px) {
+        html { font-size: 16px; }
+        h1 { font-size: 1.9rem; }
+        .wrap { padding: 2rem 1.1rem 3rem; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="topbar">
+      <a class="brand" href="https://aptera-motors.github.io/claude-training/">
+        <span class="brand-dot"></span>
+        Aptera AI Academy
+      </a>
+      <span class="tag">Tips &amp; Best Practices</span>
+    </div>
+
+    <div class="wrap">
+      <header class="page">
+        <div class="page-eyebrow">
+          <span class="icon">EMOJI</span>
+          <span class="read-badge">⏱ N min read</span>
+        </div>
+        <h1>PAGE_TITLE</h1>
+        <p class="subtitle">SUBTITLE</p>
+        <p class="byline">Aptera AI Initiative · Tips &amp; Best Practices</p>
+      </header>
+
+      <!-- ===== BODY: drop in sections using the patterns above ===== -->
+      <!-- A section that contains a floating sidebar must carry class="clearfix" -->
+      <section class="clearfix">
+        <aside class="context-sidebar">
+          <p class="sb-eyebrow">🪟 Sidebar</p>
+          <h3>Sidebar heading</h3>
+          <p>Sidebar body.</p>
+        </aside>
+        <p>Body text wraps around the sidebar on desktop…</p>
+      </section>
+
+      <footer class="page">
+        Aptera AI Academy · Built for the crew that builds the sun-powered future.
+      </footer>
+    </div>
+
+    <script>
+      document.querySelectorAll(".copy-btn").forEach((btn) => {
+        btn.addEventListener("click", async () => {
+          const text = btn.parentElement.querySelector("p")?.innerText ?? "";
+          try {
+            await navigator.clipboard.writeText(text);
+          } catch {
+            const ta = document.createElement("textarea");
+            ta.value = text;
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand("copy");
+            ta.remove();
+          }
+          const original = btn.innerHTML;
+          btn.innerHTML = "✅ Copied!";
+          btn.classList.add("copied");
+          setTimeout(() => {
+            btn.innerHTML = original;
+            btn.classList.remove("copied");
+          }, 1500);
+        });
+      });
+    </script>
+  </body>
+</html>
