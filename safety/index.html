@@ -1,0 +1,122 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="Using Claude responsibly at Aptera — what to share, what to keep close, and how to verify what Claude gives back."><title>Safety &amp; Data · Aptera AI Academy</title><link rel="canonical" href="https://aptera-motors.github.io/claude-training/safety/"><!-- Open Graph / social preview --><meta property="og:type" content="website"><meta property="og:site_name" content="Aptera AI Academy"><meta property="og:title" content="Safety &#38; Data · Aptera AI Academy"><meta property="og:description" content="Using Claude responsibly at Aptera — what to share, what to keep close, and how to verify what Claude gives back."><meta property="og:url" content="https://aptera-motors.github.io/claude-training/safety/"><meta property="og:image" content="https://aptera-motors.github.io/claude-training/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Safety &#38; Data · Aptera AI Academy"><meta name="twitter:description" content="Using Claude responsibly at Aptera — what to share, what to keep close, and how to verify what Claude gives back."><meta name="twitter:image" content="https://aptera-motors.github.io/claude-training/og.png"><link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><circle cx='8' cy='8' r='6' fill='%23F5C518'/></svg>"><link href="/claude-training/pagefind/pagefind-ui.css" rel="stylesheet"><link rel="stylesheet" href="/claude-training/_astro/index.cbzSLVhy.css"></head> <body class="min-h-screen bg-canvas text-text"> <!-- Mobile top bar --> <div class="sticky top-0 z-40 flex items-center justify-between border-b border-border bg-canvas/95 px-4 py-3 backdrop-blur lg:hidden"> <a href="/claude-training/" class="flex items-center gap-2 font-bold"> <span class="inline-block h-2.5 w-2.5 rounded-full bg-gold shadow-[0_0_8px_2px_rgba(245,197,24,0.6)]"></span>
+Aptera AI Academy
+</a> <button id="nav-toggle" type="button" aria-label="Open navigation" class="rounded-lg border border-border px-3 py-1.5 text-text">
+☰
+</button> </div> <div class="mx-auto flex w-full max-w-[1400px]"> <!-- Sidebar --> <aside id="sidebar" class="fixed inset-y-0 left-0 z-50 hidden w-72 -translate-x-full flex-col overflow-y-auto border-r border-border bg-card px-5 py-6 transition-transform lg:sticky lg:top-0 lg:flex lg:h-screen lg:translate-x-0"> <div class="mb-6 flex items-center justify-between"> <a href="/claude-training/" class="flex items-center gap-2.5 text-lg font-extrabold tracking-tight"> <span class="inline-block h-3 w-3 rounded-full bg-gold shadow-[0_0_10px_2px_rgba(245,197,24,0.6)]"></span>
+Aptera AI Academy
+</a> <button id="nav-close" type="button" aria-label="Close navigation" class="rounded-lg border border-border px-2 py-1 text-muted lg:hidden">
+✕
+</button> </div> <nav class="flex-1 space-y-6 text-[0.95rem]"> <div> <p class="mb-2 px-2 text-xs font-bold uppercase tracking-widest text-dim"> START HERE </p> <ul class="space-y-0.5"> <li> <a href="/claude-training/" data-pageid="home" class="nav-link group flex items-center gap-2 rounded-lg px-2.5 py-1.5 transition-colors hover:bg-card-hover text-muted hover:text-text"> <span class="text-base">🏠</span> <span class="flex-1">Home</span> <span class="nav-check hidden text-gold" aria-hidden="true">✓</span> </a> </li><li> <a href="/claude-training/getting-started/" data-pageid="getting-started" class="nav-link group flex items-center gap-2 rounded-lg px-2.5 py-1.5 transition-colors hover:bg-card-hover text-muted hover:text-text"> <span class="text-base">🚀</span> <span class="flex-1">Getting Started</span> <span class="nav-check hidden text-gold" aria-hidden="true">✓</span> </a> </li><li> <a href="/claude-training/modes/" data-pageid="modes" class="nav-link group flex items-center gap-2 rounded-lg px-2.5 py-1.5 transition-colors hover:bg-card-hover text-muted hover:text-text"> <span class="text-base">🎛️</span> <span class="flex-1">The Three Modes</span> <span class="nav-check hidden text-gold" aria-hidden="true">✓</span> </a> </li><li> <a href="/claude-training/models/" data-pageid="models" class="nav-link group flex items-center gap-2 rounded-lg px-2.5 py-1.5 transition-colors hover:bg-card-hover text-muted hover:text-text"> <span class="text-base">🧠</span> <span class="flex-1">Choosing Your Model</span> <span class="nav-check hidden text-gold" aria-hidden="true">✓</span> </a> </li> </ul> </div><div> <p class="mb-2 px-2 text-xs font-bold uppercase tracking-widest text-dim"> GET GOOD </p> <ul class="space-y-0.5"> <li> <a href="/claude-training/prompting/" data-pageid="prompting" class="nav-link group flex items-center gap-2 rounded-lg px-2.5 py-1.5 transition-colors hover:bg-card-hover text-muted hover:text-text"> <span class="text-base">✍️</span> <span class="flex-1">Prompting 101</span> <span class="nav-check hidden text-gold" aria-hidden="true">✓</span> </a> </li><li> <a href="/claude-training/manual-looping/" data-pageid="manual-looping" class="nav-link group flex items-center gap-2 rounded-lg px-2.5 py-1.5 transition-colors hover:bg-card-hover text-muted hover:text-text"> <span class="text-base">🔁</span> <span class="flex-1">Manual Looping</span> <span class="nav-check hidden text-gold" aria-hidden="true">✓</span> </a> </li><li> <a href="/claude-training/tokenomics/" data-pageid="tokenomics" class="nav-link group flex items-center gap-2 rounded-lg px-2.5 py-1.5 transition-colors hover:bg-card-hover text-muted hover:text-text"> <span class="text-base">🪙</span> <span class="flex-1">Tokenomics</span> <span class="nav-check hidden text-gold" aria-hidden="true">✓</span> </a> </li><li> <a href="/claude-training/context-window/" data-pageid="context-window" class="nav-link group flex items-center gap-2 rounded-lg px-2.5 py-1.5 transition-colors hover:bg-card-hover text-muted hover:text-text"> <span class="text-base">🪟</span> <span class="flex-1">Context Window</span> <span class="nav-check hidden text-gold" aria-hidden="true">✓</span> </a> </li><li> <a href="/claude-training/memory/" data-pageid="memory" class="nav-link group flex items-center gap-2 rounded-lg px-2.5 py-1.5 transition-colors hover:bg-card-hover text-muted hover:text-text"> <span class="text-base">💾</span> <span class="flex-1">Memory &amp; Projects</span> <span class="nav-check hidden text-gold" aria-hidden="true">✓</span> </a> </li><li> <a href="/claude-training/agentic-looping/" data-pageid="agentic-looping" class="nav-link group flex items-center gap-2 rounded-lg px-2.5 py-1.5 transition-colors hover:bg-card-hover text-muted hover:text-text"> <span class="text-base">🤖</span> <span class="flex-1">Agentic Looping</span> <span class="nav-check hidden text-gold" aria-hidden="true">✓</span> </a> </li><li> <a href="/claude-training/apps/" data-pageid="apps" class="nav-link group flex items-center gap-2 rounded-lg px-2.5 py-1.5 transition-colors hover:bg-card-hover text-muted hover:text-text"> <span class="text-base">⚖️</span> <span class="flex-1">Apps Compared</span> <span class="nav-check hidden text-gold" aria-hidden="true">✓</span> </a> </li><li> <a href="/claude-training/m365/" data-pageid="m365" class="nav-link group flex items-center gap-2 rounded-lg px-2.5 py-1.5 transition-colors hover:bg-card-hover text-muted hover:text-text"> <span class="text-base">📎</span> <span class="flex-1">M365 Plugins</span> <span class="nav-check hidden text-gold" aria-hidden="true">✓</span> </a> </li> </ul> </div><div> <p class="mb-2 px-2 text-xs font-bold uppercase tracking-widest text-dim"> REFERENCE </p> <ul class="space-y-0.5"> <li> <a href="/claude-training/connectors/" data-pageid="connectors" class="nav-link group flex items-center gap-2 rounded-lg px-2.5 py-1.5 transition-colors hover:bg-card-hover text-muted hover:text-text"> <span class="text-base">🔌</span> <span class="flex-1">Connectors &amp; Skills</span> <span class="nav-check hidden text-gold" aria-hidden="true">✓</span> </a> </li><li> <a href="/claude-training/safety/" data-pageid="safety" class="nav-link group flex items-center gap-2 rounded-lg px-2.5 py-1.5 transition-colors hover:bg-card-hover bg-card-hover font-semibold text-gold"> <span class="text-base">🛡️</span> <span class="flex-1">Safety &amp; Data</span> <span class="nav-check hidden text-gold" aria-hidden="true">✓</span> </a> </li><li> <a href="/claude-training/faq/" data-pageid="faq" class="nav-link group flex items-center gap-2 rounded-lg px-2.5 py-1.5 transition-colors hover:bg-card-hover text-muted hover:text-text"> <span class="text-base">❓</span> <span class="flex-1">FAQ</span> <span class="nav-check hidden text-gold" aria-hidden="true">✓</span> </a> </li><li> <a href="/claude-training/glossary/" data-pageid="glossary" class="nav-link group flex items-center gap-2 rounded-lg px-2.5 py-1.5 transition-colors hover:bg-card-hover text-muted hover:text-text"> <span class="text-base">📖</span> <span class="flex-1">Glossary</span> <span class="nav-check hidden text-gold" aria-hidden="true">✓</span> </a> </li> </ul> </div><div> <p class="mb-2 px-2 text-xs font-bold uppercase tracking-widest text-dim"> COMMUNITY </p> <ul class="space-y-0.5"> <li> <a href="/claude-training/wins/" data-pageid="wins" class="nav-link group flex items-center gap-2 rounded-lg px-2.5 py-1.5 transition-colors hover:bg-card-hover text-muted hover:text-text"> <span class="text-base">🏆</span> <span class="flex-1">Win Gallery</span> <span class="nav-check hidden text-gold" aria-hidden="true">✓</span> </a> </li> </ul> </div> </nav> <!-- Search --> <div class="mt-6 border-t border-border pt-4"> <p class="mb-2 px-2 text-xs font-bold uppercase tracking-widest text-dim">Search</p> <div id="search"></div> <p id="search-fallback" class="hidden px-2 text-xs text-dim">
+Search works after the site is built.
+</p> </div> </aside> <!-- Backdrop for mobile drawer --> <div id="nav-backdrop" class="fixed inset-0 z-40 hidden bg-black/60 lg:hidden"></div> <!-- Main content --> <main class="min-w-0 flex-1 px-5 py-8 sm:px-8 lg:px-12 lg:py-12"> <div class="mx-auto w-full max-w-[760px]"> <div data-pagefind-body>  <header class="mb-8 border-b border-border pb-6"> <div class="mb-3 flex items-center gap-3"> <span class="text-4xl leading-none">🛡️</span> <span class="rounded-full border border-border bg-card px-3 py-1 text-xs font-medium text-muted">
+⏱ 5 min read
+</span> </div> <h1 class="m-0 text-3xl font-extrabold tracking-tight text-text sm:text-4xl"> Safety &amp; Data </h1> <p class="mt-3 max-w-[60ch] text-lg leading-relaxed text-muted"> Claude is a powerful coworker — not a magic oracle. Two rules cover 90% of it: be careful what you share, and verify what you ship. </p> </header> <aside class="my-6 rounded-[12px] border-2 border-gold/60 bg-gold/5 px-5 py-4"> <p class="m-0 mb-2 text-sm font-bold uppercase tracking-wide text-gold">
+⚡ In 30 seconds
+</p> <div class="text-[1.02rem] leading-relaxed text-text [&_p]:m-0 [&_p+p]:mt-2">  <p>
+Don't paste passwords, customer PII, or NDA-covered material into Claude. Do verify numbers, dates, and legal/financial claims before sending them anywhere. On enterprise accounts, your conversations don't train the model. When in doubt, ask Jake.
+</p>  </div> </aside> <div class="prose-content"> <h2>Claude is a coworker, not a crystal ball</h2> <p>
+Think of Claude like a brilliant new hire who reads fast, writes well, and never sleeps — but who also occasionally makes things up with complete confidence. (We call that <a href="/claude-training/glossary/">hallucination</a>.) That's not a dealbreaker; it just means you treat Claude's output the same way you'd treat a first draft from any colleague: useful, but worth a second look before it goes anywhere official.
+</p> <p>
+Two rules cover the vast majority of situations. Master these and you're good:
+</p> <ol class="list-decimal pl-5 mb-4 leading-relaxed"> <li class="mb-2"><strong>Be careful what you share.</strong> Claude can only work with what you give it — so give it the right stuff.</li> <li class="mb-2"><strong>Verify what you ship.</strong> You own anything you send out. Claude helps you draft; you're responsible for what's in it.</li> </ol> <h2>Never paste these ❌</h2> <p>Some things just don't belong in a chat window with any AI tool:</p> <ul class="list-none pl-0 mb-4 space-y-2"> <li class="flex gap-2"><span class="text-red-400 font-bold shrink-0">❌</span><span><strong>Passwords, API keys, or credentials</strong> — of any kind, for any system.</span></li> <li class="flex gap-2"><span class="text-red-400 font-bold shrink-0">❌</span><span><strong>Customer PII in bulk</strong> — names, emails, addresses, purchase records. One name in a one-off question is different from a CSV dump.</span></li> <li class="flex gap-2"><span class="text-red-400 font-bold shrink-0">❌</span><span><strong>NDA-covered material you wouldn't forward externally</strong> — if you'd hesitate to email it to a vendor, don't paste it into Claude.</span></li> <li class="flex gap-2"><span class="text-red-400 font-bold shrink-0">❌</span><span><strong>Unreleased financial data or board materials</strong> — earnings, forecasts, M&A details.</span></li> </ul> <h2>These are totally fine ✓</h2> <p>Don't overthink it. All of this is fair game:</p> <ul class="list-none pl-0 mb-4 space-y-2"> <li class="flex gap-2"><span class="text-green-400 font-bold shrink-0">✓</span><span><strong>Internal docs and presentations</strong> — specs, slide decks, process guides.</span></li> <li class="flex gap-2"><span class="text-green-400 font-bold shrink-0">✓</span><span><strong>Your own drafts</strong> — emails, reports, proposals you're working on.</span></li> <li class="flex gap-2"><span class="text-green-400 font-bold shrink-0">✓</span><span><strong>Publicly available information</strong> — product pages, press releases, industry articles.</span></li> <li class="flex gap-2"><span class="text-green-400 font-bold shrink-0">✓</span><span><strong>Anonymized data</strong> — "we had 47 support tickets this week" is fine; a spreadsheet with customer emails is not.</span></li> <li class="flex gap-2"><span class="text-green-400 font-bold shrink-0">✓</span><span><strong>Code and configs</strong> — as long as they don't contain embedded secrets.</span></li> </ul> <figure class="my-6 rounded-r-[12px] border-l-[3px] border-gold bg-gold/5 px-5 py-4"> <blockquote class="m-0 text-lg italic leading-relaxed text-text">
+"Be the human in the loop."
+</blockquote> <figcaption class="mt-2 text-sm font-semibold text-gold">
+— Ethan Mollick, <em>Co-Intelligence: Living and Working with AI</em> </figcaption> </figure> <h2>Verify before you ship</h2> <p>
+Claude can be <em>confidently wrong</em>. It might cite a made-up statistic, get a date wrong by a year, or invent a part number that doesn't exist — all while sounding completely authoritative. This is <a href="/claude-training/glossary/">hallucination</a>, and it's a known quirk of how large language models work.
+</p> <p>The fix is simple: double-check the things that matter.</p> <ul> <li><strong>Numbers and percentages</strong> — always sanity-check against your source data.</li> <li><strong>Dates and deadlines</strong> — confirm against the actual calendar or doc.</li> <li><strong>Part numbers and specs</strong> — verify in the system of record before passing on.</li> <li><strong>Legal and financial claims</strong> — run these past the relevant team before they leave Aptera.</li> </ul> <p>
+You own what you send. If Claude helped you write it, that's great — but you're the one who signed off. Make it count.
+</p> <h2>Your data &amp; the model</h2> <p>
+Short version: <strong>your conversations at work do not train Claude.</strong> </p> <p>
+Aptera uses enterprise/work accounts. Anthropic's enterprise terms explicitly exclude conversation data from model training. What you type into Claude at work stays out of the training pipeline. You're not inadvertently teaching the model your trade secrets.
+</p> <p>
+If you use a personal Claude account on your own time, that's governed by personal account terms — a different story. Stick to the work account for work stuff and you're covered.
+</p> <h2>When in doubt, ask Jake</h2> <p>
+Genuinely unsure whether something is safe to share? Email <a href="mailto:jake@aptera.us">jake@aptera.us</a>. There are no dumb questions here — only unlogged incidents. A quick "hey, is this okay?" takes 30 seconds. Cleaning up an overshare takes considerably longer.
+</p> </div> <aside class="my-6 rounded-[12px] border-2 border-dashed bg-card/40 px-5 py-4 border-code/60"> <p class="m-0 mb-2 font-bold text-code">⚡ Extra care with Claude Code</p> <div class="leading-relaxed text-text [&_p]:m-0 [&_p+p]:mt-2">  <p>
+Claude Code doesn't just chat — it executes real commands on real systems. It can create files, delete things, run scripts, and push code. Before you let it proceed with any operation that touches your filesystem or a remote service, <strong>read the plan it proposes</strong>. Pay extra attention to anything destructive: deleting files, overwriting configs, resetting databases. When in doubt, ask it to explain what a command does before running it.
+</p>  </div> </aside> <section class="my-6 rounded-[12px] border border-border bg-card px-5 py-4"> <p class="m-0 mb-2 text-sm font-bold uppercase tracking-wide text-gold">
+🔑 Key takeaways
+</p> <div class="text-text [&_ul]:m-0 [&_ul]:list-disc [&_ul]:pl-5 [&_li]:mb-1.5 [&_li]:leading-relaxed [&_li:last-child]:mb-0">  <ul> <li>Never paste passwords, bulk PII, or NDA-covered material into Claude.</li> <li>Internal docs, your own drafts, public info, and anonymized data are all fine.</li> <li>Claude can hallucinate — always verify numbers, dates, part numbers, and legal/financial claims before they go anywhere official.</li> <li>On enterprise accounts, your conversations are not used to train the model.</li> <li>Claude Code runs real commands — review its plan before letting it execute anything destructive.</li> <li>Unsure? Email <a href="mailto:jake@aptera.us" class="text-gold underline underline-offset-2">jake@aptera.us</a>. No dumb questions.</li> </ul>  </div> </section>  </div> <!-- Prev / Next --> <nav class="mt-14 grid gap-3 border-t border-border pt-8 sm:grid-cols-2"> <a href="/claude-training/connectors/" class="rounded-[12px] border border-border bg-card px-4 py-3 transition-colors hover:border-gold/50 hover:bg-card-hover"> <span class="block text-xs text-dim">← Previous</span> <span class="block font-semibold text-text">🔌 Connectors &amp; Skills</span> </a> <a href="/claude-training/faq/" class="rounded-[12px] border border-border bg-card px-4 py-3 text-right transition-colors hover:border-gold/50 hover:bg-card-hover sm:col-start-2"> <span class="block text-xs text-dim">Next →</span> <span class="block font-semibold text-text">FAQ ❓</span> </a> </nav> <footer class="mt-12 border-t border-border pt-6 text-center text-xs text-dim">
+Aptera AI Academy · Built for the crew that builds the sun-powered future.
+</footer> </div> </main> </div> <!-- Progress tracking + nav drawer --> <script>(function(){const pageId = "safety";
+const progressKey = "aptera-ai-progress";
+
+      // ---- Progress tracking ----
+      function readProgress() {
+        try {
+          const raw = localStorage.getItem(progressKey);
+          const arr = raw ? JSON.parse(raw) : [];
+          return Array.isArray(arr) ? arr : [];
+        } catch {
+          return [];
+        }
+      }
+      function writeProgress(arr) {
+        try {
+          localStorage.setItem(progressKey, JSON.stringify(arr));
+        } catch {
+          /* ignore */
+        }
+      }
+      // Record this page visit.
+      const visited = readProgress();
+      if (pageId && !visited.includes(pageId)) {
+        visited.push(pageId);
+        writeProgress(visited);
+      }
+      // Mark visited pages in the sidebar with a gold check.
+      const current = readProgress();
+      document.querySelectorAll('.nav-link').forEach((link) => {
+        const id = link.getAttribute('data-pageid');
+        if (id && current.includes(id)) {
+          const check = link.querySelector('.nav-check');
+          if (check) check.classList.remove('hidden');
+        }
+      });
+      // Expose a tiny helper for other scripts/pages.
+      window.apteraProgress = {
+        key: progressKey,
+        get: readProgress,
+        count: () => readProgress().length,
+        has: (id) => readProgress().includes(id),
+      };
+
+      // ---- Mobile nav drawer ----
+      const sidebar = document.getElementById('sidebar');
+      const backdrop = document.getElementById('nav-backdrop');
+      function openNav() {
+        sidebar?.classList.remove('hidden', '-translate-x-full');
+        sidebar?.classList.add('flex');
+        backdrop?.classList.remove('hidden');
+      }
+      function closeNav() {
+        sidebar?.classList.add('-translate-x-full');
+        backdrop?.classList.add('hidden');
+        if (window.innerWidth < 1024) sidebar?.classList.remove('flex');
+      }
+      document.getElementById('nav-toggle')?.addEventListener('click', openNav);
+      document.getElementById('nav-close')?.addEventListener('click', closeNav);
+      backdrop?.addEventListener('click', closeNav);
+    })();</script> <!-- Pagefind UI: only present after build. Degrade gracefully in dev. --> <script>(function(){const pagefindBase = "/claude-training/pagefind/";
+
+      (function () {
+        const mount = document.getElementById('search');
+        const fallback = document.getElementById('search-fallback');
+        const js = pagefindBase + 'pagefind-ui.js';
+        const probe = document.createElement('script');
+        probe.type = 'module';
+        probe.src = js;
+        probe.onload = () => {
+          try {
+            // PagefindUI is registered as a global by the UI bundle.
+            new window.PagefindUI({ element: '#search', showSubResults: true, resetStyles: false });
+          } catch {
+            if (fallback) fallback.classList.remove('hidden');
+          }
+        };
+        probe.onerror = () => {
+          if (fallback) fallback.classList.remove('hidden');
+        };
+        document.head.appendChild(probe);
+      })();
+    })();</script> </body> </html>

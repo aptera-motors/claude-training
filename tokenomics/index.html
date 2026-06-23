@@ -1,0 +1,155 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="How Claude usage is priced, how to pick the right model, and the habits that keep costs sane while getting better results."><title>Tokenomics · Aptera AI Academy</title><link rel="canonical" href="https://aptera-motors.github.io/claude-training/tokenomics/"><!-- Open Graph / social preview --><meta property="og:type" content="website"><meta property="og:site_name" content="Aptera AI Academy"><meta property="og:title" content="Tokenomics · Aptera AI Academy"><meta property="og:description" content="How Claude usage is priced, how to pick the right model, and the habits that keep costs sane while getting better results."><meta property="og:url" content="https://aptera-motors.github.io/claude-training/tokenomics/"><meta property="og:image" content="https://aptera-motors.github.io/claude-training/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Tokenomics · Aptera AI Academy"><meta name="twitter:description" content="How Claude usage is priced, how to pick the right model, and the habits that keep costs sane while getting better results."><meta name="twitter:image" content="https://aptera-motors.github.io/claude-training/og.png"><link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><circle cx='8' cy='8' r='6' fill='%23F5C518'/></svg>"><link href="/claude-training/pagefind/pagefind-ui.css" rel="stylesheet"><link rel="stylesheet" href="/claude-training/_astro/index.cbzSLVhy.css"></head> <body class="min-h-screen bg-canvas text-text"> <!-- Mobile top bar --> <div class="sticky top-0 z-40 flex items-center justify-between border-b border-border bg-canvas/95 px-4 py-3 backdrop-blur lg:hidden"> <a href="/claude-training/" class="flex items-center gap-2 font-bold"> <span class="inline-block h-2.5 w-2.5 rounded-full bg-gold shadow-[0_0_8px_2px_rgba(245,197,24,0.6)]"></span>
+Aptera AI Academy
+</a> <button id="nav-toggle" type="button" aria-label="Open navigation" class="rounded-lg border border-border px-3 py-1.5 text-text">
+☰
+</button> </div> <div class="mx-auto flex w-full max-w-[1400px]"> <!-- Sidebar --> <aside id="sidebar" class="fixed inset-y-0 left-0 z-50 hidden w-72 -translate-x-full flex-col overflow-y-auto border-r border-border bg-card px-5 py-6 transition-transform lg:sticky lg:top-0 lg:flex lg:h-screen lg:translate-x-0"> <div class="mb-6 flex items-center justify-between"> <a href="/claude-training/" class="flex items-center gap-2.5 text-lg font-extrabold tracking-tight"> <span class="inline-block h-3 w-3 rounded-full bg-gold shadow-[0_0_10px_2px_rgba(245,197,24,0.6)]"></span>
+Aptera AI Academy
+</a> <button id="nav-close" type="button" aria-label="Close navigation" class="rounded-lg border border-border px-2 py-1 text-muted lg:hidden">
+✕
+</button> </div> <nav class="flex-1 space-y-6 text-[0.95rem]"> <div> <p class="mb-2 px-2 text-xs font-bold uppercase tracking-widest text-dim"> START HERE </p> <ul class="space-y-0.5"> <li> <a href="/claude-training/" data-pageid="home" class="nav-link group flex items-center gap-2 rounded-lg px-2.5 py-1.5 transition-colors hover:bg-card-hover text-muted hover:text-text"> <span class="text-base">🏠</span> <span class="flex-1">Home</span> <span class="nav-check hidden text-gold" aria-hidden="true">✓</span> </a> </li><li> <a href="/claude-training/getting-started/" data-pageid="getting-started" class="nav-link group flex items-center gap-2 rounded-lg px-2.5 py-1.5 transition-colors hover:bg-card-hover text-muted hover:text-text"> <span class="text-base">🚀</span> <span class="flex-1">Getting Started</span> <span class="nav-check hidden text-gold" aria-hidden="true">✓</span> </a> </li><li> <a href="/claude-training/modes/" data-pageid="modes" class="nav-link group flex items-center gap-2 rounded-lg px-2.5 py-1.5 transition-colors hover:bg-card-hover text-muted hover:text-text"> <span class="text-base">🎛️</span> <span class="flex-1">The Three Modes</span> <span class="nav-check hidden text-gold" aria-hidden="true">✓</span> </a> </li><li> <a href="/claude-training/models/" data-pageid="models" class="nav-link group flex items-center gap-2 rounded-lg px-2.5 py-1.5 transition-colors hover:bg-card-hover text-muted hover:text-text"> <span class="text-base">🧠</span> <span class="flex-1">Choosing Your Model</span> <span class="nav-check hidden text-gold" aria-hidden="true">✓</span> </a> </li> </ul> </div><div> <p class="mb-2 px-2 text-xs font-bold uppercase tracking-widest text-dim"> GET GOOD </p> <ul class="space-y-0.5"> <li> <a href="/claude-training/prompting/" data-pageid="prompting" class="nav-link group flex items-center gap-2 rounded-lg px-2.5 py-1.5 transition-colors hover:bg-card-hover text-muted hover:text-text"> <span class="text-base">✍️</span> <span class="flex-1">Prompting 101</span> <span class="nav-check hidden text-gold" aria-hidden="true">✓</span> </a> </li><li> <a href="/claude-training/manual-looping/" data-pageid="manual-looping" class="nav-link group flex items-center gap-2 rounded-lg px-2.5 py-1.5 transition-colors hover:bg-card-hover text-muted hover:text-text"> <span class="text-base">🔁</span> <span class="flex-1">Manual Looping</span> <span class="nav-check hidden text-gold" aria-hidden="true">✓</span> </a> </li><li> <a href="/claude-training/tokenomics/" data-pageid="tokenomics" class="nav-link group flex items-center gap-2 rounded-lg px-2.5 py-1.5 transition-colors hover:bg-card-hover bg-card-hover font-semibold text-gold"> <span class="text-base">🪙</span> <span class="flex-1">Tokenomics</span> <span class="nav-check hidden text-gold" aria-hidden="true">✓</span> </a> </li><li> <a href="/claude-training/context-window/" data-pageid="context-window" class="nav-link group flex items-center gap-2 rounded-lg px-2.5 py-1.5 transition-colors hover:bg-card-hover text-muted hover:text-text"> <span class="text-base">🪟</span> <span class="flex-1">Context Window</span> <span class="nav-check hidden text-gold" aria-hidden="true">✓</span> </a> </li><li> <a href="/claude-training/memory/" data-pageid="memory" class="nav-link group flex items-center gap-2 rounded-lg px-2.5 py-1.5 transition-colors hover:bg-card-hover text-muted hover:text-text"> <span class="text-base">💾</span> <span class="flex-1">Memory &amp; Projects</span> <span class="nav-check hidden text-gold" aria-hidden="true">✓</span> </a> </li><li> <a href="/claude-training/agentic-looping/" data-pageid="agentic-looping" class="nav-link group flex items-center gap-2 rounded-lg px-2.5 py-1.5 transition-colors hover:bg-card-hover text-muted hover:text-text"> <span class="text-base">🤖</span> <span class="flex-1">Agentic Looping</span> <span class="nav-check hidden text-gold" aria-hidden="true">✓</span> </a> </li><li> <a href="/claude-training/apps/" data-pageid="apps" class="nav-link group flex items-center gap-2 rounded-lg px-2.5 py-1.5 transition-colors hover:bg-card-hover text-muted hover:text-text"> <span class="text-base">⚖️</span> <span class="flex-1">Apps Compared</span> <span class="nav-check hidden text-gold" aria-hidden="true">✓</span> </a> </li><li> <a href="/claude-training/m365/" data-pageid="m365" class="nav-link group flex items-center gap-2 rounded-lg px-2.5 py-1.5 transition-colors hover:bg-card-hover text-muted hover:text-text"> <span class="text-base">📎</span> <span class="flex-1">M365 Plugins</span> <span class="nav-check hidden text-gold" aria-hidden="true">✓</span> </a> </li> </ul> </div><div> <p class="mb-2 px-2 text-xs font-bold uppercase tracking-widest text-dim"> REFERENCE </p> <ul class="space-y-0.5"> <li> <a href="/claude-training/connectors/" data-pageid="connectors" class="nav-link group flex items-center gap-2 rounded-lg px-2.5 py-1.5 transition-colors hover:bg-card-hover text-muted hover:text-text"> <span class="text-base">🔌</span> <span class="flex-1">Connectors &amp; Skills</span> <span class="nav-check hidden text-gold" aria-hidden="true">✓</span> </a> </li><li> <a href="/claude-training/safety/" data-pageid="safety" class="nav-link group flex items-center gap-2 rounded-lg px-2.5 py-1.5 transition-colors hover:bg-card-hover text-muted hover:text-text"> <span class="text-base">🛡️</span> <span class="flex-1">Safety &amp; Data</span> <span class="nav-check hidden text-gold" aria-hidden="true">✓</span> </a> </li><li> <a href="/claude-training/faq/" data-pageid="faq" class="nav-link group flex items-center gap-2 rounded-lg px-2.5 py-1.5 transition-colors hover:bg-card-hover text-muted hover:text-text"> <span class="text-base">❓</span> <span class="flex-1">FAQ</span> <span class="nav-check hidden text-gold" aria-hidden="true">✓</span> </a> </li><li> <a href="/claude-training/glossary/" data-pageid="glossary" class="nav-link group flex items-center gap-2 rounded-lg px-2.5 py-1.5 transition-colors hover:bg-card-hover text-muted hover:text-text"> <span class="text-base">📖</span> <span class="flex-1">Glossary</span> <span class="nav-check hidden text-gold" aria-hidden="true">✓</span> </a> </li> </ul> </div><div> <p class="mb-2 px-2 text-xs font-bold uppercase tracking-widest text-dim"> COMMUNITY </p> <ul class="space-y-0.5"> <li> <a href="/claude-training/wins/" data-pageid="wins" class="nav-link group flex items-center gap-2 rounded-lg px-2.5 py-1.5 transition-colors hover:bg-card-hover text-muted hover:text-text"> <span class="text-base">🏆</span> <span class="flex-1">Win Gallery</span> <span class="nav-check hidden text-gold" aria-hidden="true">✓</span> </a> </li> </ul> </div> </nav> <!-- Search --> <div class="mt-6 border-t border-border pt-4"> <p class="mb-2 px-2 text-xs font-bold uppercase tracking-widest text-dim">Search</p> <div id="search"></div> <p id="search-fallback" class="hidden px-2 text-xs text-dim">
+Search works after the site is built.
+</p> </div> </aside> <!-- Backdrop for mobile drawer --> <div id="nav-backdrop" class="fixed inset-0 z-40 hidden bg-black/60 lg:hidden"></div> <!-- Main content --> <main class="min-w-0 flex-1 px-5 py-8 sm:px-8 lg:px-12 lg:py-12"> <div class="mx-auto w-full max-w-[760px]"> <div data-pagefind-body>  <header class="mb-8 border-b border-border pb-6"> <div class="mb-3 flex items-center gap-3"> <span class="text-4xl leading-none">🪙</span> <span class="rounded-full border border-border bg-card px-3 py-1 text-xs font-medium text-muted">
+⏱ 5 min read
+</span> </div> <h1 class="m-0 text-3xl font-extrabold tracking-tight text-text sm:text-4xl"> Tokenomics </h1> <p class="mt-3 max-w-[60ch] text-lg leading-relaxed text-muted"> Great results without burning money. Here&#39;s what you actually need to know. </p> </header> <aside class="my-6 rounded-[12px] border-2 border-gold/60 bg-gold/5 px-5 py-4"> <p class="m-0 mb-2 text-sm font-bold uppercase tracking-wide text-gold">
+⚡ In 30 seconds
+</p> <div class="text-[1.02rem] leading-relaxed text-text [&_p]:m-0 [&_p+p]:mt-2">  <p>
+Claude charges per <strong>token</strong> (roughly ¾ of a word). Every message in and out costs tokens.
+      Pick the right-sized model for the job, keep conversations focused, and you'll get
+<em>better</em> answers for less money. Win-win.
+</p>  </div> </aside>  <div class="prose-content"> <h2>What even is a token?</h2> <p>
+Think of tokens as chunks of text — roughly ¾ of a word each. "Aerodynamics" is one token.
+      "Hey Claude, can you help me with this?" is about ten. Claude reads your whole message
+      (tokens in) and writes a reply (tokens out). Both sides of that exchange get tallied.
+</p> <p>
+This is not a reason to avoid using Claude. It's a reason to use it <strong>smartly</strong>.
+      A focused 50-token ask that gets the right answer on the first try beats a rambling
+      500-token saga that needs three rounds of back-and-forth.
+</p> </div>  <div class="prose-content"> <h2>Pick the right model</h2> <p>
+Anthropic makes four models of Claude. Same brain, different horsepower — and different price tags.
+      Reach for the right one and you'll finish faster <em>and</em> spend less.
+</p> </div>  <div class="my-6 grid gap-4 sm:grid-cols-2"> <!-- Haiku --> <div class="rounded-[12px] border border-border bg-card p-5"> <div class="mb-3 text-2xl">⚡</div> <h3 class="m-0 mb-1 text-lg font-bold text-gold">Haiku</h3> <p class="mb-3 text-sm font-medium text-muted">Fast & cheap</p> <p class="m-0 text-sm leading-relaxed text-text"> <strong class="text-text">Reach for it when…</strong> you need a quick rewrite,
+        a short answer, a yes/no check, or you're doing something repetitive dozens of times.
+        Haiku is the espresso shot — small, fast, gets the job done.
+</p> </div> <!-- Sonnet --> <div class="rounded-[12px] border-2 border-gold/60 bg-gold/5 p-5"> <div class="mb-3 text-2xl">🚗</div> <h3 class="m-0 mb-1 text-lg font-bold text-gold">Sonnet</h3> <p class="mb-3 text-sm font-medium text-muted">The daily driver · best balance</p> <p class="m-0 text-sm leading-relaxed text-text"> <strong class="text-text">Reach for it when…</strong> you're doing real work —
+        summarizing a meeting, drafting an email, analyzing a doc, building something in
+        Co-Work mode. 90% of your Claude time belongs here.
+</p> </div> <!-- Opus --> <div class="rounded-[12px] border border-border bg-card p-5"> <div class="mb-3 text-2xl">🏋️</div> <h3 class="m-0 mb-1 text-lg font-bold text-text">Opus</h3> <p class="mb-3 text-sm font-medium text-muted">The heavyweight</p> <p class="m-0 text-sm leading-relaxed text-text"> <strong class="text-text">Reach for it when…</strong> the problem is genuinely hard:
+        deep financial analysis, complex multi-step reasoning, evaluating tradeoffs with lots
+        of context. Bring out the big gun when the job demands it.
+</p> </div> <!-- Fable --> <div class="rounded-[12px] border border-border bg-card p-5"> <div class="mb-3 text-2xl">🧙</div> <h3 class="m-0 mb-1 text-lg font-bold text-text">Fable</h3> <p class="mb-3 text-sm font-medium text-muted">The frontier · premium</p> <p class="m-0 text-sm leading-relaxed text-text"> <strong class="text-text">Reach for it when…</strong> the job is huge and multi-step —
+        especially when you want one model to <strong>orchestrate</strong> a team of cheaper ones.
+        Powerful and pricey; overkill for everyday tasks. More in
+<a href="/claude-training/models/">Choosing Your Model</a>.
+</p> </div> </div>  <div class="prose-content"> <h3>Quick cheat sheet: task → model</h3> </div> <div class="my-4 overflow-x-auto rounded-[12px] border border-border"> <table class="w-full text-sm"> <thead> <tr class="border-b border-border bg-card"> <th class="px-4 py-3 text-left font-semibold text-text">Task</th> <th class="px-4 py-3 text-left font-semibold text-text">Role at Aptera</th> <th class="px-4 py-3 text-left font-semibold text-gold">Model</th> </tr> </thead> <tbody class="divide-y divide-border"> <tr class="hover:bg-card-hover"> <td class="px-4 py-3 text-text">Quick email rewrite</td> <td class="px-4 py-3 text-muted">Anyone</td> <td class="px-4 py-3 font-medium text-gold">Haiku ⚡</td> </tr> <tr class="hover:bg-card-hover"> <td class="px-4 py-3 text-text">Summarize a meeting recording</td> <td class="px-4 py-3 text-muted">Ops / any team lead</td> <td class="px-4 py-3 font-medium text-gold">Sonnet 🚗</td> </tr> <tr class="hover:bg-card-hover"> <td class="px-4 py-3 text-text">Draft a supplier RFQ</td> <td class="px-4 py-3 text-muted">Procurement / Supply Chain</td> <td class="px-4 py-3 font-medium text-gold">Sonnet 🚗</td> </tr> <tr class="hover:bg-card-hover"> <td class="px-4 py-3 text-text">Complex variance analysis</td> <td class="px-4 py-3 text-muted">Finance</td> <td class="px-4 py-3 font-medium text-gold">Opus 🏋️</td> </tr> <tr class="hover:bg-card-hover"> <td class="px-4 py-3 text-text">Translate a short label / instruction</td> <td class="px-4 py-3 text-muted">Manufacturing / Assembly</td> <td class="px-4 py-3 font-medium text-gold">Haiku ⚡</td> </tr> <tr class="hover:bg-card-hover"> <td class="px-4 py-3 text-text">Write a Jira epic with acceptance criteria</td> <td class="px-4 py-3 text-muted">Engineering / PM</td> <td class="px-4 py-3 font-medium text-gold">Sonnet 🚗</td> </tr> <tr class="hover:bg-card-hover"> <td class="px-4 py-3 text-text">Deep research on a regulation or standard</td> <td class="px-4 py-3 text-muted">Legal / Compliance</td> <td class="px-4 py-3 font-medium text-gold">Opus 🏋️</td> </tr> <tr class="hover:bg-card-hover"> <td class="px-4 py-3 text-text">Batch-format 50 part descriptions</td> <td class="px-4 py-3 text-muted">Supply Chain / Eng</td> <td class="px-4 py-3 font-medium text-gold">Haiku ⚡</td> </tr> </tbody> </table> </div>  <div class="prose-content"> <h2>Habits that save money (and get better answers)</h2> <p>
+The biggest lever isn't model choice — it's how you structure your conversations.
+      A few small habits compound into dramatically better results.
+</p> <ul> <li> <strong>Start a fresh chat when you change topics.</strong> Every message in a
+        conversation gets re-read from scratch on every turn. A 40-message thread about
+        solar panel specs is expensive context to drag into a totally different HR question.
+</li> <li> <strong>Be specific up front.</strong> "Write a three-sentence summary of this
+        status update for the exec team" costs one round-trip. "Summarize this" usually costs
+        three — one attempt plus two rounds of "make it shorter / more formal / less jargon."
+</li> <li> <strong>Don't paste the whole PDF.</strong> You don't need to. Paste the one section
+        that's relevant. Claude reads everything you give it every single time.
+</li> <li> <strong>Batch related questions.</strong> If you have five questions about the same
+        document, ask all five at once. Five separate chats = five times the overhead.
+</li> </ul> </div> <aside class="my-6 rounded-[12px] border-2 border-dashed bg-card/40 px-5 py-4 border-gold/60"> <p class="m-0 mb-2 font-bold text-gold">Context windows, simply</p> <div class="leading-relaxed text-text [&_p]:m-0 [&_p+p]:mt-2">  <p>
+Every turn re-reads the whole conversation from the top, so long, unfocused chats cost
+      more and can start to drift. Want the full picture — how the window fills and when to
+      compact? See the
+<a href="/claude-training/context-window/" class="font-semibold underline underline-offset-2">Context Window</a>
+lesson.
+</p>  </div> </aside> <section class="my-6 rounded-[12px] border border-chat/50 bg-chat-dim/30 px-5 py-4"> <p class="m-0 mb-2 text-sm font-bold uppercase tracking-wide text-chat">
+🧪 See the difference yourself </p> <div class="leading-relaxed text-text [&_p]:m-0 [&_p+p]:mt-2 [&_ol]:my-2 [&_ol]:pl-5 [&_ul]:my-2 [&_ul]:pl-5">  <p>
+Paste the <strong>focused prompt</strong> into Claude, note the answer. Then paste the
+<strong>rambling one</strong>. Which got there faster?
+</p> <p class="mt-3 font-semibold text-chat">The focused ask:</p> <div class="copy-prompt my-5 rounded-[12px] border border-border bg-card px-5 py-4"> <p class="prompt-text m-0 pr-2 italic leading-relaxed text-text"> Rewrite this sentence to be more confident and under 20 words: &#39;We are hoping to potentially explore the possibility of launching a pilot program sometime in Q3 if conditions allow.&#39; </p> <button type="button" class="copy-btn mt-3 inline-flex items-center gap-1.5 rounded-lg border border-border bg-card-hover px-3 py-1.5 text-sm font-medium text-muted transition-colors hover:border-gold/60 hover:text-gold" data-copy="Rewrite this sentence to be more confident and under 20 words: 'We are hoping to potentially explore the possibility of launching a pilot program sometime in Q3 if conditions allow.'">
+📋 Copy
+</button> </div> <script type="module">document.querySelectorAll(".copy-btn").forEach(e=>{e.addEventListener("click",async()=>{const o=e.getAttribute("data-copy")??"";try{await navigator.clipboard.writeText(o)}catch{const t=document.createElement("textarea");t.value=o,document.body.appendChild(t),t.select(),document.execCommand("copy"),t.remove()}const c=e.innerHTML;e.innerHTML="✅ Copied!",e.classList.add("text-gold","border-gold/60"),setTimeout(()=>{e.innerHTML=c,e.classList.remove("text-gold","border-gold/60")},1500)})});</script> <p class="mt-4 font-semibold text-muted">The rambling version (costs more, takes longer):</p> <div class="copy-prompt my-5 rounded-[12px] border border-border bg-card px-5 py-4"> <p class="prompt-text m-0 pr-2 italic leading-relaxed text-text"> Hey so I have this sentence in a doc and I&#39;m not totally sure if it&#39;s the right vibe, like it feels a bit wishy-washy? Can you maybe look at it and tell me what you think and potentially rewrite it? Here it is: &#39;We are hoping to potentially explore the possibility of launching a pilot program sometime in Q3 if conditions allow.&#39; I think it needs to sound more confident but I&#39;m not sure, what do you think is the best approach here? </p> <button type="button" class="copy-btn mt-3 inline-flex items-center gap-1.5 rounded-lg border border-border bg-card-hover px-3 py-1.5 text-sm font-medium text-muted transition-colors hover:border-gold/60 hover:text-gold" data-copy="Hey so I have this sentence in a doc and I'm not totally sure if it's the right vibe, like it feels a bit wishy-washy? Can you maybe look at it and tell me what you think and potentially rewrite it? Here it is: 'We are hoping to potentially explore the possibility of launching a pilot program sometime in Q3 if conditions allow.' I think it needs to sound more confident but I'm not sure, what do you think is the best approach here?">
+📋 Copy
+</button> </div>   </div> </section> <section class="my-6 rounded-[12px] border border-border bg-card px-5 py-4"> <p class="m-0 mb-2 text-sm font-bold uppercase tracking-wide text-gold">
+🔑 Key takeaways
+</p> <div class="text-text [&_ul]:m-0 [&_ul]:list-disc [&_ul]:pl-5 [&_li]:mb-1.5 [&_li]:leading-relaxed [&_li:last-child]:mb-0">  <ul> <li>Tokens are the currency — every word in and out counts. Use Claude smartly, not sparingly.</li> <li>Match the model to the job: Haiku for quick tasks, Sonnet for daily work, Opus for heavy analysis, Fable for the biggest multi-step projects.</li> <li>Fresh chats are cheaper <em>and</em> better — don't drag stale context into a new topic.</li> </ul>  </div> </section>  </div> <!-- Prev / Next --> <nav class="mt-14 grid gap-3 border-t border-border pt-8 sm:grid-cols-2"> <a href="/claude-training/manual-looping/" class="rounded-[12px] border border-border bg-card px-4 py-3 transition-colors hover:border-gold/50 hover:bg-card-hover"> <span class="block text-xs text-dim">← Previous</span> <span class="block font-semibold text-text">🔁 Manual Looping</span> </a> <a href="/claude-training/context-window/" class="rounded-[12px] border border-border bg-card px-4 py-3 text-right transition-colors hover:border-gold/50 hover:bg-card-hover sm:col-start-2"> <span class="block text-xs text-dim">Next →</span> <span class="block font-semibold text-text">Context Window 🪟</span> </a> </nav> <footer class="mt-12 border-t border-border pt-6 text-center text-xs text-dim">
+Aptera AI Academy · Built for the crew that builds the sun-powered future.
+</footer> </div> </main> </div> <!-- Progress tracking + nav drawer --> <script>(function(){const pageId = "tokenomics";
+const progressKey = "aptera-ai-progress";
+
+      // ---- Progress tracking ----
+      function readProgress() {
+        try {
+          const raw = localStorage.getItem(progressKey);
+          const arr = raw ? JSON.parse(raw) : [];
+          return Array.isArray(arr) ? arr : [];
+        } catch {
+          return [];
+        }
+      }
+      function writeProgress(arr) {
+        try {
+          localStorage.setItem(progressKey, JSON.stringify(arr));
+        } catch {
+          /* ignore */
+        }
+      }
+      // Record this page visit.
+      const visited = readProgress();
+      if (pageId && !visited.includes(pageId)) {
+        visited.push(pageId);
+        writeProgress(visited);
+      }
+      // Mark visited pages in the sidebar with a gold check.
+      const current = readProgress();
+      document.querySelectorAll('.nav-link').forEach((link) => {
+        const id = link.getAttribute('data-pageid');
+        if (id && current.includes(id)) {
+          const check = link.querySelector('.nav-check');
+          if (check) check.classList.remove('hidden');
+        }
+      });
+      // Expose a tiny helper for other scripts/pages.
+      window.apteraProgress = {
+        key: progressKey,
+        get: readProgress,
+        count: () => readProgress().length,
+        has: (id) => readProgress().includes(id),
+      };
+
+      // ---- Mobile nav drawer ----
+      const sidebar = document.getElementById('sidebar');
+      const backdrop = document.getElementById('nav-backdrop');
+      function openNav() {
+        sidebar?.classList.remove('hidden', '-translate-x-full');
+        sidebar?.classList.add('flex');
+        backdrop?.classList.remove('hidden');
+      }
+      function closeNav() {
+        sidebar?.classList.add('-translate-x-full');
+        backdrop?.classList.add('hidden');
+        if (window.innerWidth < 1024) sidebar?.classList.remove('flex');
+      }
+      document.getElementById('nav-toggle')?.addEventListener('click', openNav);
+      document.getElementById('nav-close')?.addEventListener('click', closeNav);
+      backdrop?.addEventListener('click', closeNav);
+    })();</script> <!-- Pagefind UI: only present after build. Degrade gracefully in dev. --> <script>(function(){const pagefindBase = "/claude-training/pagefind/";
+
+      (function () {
+        const mount = document.getElementById('search');
+        const fallback = document.getElementById('search-fallback');
+        const js = pagefindBase + 'pagefind-ui.js';
+        const probe = document.createElement('script');
+        probe.type = 'module';
+        probe.src = js;
+        probe.onload = () => {
+          try {
+            // PagefindUI is registered as a global by the UI bundle.
+            new window.PagefindUI({ element: '#search', showSubResults: true, resetStyles: false });
+          } catch {
+            if (fallback) fallback.classList.remove('hidden');
+          }
+        };
+        probe.onerror = () => {
+          if (fallback) fallback.classList.remove('hidden');
+        };
+        document.head.appendChild(probe);
+      })();
+    })();</script> </body> </html>
