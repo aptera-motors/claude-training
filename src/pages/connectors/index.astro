@@ -6,18 +6,19 @@ import TryItNow from '../../components/TryItNow.astro';
 import CopyPrompt from '../../components/CopyPrompt.astro';
 import KeyTakeaways from '../../components/KeyTakeaways.astro';
 import Callout from '../../components/Callout.astro';
+import { href } from '../../lib/site';
 ---
 <BaseLayout
   title="Connectors & Skills"
   description="What Claude is wired into at Aptera — and the repeatable skills you can run by name."
   pageId="connectors"
-  readMinutes={7}
+  readMinutes={8}
 >
   <PageHeader
     icon="🔌"
     title="Connectors & Skills"
     subtitle="Claude isn't just a chatbot. At Aptera it's wired into your actual tools — and it knows some tricks."
-    readMinutes={7}
+    readMinutes={8}
   />
 
   <Tldr>
@@ -37,6 +38,23 @@ import Callout from '../../components/Callout.astro';
       anything consequential.
     </p>
   </div>
+
+  <div class="prose-content">
+    <p>
+      Under the hood, connectors are built on the <strong>Model Context Protocol (MCP)</strong> — an
+      open standard for plugging AI into outside tools and data. You don't need to think about it day to
+      day; it's simply the common "plug" that lets Claude reach the systems you already use.
+    </p>
+  </div>
+
+  <figure class="my-6 rounded-r-[12px] border-l-[3px] border-gold bg-gold/5 px-5 py-4">
+    <blockquote class="m-0 text-lg italic leading-relaxed text-text">
+      "Think of MCP like a USB-C port for AI applications. Just as USB-C provides a standardized way to
+      connect electronic devices, MCP provides a standardized way to connect AI applications to external
+      systems."
+    </blockquote>
+    <figcaption class="mt-2 text-sm font-semibold text-gold">— Anthropic, Model Context Protocol documentation</figcaption>
+  </figure>
 
   <!-- Connected Today -->
   <section class="mb-10">
@@ -104,13 +122,25 @@ import Callout from '../../components/Callout.astro';
     </div>
   </section>
 
+  <Callout variant="chat" title="🔌 How do I turn one on?">
+    <p>
+      Connectors live in the <strong>Claude desktop app</strong> (Co-Work) — see
+      <a class="text-chat underline" href={href('/apps/')}>Apps Compared</a> and
+      <a class="text-chat underline" href={href('/getting-started/')}>Getting Started</a>. The ones above
+      are already set up for Aptera, so you can open Co-Work and start asking. The first time Claude uses a
+      connector it may ask you to sign in and authorize it; after that, it acts as you.
+    </p>
+  </Callout>
+
   <Callout variant="gold" title="⚠️ Connectors act as you">
     <p>
       When Claude uses a connector, it's acting with <strong>your identity and your permissions</strong>.
       If you ask Claude to create a Jira issue, it creates it as you. If you ask it to send an email,
       it sends it from your address. Claude will always confirm before taking actions that write or
       modify data — but you're the one responsible for what gets done. Treat it like handing your
-      keyboard to a very capable colleague: you're still accountable.
+      keyboard to a very capable colleague: you're still accountable. A connector can only reach what
+      <strong>you</strong> already have access to, and the same rules from
+      <a class="text-gold underline" href={href('/safety/')}>Safety &amp; Data</a> apply.
     </p>
   </Callout>
 
@@ -120,7 +150,8 @@ import Callout from '../../components/Callout.astro';
     <p class="mb-5 text-muted leading-relaxed">
       A skill is a packaged, repeatable workflow you can invoke by name — like calling a function
       instead of writing it from scratch every time. Skills combine multiple steps (including connector
-      calls) into a single, reliable flow. The big one available right now:
+      calls) into a single, reliable flow — <strong>and you can build your own</strong> (more on that
+      below). The flagship one available right now:
     </p>
 
     <div class="rounded-[12px] border border-cowork/40 bg-cowork-dim/20 p-6">
@@ -164,6 +195,54 @@ import Callout from '../../components/Callout.astro';
     </div>
   </section>
 
+  <!-- Build your own skill -->
+  <section class="mb-10">
+    <h2 class="mb-2 text-2xl font-bold tracking-tight">Build your own skill</h2>
+    <p class="mb-4 text-muted leading-relaxed">
+      Here's the part most people miss: you can <strong>make your own skills</strong>, and you don't need
+      to know how to code. If you keep doing the same multi-step task the same way, that's a skill waiting
+      to happen — a weekly report Finance rebuilds by hand, a QA checklist Manufacturing fills out the same
+      way each time, a change-order summary in CAD, issue triage in Engineering. (It's the close cousin of
+      an <a class="text-gold underline" href={href('/agentic-looping/')}>agentic loop</a>.)
+    </p>
+
+    <figure class="my-6 rounded-r-[12px] border-l-[3px] border-gold bg-gold/5 px-5 py-4">
+      <blockquote class="m-0 text-lg italic leading-relaxed text-text">
+        "Anyone can now specialize their agents with composable capabilities by capturing and sharing their
+        procedural knowledge."
+      </blockquote>
+      <figcaption class="mt-2 text-sm font-semibold text-gold">— Anthropic, on Agent Skills</figcaption>
+    </figure>
+
+    <p class="mb-2 text-muted leading-relaxed">The way to build one is to describe it to Claude:</p>
+    <ol class="mb-5 space-y-2 text-text text-sm leading-relaxed list-decimal pl-5">
+      <li><strong>Talk it through.</strong> Tell Claude the repetitive task — the steps, the inputs, what "done" looks like — and ask whether it's a good skill candidate.</li>
+      <li><strong>Claude drafts the skill.</strong> It packages the instructions (and any connector steps) into a skill you can run by name.</li>
+      <li><strong>Test it</strong> on a real example and refine until it's reliable.</li>
+      <li><strong>Bring it to IT to publish.</strong> We'll help make it available to you — and share it with your team if it's broadly useful.</li>
+    </ol>
+
+    <TryItNow title="Start a skill with Claude">
+      <p>Describe a task you repeat. Paste this to kick it off — fill in the brackets:</p>
+      <CopyPrompt text="I do this repetitive task and want to turn it into a reusable skill: [describe the task — the trigger, the steps you take, the tools involved, and what the finished result looks like]. First, tell me whether this is a good candidate for a skill. Then help me build it, and flag anything you'd need access to (like a connector)." />
+    </TryItNow>
+
+    <Callout variant="cowork" title="⌨️ For Claude Code users">
+      <p>
+        Claude Code includes a built-in <strong>skill-creator</strong> — ask it to make a skill and it
+        scaffolds the files for you, version-controlled alongside your project.
+      </p>
+    </Callout>
+
+    <Callout variant="gold" title="💡 Not sure if it's a good fit?">
+      <p>
+        Ask Claude first — it'll help you judge whether a task is worth turning into a skill. Then reach
+        out to IT (<a class="text-gold underline" href="mailto:jake@aptera.us">jake@aptera.us</a>) when
+        you're ready to publish it.
+      </p>
+    </Callout>
+  </section>
+
   <!-- Want something connected? -->
   <section class="mb-10">
     <h2 class="mb-2 text-2xl font-bold tracking-tight">Want something connected?</h2>
@@ -203,6 +282,7 @@ import Callout from '../../components/Callout.astro';
     <ul>
       <li>Connectors give Claude <strong>live access to your tools</strong> — Jira, Confluence, Ramp, and Microsoft 365 are wired in today.</li>
       <li>Skills are <strong>named, repeatable workflows</strong> — the Meeting Minutes skill turns a Teams transcript into Confluence notes + Jira tickets in minutes.</li>
+      <li><strong>You can build your own skill</strong> — describe a repetitive task to Claude, test it, and bring it to IT to publish.</li>
       <li>Connectors act as you and with your permissions — you're always the one approving consequential actions.</li>
     </ul>
   </KeyTakeaways>
