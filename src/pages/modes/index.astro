@@ -7,6 +7,7 @@ import Callout from '../../components/Callout.astro';
 import TryItNow from '../../components/TryItNow.astro';
 import KeyTakeaways from '../../components/KeyTakeaways.astro';
 import CopyPrompt from '../../components/CopyPrompt.astro';
+import GlossaryLink from '../../components/GlossaryLink.astro';
 
 const usecases = (await getCollection('usecases')).sort(
   (a, b) => a.data.order - b.data.order
@@ -36,11 +37,11 @@ const roles = [
 
 const badge: Record<string, string> = {
   general: 'text-gold border-gold/30 bg-gold/10',
-  finance: 'text-[#34D399] border-[#34D399]/30 bg-[#34D399]/10',
-  marketing: 'text-[#F472B6] border-[#F472B6]/30 bg-[#F472B6]/10',
-  engineering: 'text-[#60A5FA] border-[#60A5FA]/30 bg-[#60A5FA]/10',
-  manufacturing: 'text-[#FB923C] border-[#FB923C]/30 bg-[#FB923C]/10',
-  cad: 'text-[#A78BFA] border-[#A78BFA]/30 bg-[#A78BFA]/10',
+  finance: 'text-role-finance border-role-finance/30 bg-role-finance/10',
+  marketing: 'text-role-marketing border-role-marketing/30 bg-role-marketing/10',
+  engineering: 'text-role-engineering border-role-engineering/30 bg-role-engineering/10',
+  manufacturing: 'text-role-manufacturing border-role-manufacturing/30 bg-role-manufacturing/10',
+  cad: 'text-role-cad border-role-cad/30 bg-role-cad/10',
 };
 const badgeLabel: Record<string, string> = {
   general: '✦ All Teams',
@@ -66,7 +67,7 @@ const accentBorderSel: Record<string, string> = {
 
 <BaseLayout
   title="The Three Modes"
-  description="Chat, Cowork, and Code — what each one is and when to reach for it. Browse 50+ Aptera use cases by team."
+  description="Chat, Co-Work, and Code — what each one is and when to reach for it. Browse 50+ Aptera use cases by team."
   pageId="modes"
   readMinutes={9}
 >
@@ -91,7 +92,7 @@ const accentBorderSel: Record<string, string> = {
   </Tldr>
 
   <!-- ───────────── MINI QUIZ ───────────── -->
-  <section class="my-8 rounded-[12px] border border-border bg-card">
+  <section class="reveal my-8 rounded-[12px] border border-border bg-card">
     <button
       type="button"
       id="quiz-toggle"
@@ -180,11 +181,11 @@ const accentBorderSel: Record<string, string> = {
 
       <div
         id="quiz-result"
-        class="mt-5 hidden rounded-[10px] border border-gold/40 bg-gold/5 px-4 py-3 text-text"
+        class="mt-5 hidden rounded-[12px] border border-gold/40 bg-gold/5 px-4 py-3 text-text"
         role="status"
         aria-live="polite"
       >
-        <p id="quiz-result-text" class="m-0"></p>
+        <div id="quiz-result-text" class="m-0"></div>
         <button
           id="quiz-jump"
           type="button"
@@ -236,7 +237,7 @@ const accentBorderSel: Record<string, string> = {
         data-panel={mode}
       >
         {mode === 'chat' && (
-          <div class="mb-5">
+          <div class="reveal mb-5">
             <h2 class="mb-2 mt-0 text-2xl font-bold text-chat">💬 Claude Chat</h2>
             <p class="m-0 leading-relaxed text-muted">
               The conversational layer, and where most people start — for good reason. No
@@ -247,7 +248,7 @@ const accentBorderSel: Record<string, string> = {
           </div>
         )}
         {mode === 'cowork' && (
-          <div class="mb-5">
+          <div class="reveal mb-5">
             <h2 class="mb-2 mt-0 text-2xl font-bold text-cowork">🤝 Claude Co-Work</h2>
             <p class="m-0 leading-relaxed text-muted">
               Where Claude stops advising and starts doing. It connects to your real tools
@@ -259,7 +260,7 @@ const accentBorderSel: Record<string, string> = {
           </div>
         )}
         {mode === 'code' && (
-          <div class="mb-5">
+          <div class="reveal mb-5">
             <h2 class="mb-2 mt-0 text-2xl font-bold text-code">⌨️ Claude Code</h2>
             <p class="m-0 leading-relaxed text-muted">
               For technical work that lives in the terminal. Full access to your codebase,
@@ -275,7 +276,8 @@ const accentBorderSel: Record<string, string> = {
           <Callout variant="chat" title="✨ Artifacts">
             <p>
               When Claude produces something tangible — a document, a spreadsheet, a block of
-              code, a formatted report — it appears as an <strong>Artifact</strong>: a live,
+              code, a formatted report — it appears as an
+              <GlossaryLink term="artifact"><strong>Artifact</strong></GlossaryLink>: a live,
               copyable output sitting alongside the conversation that you can use, download,
               or hand off directly.
             </p>
@@ -301,9 +303,10 @@ const accentBorderSel: Record<string, string> = {
             </Callout>
             <Callout variant="cowork" title="🔌 Many tools connect to Co-Work">
               <p>
-                Jira, Confluence, and Ramp are just the ones we have today. The platform also
-                supports NetSuite, Google Workspace, Slack, and many others — plus limited
-                local file-system access. If you want a tool connected, ask.
+                Jira, Confluence, and Ramp are just the ones we have today, each wired up
+                through a <GlossaryLink term="connector-mcp">Connector (MCP)</GlossaryLink>.
+                The platform also supports NetSuite, Google Workspace, Slack, and many others
+                — plus limited local file-system access. If you want a tool connected, ask.
               </p>
             </Callout>
           </>
@@ -373,12 +376,12 @@ const accentBorderSel: Record<string, string> = {
         <div class="card-area grid gap-4 sm:grid-cols-2" data-mode={mode} data-view="tile">
           {cardsByMode[mode].map((u) => (
             <article
-              class="uc-card group cursor-pointer rounded-[12px] border border-border bg-card p-5 transition-colors hover:border-gold/40 hover:bg-card-hover"
+              class="uc-card hover-lift group cursor-pointer rounded-[12px] border border-border bg-card p-5 transition-colors hover:border-gold/40 hover:bg-card-hover"
               data-role={u.data.role}
               data-mode={mode}
             >
               <button type="button" class="uc-trigger flex w-full items-start gap-3 text-left" aria-expanded="false">
-                <span class="uc-icon flex h-10 w-10 shrink-0 items-center justify-center rounded-[10px] bg-card-hover text-xl">
+                <span class="uc-icon flex h-10 w-10 shrink-0 items-center justify-center rounded-[12px] bg-card-hover text-xl">
                   {u.data.icon}
                 </span>
                 <span class="min-w-0 flex-1">
@@ -438,57 +441,57 @@ const accentBorderSel: Record<string, string> = {
     class="mode-panel hidden"
     data-panel="compare"
   >
-    <div class="mb-5">
+    <div class="reveal mb-5">
       <h2 class="mb-2 mt-0 text-2xl font-bold text-gold">⚖️ Which mode should I use?</h2>
       <p class="m-0 leading-relaxed text-muted">Quick reference for when each mode makes sense.</p>
     </div>
 
-    <div class="overflow-x-auto rounded-[12px] border border-border">
-      <table class="w-full border-collapse text-left text-sm">
+    <div class="table-shell reveal">
+      <table class="data-table">
         <thead>
-          <tr class="border-b border-border">
-            <th class="px-4 py-3 font-medium text-muted">Question</th>
-            <th class="px-4 py-3 font-bold text-chat">💬 Chat</th>
-            <th class="px-4 py-3 font-bold text-cowork">🤝 Co-Work</th>
-            <th class="px-4 py-3 font-bold text-code">⌨️ Code</th>
+          <tr>
+            <th class="font-medium text-muted">Question</th>
+            <th class="text-chat">💬 Chat</th>
+            <th class="text-cowork">🤝 Co-Work</th>
+            <th class="text-code">⌨️ Code</th>
           </tr>
         </thead>
-        <tbody class="[&_tr:last-child]:border-0 [&_tr]:border-b [&_tr]:border-border">
+        <tbody>
           <tr>
-            <td class="px-4 py-3 font-medium text-text">Where does it run?</td>
-            <td class="px-4 py-3 text-muted">Browser / mobile app</td>
-            <td class="px-4 py-3 text-muted">Browser + connected tools</td>
-            <td class="px-4 py-3 text-muted">Your terminal / IDE</td>
+            <td class="font-medium text-text">Where does it run?</td>
+            <td class="text-muted">Browser / mobile app</td>
+            <td class="text-muted">Browser + connected tools</td>
+            <td class="text-muted">Your terminal / IDE</td>
           </tr>
           <tr>
-            <td class="px-4 py-3 font-medium text-text">Who drives the work?</td>
-            <td class="px-4 py-3 text-muted">You, always</td>
-            <td class="px-4 py-3 text-muted">Claude, supervised by you</td>
-            <td class="px-4 py-3 text-muted">Claude, with your guidance</td>
+            <td class="font-medium text-text">Who drives the work?</td>
+            <td class="text-muted">You, always</td>
+            <td class="text-muted">Claude, supervised by you</td>
+            <td class="text-muted">Claude, with your guidance</td>
           </tr>
           <tr>
-            <td class="px-4 py-3 font-medium text-text">Can it write to external tools?</td>
-            <td class="px-4 py-3 text-muted">No</td>
-            <td class="px-4 py-3 text-muted">Yes — Jira, Confluence, Ramp, etc.</td>
-            <td class="px-4 py-3 text-muted">Yes — files, APIs, servers</td>
+            <td class="font-medium text-text">Can it write to external tools?</td>
+            <td class="text-muted">No</td>
+            <td class="text-muted">Yes — Jira, Confluence, Ramp, etc.</td>
+            <td class="text-muted">Yes — files, APIs, servers</td>
           </tr>
           <tr>
-            <td class="px-4 py-3 font-medium text-text">Does it need tech setup?</td>
-            <td class="px-4 py-3 text-muted">Just a browser login</td>
-            <td class="px-4 py-3 text-muted">Plugin connections (one-time)</td>
-            <td class="px-4 py-3 text-muted">CLI install + terminal access</td>
+            <td class="font-medium text-text">Does it need tech setup?</td>
+            <td class="text-muted">Just a browser login</td>
+            <td class="text-muted">Plugin connections (one-time)</td>
+            <td class="text-muted">CLI install + terminal access</td>
           </tr>
           <tr>
-            <td class="px-4 py-3 font-medium text-text">Best for…</td>
-            <td class="px-4 py-3 text-muted">Quick questions, drafts, thinking out loud</td>
-            <td class="px-4 py-3 text-muted">Multi-step doc / project tasks</td>
-            <td class="px-4 py-3 text-muted">Automations, dev work, ops tasks</td>
+            <td class="font-medium text-text">Best for…</td>
+            <td class="text-muted">Quick questions, drafts, thinking out loud</td>
+            <td class="text-muted">Multi-step doc / project tasks</td>
+            <td class="text-muted">Automations, dev work, ops tasks</td>
           </tr>
           <tr>
-            <td class="px-4 py-3 font-medium text-text">Technical skill required?</td>
-            <td class="px-4 py-3 text-muted">None</td>
-            <td class="px-4 py-3 text-muted">None (IT sets up tools)</td>
-            <td class="px-4 py-3 text-muted">Comfortable in a terminal</td>
+            <td class="font-medium text-text">Technical skill required?</td>
+            <td class="text-muted">None</td>
+            <td class="text-muted">None (IT sets up tools)</td>
+            <td class="text-muted">Comfortable in a terminal</td>
           </tr>
         </tbody>
       </table>
@@ -521,7 +524,7 @@ const accentBorderSel: Record<string, string> = {
     align-items: flex-start;
     gap: 0.6rem;
     cursor: pointer;
-    border-radius: 10px;
+    border-radius: 12px;
     border: 1px solid var(--color-border);
     padding: 0.6rem 0.85rem;
     line-height: 1.45;
@@ -724,21 +727,33 @@ const accentBorderSel: Record<string, string> = {
     collapseQuiz();
   });
 
-  const quizCopy: Record<string, { label: string; emoji: string; why: string }> = {
+  const quizCopy: Record<
+    string,
+    { label: string; emoji: string; why: string; notFor: string; runnerUp: string }
+  > = {
     chat: {
       label: 'Chat',
       emoji: '💬',
       why: "You mostly want answers and drafts you'll act on yourself. Start in Chat — no setup, instant feedback.",
+      notFor:
+        "isn't the right mode when you need something actually done in a tool, or run again and again without you — that's when it's worth stepping up a gear.",
+      runnerUp: "pick it when you'd rather just get a quick answer back than hand off the whole task.",
     },
     cowork: {
       label: 'Co-Work',
       emoji: '🤝',
       why: "You want Claude to actually do multi-step work in your connected tools like Jira, Confluence, and Ramp. That's Co-Work.",
+      notFor:
+        "isn't the right mode for a quick one-off question (that's overkill — just Chat it), or for anything that needs your codebase and terminal (that's Code).",
+      runnerUp: "pick it when you want Claude hands-on in Jira, Confluence, or Ramp instead of just talking things through.",
     },
     code: {
       label: 'Code',
       emoji: '⌨️',
       why: "You're building automations and you're comfortable near a terminal and your files. Claude Code is your gear.",
+      notFor:
+        "isn't the right mode if you're not near a terminal, or you just want a quick draft or answer — Chat or Co-Work will get you there faster.",
+      runnerUp: "pick it when the task needs to run in your terminal, codebase, or servers rather than a connected app.",
     },
   };
 
@@ -757,18 +772,22 @@ const accentBorderSel: Record<string, string> = {
     const q1 = data.get('q1') as string | null;
     if (q1 && q1 in tally) tally[q1] += 0.5;
 
-    let winner = 'chat';
-    let best = -1;
-    for (const k of ['chat', 'cowork', 'code']) {
-      if (tally[k] > best) {
-        best = tally[k];
-        winner = k;
-      }
-    }
+    const ranked = (['chat', 'cowork', 'code'] as const)
+      .map((k) => ({ k, score: tally[k] }))
+      .sort((a, b) => b.score - a.score);
+    const winner = ranked[0].k;
+    const runnerUpKey = ranked[1].k;
+    const isClose = ranked[0].score - ranked[1].score <= 1;
 
     const c = quizCopy[winner];
+    let html = `<p class="m-0"><strong>${c.emoji} ${c.label}</strong> is your best fit. ${c.why}</p>`;
+    html += `<p class="mt-2 mb-0 text-sm text-muted">Note: ${c.label} ${c.notFor}</p>`;
+    if (isClose) {
+      const r = quizCopy[runnerUpKey];
+      html += `<p class="mt-2 mb-0 text-sm text-muted"><strong>Close second: ${r.emoji} ${r.label}</strong> — ${r.runnerUp}</p>`;
+    }
     if (quizResultText) {
-      quizResultText.innerHTML = `<strong>${c.emoji} ${c.label}</strong> is your best fit. ${c.why}`;
+      quizResultText.innerHTML = html;
     }
     quizResult?.classList.remove('hidden');
     quizJump?.setAttribute('data-target', winner);

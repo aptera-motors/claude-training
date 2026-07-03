@@ -6,6 +6,8 @@ import KeyTakeaways from '../../components/KeyTakeaways.astro';
 import Callout from '../../components/Callout.astro';
 import CopyPrompt from '../../components/CopyPrompt.astro';
 import TryItNow from '../../components/TryItNow.astro';
+import FeatureCard from '../../components/FeatureCard.astro';
+import GlossaryLink from '../../components/GlossaryLink.astro';
 import { href } from '../../lib/site';
 ---
 <BaseLayout
@@ -23,7 +25,7 @@ import { href } from '../../lib/site';
 
   <Tldr>
     <p>
-      The <a class="text-gold underline" href={href('/context-window/')}>context window</a>
+      The <GlossaryLink term="context-window">context window</GlossaryLink>
       is short-term memory — one session, then gone. To carry things across chats,
       Claude has two tools: <strong>Memory</strong> (it automatically remembers
       facts about you and your work) and <strong>Projects</strong> (persistent
@@ -77,7 +79,7 @@ import { href } from '../../lib/site';
   <section class="prose-content">
     <h2>Projects: a workspace that remembers</h2>
     <p>
-      A <strong>Project</strong> is a persistent workspace inside the Claude apps.
+      A <strong><GlossaryLink term="project">Project</GlossaryLink></strong> is a persistent workspace inside the Claude apps.
       You set it up once with two things:
     </p>
     <ul>
@@ -126,32 +128,24 @@ import { href } from '../../lib/site';
   </Callout>
 
   <!-- Which to use -->
-  <section class="prose-content">
+  <section class="prose-content reveal">
     <h2>Which kind of memory do I use?</h2>
     <p>Four layers, from most temporary to most durable:</p>
   </section>
 
-  <div class="my-6 grid gap-4 sm:grid-cols-2">
-    <div class="rounded-[12px] border border-chat/50 bg-card p-5">
-      <div class="mb-2 text-2xl">🪟</div>
-      <h3 class="m-0 mb-1 text-lg font-bold text-chat">Context window</h3>
-      <p class="m-0 text-sm leading-relaxed text-muted">One conversation. Automatic and finite — it resets when the session ends.</p>
-    </div>
-    <div class="rounded-[12px] border border-gold/50 bg-card p-5">
-      <div class="mb-2 text-2xl">💾</div>
-      <h3 class="m-0 mb-1 text-lg font-bold text-gold">Memory</h3>
-      <p class="m-0 text-sm leading-relaxed text-muted">Facts about you and your work, carried across all your chats. Automatic — and you can edit or clear it.</p>
-    </div>
-    <div class="rounded-[12px] border border-cowork/50 bg-card p-5">
-      <div class="mb-2 text-2xl">🗂️</div>
-      <h3 class="m-0 mb-1 text-lg font-bold text-cowork">Projects</h3>
-      <p class="m-0 text-sm leading-relaxed text-muted">A body of work. Your instructions + reference files, shared by every chat in the workspace.</p>
-    </div>
-    <div class="rounded-[12px] border border-code/50 bg-card p-5">
-      <div class="mb-2 text-2xl">🛠️</div>
-      <h3 class="m-0 mb-1 text-lg font-bold text-code">Files &amp; skills</h3>
-      <p class="m-0 text-sm leading-relaxed text-muted">Durable outputs and repeatable workflows — saved on purpose, reused on demand.</p>
-    </div>
+  <div class="my-6 grid gap-4 sm:grid-cols-2 reveal">
+    <FeatureCard emoji="🪟" title="Context window" accent="chat">
+      <p>One conversation. Automatic and finite — it resets when the session ends.</p>
+    </FeatureCard>
+    <FeatureCard emoji="💾" title="Memory" accent="gold">
+      <p>Facts about you and your work, carried across all your chats. Automatic — and you can edit or clear it.</p>
+    </FeatureCard>
+    <FeatureCard emoji="🗂️" title="Projects" accent="cowork">
+      <p>A body of work. Your instructions + reference files, shared by every chat in the workspace.</p>
+    </FeatureCard>
+    <FeatureCard emoji="🛠️" title="Files & skills" accent="code">
+      <p>Durable outputs and repeatable workflows — saved on purpose, reused on demand.</p>
+    </FeatureCard>
   </div>
 
   <TryItNow title="Set up your first Project">

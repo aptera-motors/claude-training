@@ -1,0 +1,18 @@
+---
+// Small "last reviewed" freshness stamp for pricing/facts that go stale.
+interface Props {
+  date: string;
+  label?: string;
+}
+const { date, label = 'Facts' } = Astro.props;
+
+const formatted = new Date(`${date}T00:00:00Z`).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+  timeZone: 'UTC',
+});
+---
+<p class="mt-2 text-xs italic text-dim">
+  {label} last reviewed {formatted}
+</p>

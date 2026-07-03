@@ -1,0 +1,57 @@
+---
+// Single row in a horizontal bar-chart list (cost bars, effort ladder, etc).
+interface Props {
+  label: string;
+  widthPct: number;
+  color: 'chat' | 'gold' | 'code' | 'cowork';
+  note?: string;
+  labelWidthClass?: string;
+}
+const { label, widthPct, color, note, labelWidthClass = 'w-20' } = Astro.props;
+
+const barColors: Record<string, string> = {
+  chat: 'bg-chat',
+  gold: 'bg-gold',
+  code: 'bg-code',
+  cowork: 'bg-cowork',
+};
+const barCls = barColors[color] ?? barColors.gold;
+---
+<div class="flex items-center gap-3">
+  <span class:list={[labelWidthClass, 'shrink-0 text-sm font-semibold text-text']}>{label}</span>
+  <div
+    class:list={['bar-animate h-4 rounded-full', barCls]}
+    style={`width: var(--bar-w, ${widthPct}%)`}
+    data-bar-width={widthPct}
+  ></div>
+  {note ? <span class="text-xs text-muted">{note}</span> : null}
+</div>
+
+<script>
+  // Animate bars from 0 to their target width once they enter the viewport
+  // (falls back to the inline width immediately under reduced-motion, via CSS).
+  const bars = document.querySelectorAll<HTMLElement>('.bar-animate[data-bar-width]');
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (!prefersReduced && bars.length) {
+    bars.forEach((bar) => {
+      bar.style.setProperty('--bar-w', '0%');
+    });
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const target = entry.target as HTMLElement;
+            const pct = target.getAttribute('data-bar-width') ?? '0';
+            target.style.setProperty('--bar-w', `${pct}%`);
+            observer.unobserve(target);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    bars.forEach((bar) => observer.observe(bar));
+  }
+</script>

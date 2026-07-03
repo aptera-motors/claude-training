@@ -6,6 +6,7 @@ import TryItNow from '../../components/TryItNow.astro';
 import KeyTakeaways from '../../components/KeyTakeaways.astro';
 import CopyPrompt from '../../components/CopyPrompt.astro';
 import Callout from '../../components/Callout.astro';
+import ComparisonPair from '../../components/ComparisonPair.astro';
 import { href } from '../../lib/site';
 ---
 <BaseLayout
@@ -28,7 +29,7 @@ import { href } from '../../lib/site';
   </Tldr>
 
   <!-- The golden rule -->
-  <section class="prose-content mb-10">
+  <section class="reveal prose-content mb-10">
     <h2>The golden rule</h2>
     <p>
       <strong>Talk to Claude like a smart new coworker, not a search engine.</strong>
@@ -51,7 +52,7 @@ import { href } from '../../lib/site';
   </figure>
 
   <!-- The 4 ingredients -->
-  <section class="mb-10">
+  <section class="reveal mb-10">
     <h2 class="mb-2 text-2xl font-bold tracking-tight">The 4 ingredients of a great prompt</h2>
     <p class="mb-5 text-muted">You don't need all four every time — but the more you include, the less back-and-forth you'll do.</p>
 
@@ -84,58 +85,40 @@ import { href } from '../../lib/site';
   </section>
 
   <!-- Before/after comparisons -->
-  <section class="mb-10">
+  <section class="reveal mb-10">
     <h2 class="mb-2 text-2xl font-bold tracking-tight">Weak → Strong: real Aptera examples</h2>
     <p class="mb-6 text-muted">Same request. Completely different result.</p>
 
     <!-- Manufacturing -->
-    <div class="mb-6">
+    <div class="reveal mb-6">
       <p class="mb-3 text-sm font-bold uppercase tracking-widest text-dim">Manufacturing</p>
-      <div class="grid gap-3 sm:grid-cols-2">
-        <div class="rounded-[12px] border-2 border-red-900/60 bg-red-950/20 p-4">
-          <p class="m-0 mb-2 text-xs font-bold uppercase tracking-wide text-red-400">Weak</p>
-          <p class="m-0 text-sm italic text-muted leading-relaxed">"Write an email to a supplier about late parts."</p>
-        </div>
-        <div class="rounded-[12px] border-2 border-gold/60 bg-gold/5 p-4">
-          <p class="m-0 mb-2 text-xs font-bold uppercase tracking-wide text-gold">Strong</p>
-          <p class="m-0 text-sm italic text-muted leading-relaxed">"I'm a manufacturing engineer at Aptera Motors. Our aluminum extrusion supplier (Acme Parts) is three weeks late on a critical door frame order that's holding up production. Write a professional but firm email asking them to commit to a delivery date by end of week. Keep it under 120 words. Tone: serious, not angry."</p>
-        </div>
-      </div>
+      <ComparisonPair>
+        <p slot="weak">"Write an email to a supplier about late parts."</p>
+        <p slot="strong">"I'm a manufacturing engineer at Aptera Motors. Our aluminum extrusion supplier (Acme Parts) is three weeks late on a critical door frame order that's holding up production. Write a professional but firm email asking them to commit to a delivery date by end of week. Keep it under 120 words. Tone: serious, not angry."</p>
+      </ComparisonPair>
     </div>
 
     <!-- Finance -->
-    <div class="mb-6">
+    <div class="reveal mb-6">
       <p class="mb-3 text-sm font-bold uppercase tracking-widest text-dim">Finance</p>
-      <div class="grid gap-3 sm:grid-cols-2">
-        <div class="rounded-[12px] border-2 border-red-900/60 bg-red-950/20 p-4">
-          <p class="m-0 mb-2 text-xs font-bold uppercase tracking-wide text-red-400">Weak</p>
-          <p class="m-0 text-sm italic text-muted leading-relaxed">"Summarize this spreadsheet."</p>
-        </div>
-        <div class="rounded-[12px] border-2 border-gold/60 bg-gold/5 p-4">
-          <p class="m-0 mb-2 text-xs font-bold uppercase tracking-wide text-gold">Strong</p>
-          <p class="m-0 text-sm italic text-muted leading-relaxed">"I'm preparing for a Q3 budget review with the CFO. Here's our departmental spend data [paste data]. Summarize the top three budget variances, flag anything over 15% off target, and suggest two questions the CFO is likely to ask. Format as a bullet list, plain language — no jargon."</p>
-        </div>
-      </div>
+      <ComparisonPair>
+        <p slot="weak">"Summarize this spreadsheet."</p>
+        <p slot="strong">"I'm preparing for a Q3 budget review with the CFO. Here's our departmental spend data [paste data]. Summarize the top three budget variances, flag anything over 15% off target, and suggest two questions the CFO is likely to ask. Format as a bullet list, plain language — no jargon."</p>
+      </ComparisonPair>
     </div>
 
     <!-- Marketing -->
-    <div class="mb-6">
+    <div class="reveal mb-6">
       <p class="mb-3 text-sm font-bold uppercase tracking-widest text-dim">Marketing</p>
-      <div class="grid gap-3 sm:grid-cols-2">
-        <div class="rounded-[12px] border-2 border-red-900/60 bg-red-950/20 p-4">
-          <p class="m-0 mb-2 text-xs font-bold uppercase tracking-wide text-red-400">Weak</p>
-          <p class="m-0 text-sm italic text-muted leading-relaxed">"Write a social media post about our car."</p>
-        </div>
-        <div class="rounded-[12px] border-2 border-gold/60 bg-gold/5 p-4">
-          <p class="m-0 mb-2 text-xs font-bold uppercase tracking-wide text-gold">Strong</p>
-          <p class="m-0 text-sm italic text-muted leading-relaxed">"Write a LinkedIn post announcing that Aptera's solar-assisted EV can travel up to 40 miles a day on sunshine alone. Target audience: sustainability-minded professionals who aren't car people. Tone: exciting but grounded, no hype words like 'revolutionary' or 'game-changing.' Max 150 words. End with a question to drive comments."</p>
-        </div>
-      </div>
+      <ComparisonPair>
+        <p slot="weak">"Write a social media post about our car."</p>
+        <p slot="strong">"Write a LinkedIn post announcing that Aptera's solar-assisted EV can travel up to 40 miles a day on sunshine alone. Target audience: sustainability-minded professionals who aren't car people. Tone: exciting but grounded, no hype words like 'revolutionary' or 'game-changing.' Max 150 words. End with a question to drive comments."</p>
+      </ComparisonPair>
     </div>
   </section>
 
   <!-- Iteration -->
-  <section class="prose-content mb-10">
+  <section class="reveal prose-content mb-10">
     <h2>The first answer is a draft</h2>
     <p>
       Nobody — not even the best prompt writers — gets a perfect result on the first try every time. That's not a bug, it's the workflow. Claude is designed for conversation, not one-shot queries.
@@ -155,7 +138,7 @@ import { href } from '../../lib/site';
   </section>
 
   <!-- Give it your stuff -->
-  <section class="prose-content mb-10">
+  <section class="reveal prose-content mb-10">
     <h2>Give it your stuff</h2>
     <p>
       Want the output to actually sound like you? Paste examples. Paste your own past emails, documents, or templates into the prompt. Say "write in this style" and hand it a sample. Claude is a fast learner — it'll mirror your voice, format, and vocabulary better than any setting or toggle.

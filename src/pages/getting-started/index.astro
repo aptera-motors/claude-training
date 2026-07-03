@@ -6,6 +6,9 @@ import TryItNow from '../../components/TryItNow.astro';
 import KeyTakeaways from '../../components/KeyTakeaways.astro';
 import CopyPrompt from '../../components/CopyPrompt.astro';
 import Callout from '../../components/Callout.astro';
+import FeatureCard from '../../components/FeatureCard.astro';
+import Quote from '../../components/Quote.astro';
+import GlossaryLink from '../../components/GlossaryLink.astro';
 import { href } from '../../lib/site';
 ---
 <BaseLayout
@@ -27,17 +30,12 @@ import { href } from '../../lib/site';
     </p>
   </Tldr>
 
-  <figure class="my-6 rounded-r-[12px] border-l-[3px] border-gold bg-gold/5 px-5 py-4">
-    <blockquote class="m-0 text-lg italic leading-relaxed text-text">
-      "Always invite AI to the table."
-    </blockquote>
-    <figcaption class="mt-2 text-sm font-semibold text-gold">
-      — Ethan Mollick, <em>Co-Intelligence: Living and Working with AI</em>
-    </figcaption>
-  </figure>
+  <Quote attribution="Ethan Mollick" source="Co-Intelligence: Living and Working with AI">
+    "Always invite AI to the table."
+  </Quote>
 
   <!-- Who to contact -->
-  <section class="prose-content mb-10">
+  <section class="reveal prose-content mb-10">
     <h2>Need help getting access?</h2>
     <p>
       Two people can sort you out fast:
@@ -50,40 +48,37 @@ import { href } from '../../lib/site';
   </section>
 
   <!-- Three ways in -->
-  <section class="mb-10">
+  <section class="reveal mb-10">
     <h2 class="mb-4 text-2xl font-bold tracking-tight">The three ways in</h2>
     <p class="mb-5 text-muted">Pick the one that fits where you are right now. You can always level up later.</p>
 
     <div class="grid gap-4 sm:grid-cols-3">
-      <!-- Browser -->
-      <div class="rounded-[12px] border border-chat/50 bg-card p-5">
-        <div class="mb-2 text-2xl">🌐</div>
-        <h3 class="m-0 mb-1 font-bold text-text">Browser (claude.ai)</h3>
-        <p class="m-0 text-sm leading-relaxed text-muted">
+      <FeatureCard emoji="🌐" title="Browser (claude.ai)" accent="chat">
+        <p>
           Log in with your Aptera account at <strong class="text-text">claude.ai</strong>. That's it. Works on any device, no install required. This is where most people start — and honestly, most people stay.
         </p>
-      </div>
-      <!-- Desktop App -->
-      <div class="rounded-[12px] border border-cowork/50 bg-card p-5">
-        <div class="mb-2 text-2xl">🖥️</div>
-        <h3 class="m-0 mb-1 font-bold text-text">Desktop App</h3>
-        <p class="m-0 text-sm leading-relaxed text-muted">
+      </FeatureCard>
+      <FeatureCard emoji="🖥️" title="Desktop App" accent="cowork">
+        <p>
           Download from <strong class="text-text">claude.ai/download</strong>. Unlocks connectors (plug Claude into Jira, SharePoint, Outlook), Co-Work mode, and Schedules for recurring tasks. The upgrade worth making.
         </p>
-      </div>
-      <!-- Claude Code -->
-      <div class="rounded-[12px] border border-code/50 bg-card p-5">
-        <div class="mb-2 text-2xl">💻</div>
-        <h3 class="m-0 mb-1 font-bold text-text">Claude Code</h3>
-        <p class="m-0 text-sm leading-relaxed text-muted">
+      </FeatureCard>
+      <FeatureCard emoji="💻" title="Claude Code" accent="code">
+        <p>
           A terminal tool for technical folks — engineers, data analysts, anyone comfortable with a command line. IT can help install it. Skip this one if that sentence made your eye twitch.
         </p>
-      </div>
+      </FeatureCard>
     </div>
+
+    <Callout variant="chat" title="Terminal-shy? No problem.">
+      <p>
+        Claude Code is 100% optional. The browser and desktop app are the complete experience for most roles — if the word "terminal" makes your eye twitch, skip it guilt-free.
+      </p>
+    </Callout>
   </section>
 
   <!-- First 10 minutes -->
-  <section class="prose-content mb-10">
+  <section class="reveal prose-content mb-10">
     <h2>Your first 10 minutes</h2>
     <p>Do this right now. It'll take less time than your next Slack scroll.</p>
 
@@ -112,7 +107,7 @@ import { href } from '../../lib/site';
       <li class="flex gap-4">
         <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gold font-bold text-canvas text-sm">4</span>
         <div>
-          <strong class="text-text">Notice the Artifact panel</strong>
+          <strong class="text-text">Notice the <GlossaryLink term="artifact">Artifact</GlossaryLink> panel</strong>
           <p class="mt-1 text-muted">When Claude produces a document, table, or longer piece of content, it opens in a side panel. You can copy, download, or keep editing right there. That panel is your deliverable.</p>
         </div>
       </li>

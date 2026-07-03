@@ -6,7 +6,6 @@ interface Props {
   title: string;
   description: string;
   pageId: string;
-  readMinutes?: number;
 }
 const { title, description, pageId } = Astro.props;
 const { prev, next } = prevNext(pageId);
@@ -43,24 +42,56 @@ const ogImage = new URL(href('/og.png'), Astro.site).href;
 
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><circle cx='8' cy='8' r='6' fill='%23F5C518'/></svg>" />
     <link href={`${pagefindBase}pagefind-ui.css`} rel="stylesheet" />
+
+    <!-- Pre-paint theme resolution: avoid flash of wrong theme -->
+    <script is:inline>
+      (function () {
+        try {
+          var stored = localStorage.getItem('aptera-theme');
+          var theme = stored === 'light' || stored === 'dark'
+            ? stored
+            : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+          document.documentElement.dataset.theme = theme;
+        } catch {
+          document.documentElement.dataset.theme = 'dark';
+        }
+      })();
+    </script>
   </head>
   <body class="min-h-screen bg-canvas text-text">
+    <a
+      href="#main"
+      class="fixed left-2 top-2 z-[60] -translate-y-16 rounded-[12px] border border-gold bg-card px-4 py-2 text-sm font-semibold text-gold opacity-0 transition-all focus:translate-y-0 focus:opacity-100"
+    >
+      Skip to content
+    </a>
     <!-- Mobile top bar -->
     <div
       class="sticky top-0 z-40 flex items-center justify-between border-b border-border bg-canvas/95 px-4 py-3 backdrop-blur lg:hidden"
     >
       <a href={href('/')} class="flex items-center gap-2 font-bold">
-        <span class="inline-block h-2.5 w-2.5 rounded-full bg-gold shadow-[0_0_8px_2px_rgba(245,197,24,0.6)]"></span>
+        <span class="inline-block h-2.5 w-2.5 rounded-full bg-gold" style="box-shadow: 0 0 8px 2px color-mix(in srgb, var(--color-gold-bright) 60%, transparent)"></span>
         Aptera AI Academy
       </a>
-      <button
-        id="nav-toggle"
-        type="button"
-        aria-label="Open navigation"
-        class="rounded-lg border border-border px-3 py-1.5 text-text"
-      >
-        ☰
-      </button>
+      <div class="flex items-center gap-2">
+        <button
+          id="theme-toggle"
+          type="button"
+          aria-label="Switch to light theme"
+          class="rounded-lg border border-border px-3 py-1.5 text-text"
+        >
+          <span id="theme-toggle-icon" aria-hidden="true">☀️</span>
+        </button>
+        <button
+          id="nav-toggle"
+          type="button"
+          aria-label="Open navigation"
+          aria-expanded="false"
+          class="rounded-lg border border-border px-3 py-1.5 text-text"
+        >
+          ☰
+        </button>
+      </div>
     </div>
 
     <div class="mx-auto flex w-full max-w-[1400px]">
@@ -71,17 +102,36 @@ const ogImage = new URL(href('/og.png'), Astro.site).href;
       >
         <div class="mb-6 flex items-center justify-between">
           <a href={href('/')} class="flex items-center gap-2.5 text-lg font-extrabold tracking-tight">
-            <span class="inline-block h-3 w-3 rounded-full bg-gold shadow-[0_0_10px_2px_rgba(245,197,24,0.6)]"></span>
+            <span class="inline-block h-3 w-3 rounded-full bg-gold" style="box-shadow: 0 0 10px 2px color-mix(in srgb, var(--color-gold-bright) 60%, transparent)"></span>
             Aptera AI Academy
           </a>
-          <button
-            id="nav-close"
-            type="button"
-            aria-label="Close navigation"
-            class="rounded-lg border border-border px-2 py-1 text-muted lg:hidden"
-          >
-            ✕
-          </button>
+          <div class="flex items-center gap-2">
+            <button
+              id="theme-toggle-desktop"
+              type="button"
+              aria-label="Switch to light theme"
+              class="hidden rounded-lg border border-border px-2 py-1 text-muted lg:inline-flex"
+            >
+              <span id="theme-toggle-desktop-icon" aria-hidden="true">☀️</span>
+            </button>
+            <button
+              id="nav-close"
+              type="button"
+              aria-label="Close navigation"
+              class="rounded-lg border border-border px-2 py-1 text-muted lg:hidden"
+            >
+              ✕
+            </button>
+          </div>
+        </div>
+
+        <!-- Search (ordered first on mobile so it's visible near the top of the drawer) -->
+        <div class="order-first mb-6 border-b border-border pb-4 lg:order-none lg:mb-6 lg:border-b lg:pb-4">
+          <p class="mb-2 px-2 text-xs font-bold uppercase tracking-widest text-dim">Search</p>
+          <div id="search"></div>
+          <p id="search-fallback" class="hidden px-2 text-xs text-dim">
+            Search works after the site is built.
+          </p>
         </div>
 
         <nav class="flex-1 space-y-6 text-[0.95rem]">
@@ -115,22 +165,13 @@ const ogImage = new URL(href('/og.png'), Astro.site).href;
             ))
           }
         </nav>
-
-        <!-- Search -->
-        <div class="mt-6 border-t border-border pt-4">
-          <p class="mb-2 px-2 text-xs font-bold uppercase tracking-widest text-dim">Search</p>
-          <div id="search"></div>
-          <p id="search-fallback" class="hidden px-2 text-xs text-dim">
-            Search works after the site is built.
-          </p>
-        </div>
       </aside>
 
       <!-- Backdrop for mobile drawer -->
       <div id="nav-backdrop" class="fixed inset-0 z-40 hidden bg-black/60 lg:hidden"></div>
 
       <!-- Main content -->
-      <main class="min-w-0 flex-1 px-5 py-8 sm:px-8 lg:px-12 lg:py-12">
+      <main id="main" class="min-w-0 flex-1 px-5 py-8 sm:px-8 lg:px-12 lg:py-12">
         <div class="mx-auto w-full max-w-[760px]">
           <div data-pagefind-body>
             <slot />
@@ -143,7 +184,7 @@ const ogImage = new URL(href('/og.png'), Astro.site).href;
                 {prev ? (
                   <a
                     href={href(prev.href)}
-                    class="rounded-[12px] border border-border bg-card px-4 py-3 transition-colors hover:border-gold/50 hover:bg-card-hover"
+                    class="hover-lift rounded-[12px] border border-border bg-card px-4 py-3 transition-colors hover:border-gold/50 hover:bg-card-hover"
                   >
                     <span class="block text-xs text-dim">← Previous</span>
                     <span class="block font-semibold text-text">{prev.emoji} {prev.label}</span>
@@ -154,7 +195,7 @@ const ogImage = new URL(href('/og.png'), Astro.site).href;
                 {next ? (
                   <a
                     href={href(next.href)}
-                    class="rounded-[12px] border border-border bg-card px-4 py-3 text-right transition-colors hover:border-gold/50 hover:bg-card-hover sm:col-start-2"
+                    class="hover-lift rounded-[12px] border border-border bg-card px-4 py-3 text-right transition-colors hover:border-gold/50 hover:bg-card-hover sm:col-start-2"
                   >
                     <span class="block text-xs text-dim">Next →</span>
                     <span class="block font-semibold text-text">{next.label} {next.emoji}</span>
@@ -213,22 +254,118 @@ const ogImage = new URL(href('/og.png'), Astro.site).href;
         has: (id) => readProgress().includes(id),
       };
 
+      // ---- Sidebar: scroll active link into view ----
+      const activeLink = document.querySelector('.nav-link[data-pageid="' + pageId + '"]');
+      activeLink?.scrollIntoView({ block: 'nearest' });
+
       // ---- Mobile nav drawer ----
       const sidebar = document.getElementById('sidebar');
       const backdrop = document.getElementById('nav-backdrop');
+      const navToggle = document.getElementById('nav-toggle');
       function openNav() {
         sidebar?.classList.remove('hidden', '-translate-x-full');
         sidebar?.classList.add('flex');
         backdrop?.classList.remove('hidden');
+        navToggle?.setAttribute('aria-expanded', 'true');
+        const focusable = sidebar?.querySelector('a, button, [tabindex]');
+        if (focusable instanceof HTMLElement) focusable.focus();
       }
       function closeNav() {
         sidebar?.classList.add('-translate-x-full');
         backdrop?.classList.add('hidden');
         if (window.innerWidth < 1024) sidebar?.classList.remove('flex');
+        navToggle?.setAttribute('aria-expanded', 'false');
+        if (navToggle instanceof HTMLElement) navToggle.focus();
       }
-      document.getElementById('nav-toggle')?.addEventListener('click', openNav);
+      function isNavOpen() {
+        return !!sidebar && !sidebar.classList.contains('hidden') && !sidebar.classList.contains('-translate-x-full');
+      }
+      navToggle?.addEventListener('click', openNav);
       document.getElementById('nav-close')?.addEventListener('click', closeNav);
       backdrop?.addEventListener('click', closeNav);
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && isNavOpen() && window.innerWidth < 1024) closeNav();
+      });
+
+      // ---- Theme toggle ----
+      const THEME_KEY = 'aptera-theme';
+      const root = document.documentElement;
+      const toggleButtons = [
+        { btn: document.getElementById('theme-toggle'), icon: document.getElementById('theme-toggle-icon') },
+        { btn: document.getElementById('theme-toggle-desktop'), icon: document.getElementById('theme-toggle-desktop-icon') },
+      ];
+      function syncThemeUI() {
+        const theme = root.dataset.theme === 'light' ? 'light' : 'dark';
+        const nextLabel = theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme';
+        const icon = theme === 'dark' ? '☀️' : '🌙';
+        toggleButtons.forEach(({ btn, icon: iconEl }) => {
+          if (btn) btn.setAttribute('aria-label', nextLabel);
+          if (iconEl) iconEl.textContent = icon;
+        });
+      }
+      function setTheme(theme, persist) {
+        root.dataset.theme = theme;
+        if (persist) {
+          try {
+            localStorage.setItem(THEME_KEY, theme);
+          } catch {
+            /* ignore */
+          }
+        }
+        syncThemeUI();
+      }
+      function hasStoredTheme() {
+        try {
+          const stored = localStorage.getItem(THEME_KEY);
+          return stored === 'light' || stored === 'dark';
+        } catch {
+          return false;
+        }
+      }
+      toggleButtons.forEach(({ btn }) => {
+        btn?.addEventListener('click', () => {
+          const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+          setTheme(next, true);
+        });
+      });
+      const colorSchemeQuery = window.matchMedia('(prefers-color-scheme: light)');
+      colorSchemeQuery.addEventListener('change', (e) => {
+        if (!hasStoredTheme()) setTheme(e.matches ? 'light' : 'dark', false);
+      });
+      syncThemeUI();
+
+      // ---- Scroll reveal (progressive enhancement) ----
+      // CSS only hides .reveal under html.reveal-ready, so content is never
+      // hidden unless this script is running and motion is wanted.
+      const revealEls = document.querySelectorAll('.reveal');
+      if (
+        revealEls.length &&
+        'IntersectionObserver' in window &&
+        !window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      ) {
+        document.documentElement.classList.add('reveal-ready');
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.1 }
+        );
+        revealEls.forEach((el) => {
+          // Anything already in the viewport shows immediately — no waiting
+          // on observer timing for above-the-fold content.
+          const r = el.getBoundingClientRect();
+          if (r.top < window.innerHeight && r.bottom > 0) {
+            el.classList.add('is-visible');
+          } else {
+            observer.observe(el);
+          }
+        });
+      }
     </script>
 
     <!-- Pagefind UI: only present after build. Degrade gracefully in dev. -->

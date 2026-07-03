@@ -1,0 +1,26 @@
+---
+// Small feature/benefit card with emoji + accent-colored border and title.
+interface Props {
+  emoji: string;
+  title: string;
+  accent?: 'chat' | 'cowork' | 'code' | 'gold' | 'none';
+}
+const { emoji, title, accent = 'none' } = Astro.props;
+
+const styles: Record<string, string> = {
+  chat: 'border-chat/50 text-chat',
+  cowork: 'border-cowork/50 text-cowork',
+  code: 'border-code/50 text-code',
+  gold: 'border-gold/50 text-gold',
+  none: 'border-border text-text',
+};
+const cls = styles[accent] ?? styles.none;
+const [borderCls, titleCls] = cls.split(' ');
+---
+<div class:list={['hover-lift rounded-[12px] bg-card p-5 border', borderCls]}>
+  <div class="mb-2 text-2xl">{emoji}</div>
+  <h3 class:list={['m-0 mb-1 font-bold', titleCls]}>{title}</h3>
+  <div class="text-sm leading-relaxed text-muted [&_p]:m-0 [&_p+p]:mt-2">
+    <slot />
+  </div>
+</div>

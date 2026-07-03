@@ -7,7 +7,7 @@ const glossaryItems = await getCollection('glossary');
 // Sort by term alphabetically
 const sorted = glossaryItems.sort((a, b) => a.data.term.localeCompare(b.data.term));
 const rendered = await Promise.all(
-  sorted.map(async (item) => ({ data: item.data, Content: (await render(item)).Content }))
+  sorted.map(async (item) => ({ id: item.id, data: item.data, Content: (await render(item)).Content }))
 );
 
 // Group by letter and get unique letters
@@ -58,8 +58,8 @@ const letters = Object.keys(grouped).sort();
           <h2 class="mb-5 text-2xl font-bold text-text">{letter}</h2>
           <div class="space-y-4">
             {
-              grouped[letter].map(({ data, Content }) => (
-                <div class="rounded-xl border border-border bg-card p-4 hover:border-gold/50 hover:bg-card-hover">
+              grouped[letter].map(({ id, data, Content }) => (
+                <div class="scroll-mt-20 rounded-[12px] border border-border bg-card p-4 hover:border-gold/50 hover:bg-card-hover" id={id}>
                   <h3 class="font-bold text-gold">{data.term}</h3>
                   <div class="prose-content mt-2 text-muted [&_p]:m-0 [&_p+p]:mt-2">
                     <Content />

@@ -4,6 +4,10 @@ import PageHeader from '../../components/PageHeader.astro';
 import Tldr from '../../components/Tldr.astro';
 import KeyTakeaways from '../../components/KeyTakeaways.astro';
 import Callout from '../../components/Callout.astro';
+import TryItNow from '../../components/TryItNow.astro';
+import CopyPrompt from '../../components/CopyPrompt.astro';
+import LastReviewed from '../../components/LastReviewed.astro';
+import GlossaryLink from '../../components/GlossaryLink.astro';
 import { href } from '../../lib/site';
 ---
 <BaseLayout
@@ -30,14 +34,14 @@ import { href } from '../../lib/site';
   </Tldr>
 
   <!-- What is it -->
-  <section class="prose-content">
+  <section class="prose-content reveal">
     <h2>What is a context window?</h2>
     <p>
       Picture a whiteboard Claude works at during your session. Everything
       currently in play is written on it: the system instructions, every message
       you've sent, every reply Claude has given — plus any files, PDFs, images,
       and tool or search results you've pulled in. That whiteboard is the
-      <strong>context window</strong>, and it's how Claude "remembers" what you're
+      <GlossaryLink term="context-window"><strong>context window</strong></GlossaryLink>, and it's how Claude "remembers" what you're
       working on.
     </p>
     <p>
@@ -69,7 +73,7 @@ import { href } from '../../lib/site';
   </section>
 
   <!-- Different sizes -->
-  <section class="prose-content">
+  <section class="prose-content reveal">
     <h2>Not all windows are the same size</h2>
     <p>
       Different models ship with different context-window sizes, and some offer
@@ -78,10 +82,16 @@ import { href } from '../../lib/site';
       affects how much room you have to work with, so it's worth knowing your
       model. (See <a class="text-gold underline" href={href('/models/')}>Choosing Your Model</a>.)
     </p>
+    <p>
+      As a rough guide, current Claude models offer roughly <strong>200K-token
+      windows</strong> — about <strong>150,000 words</strong>, or a few hundred
+      pages of text — with some configurations supporting longer context.
+    </p>
+    <LastReviewed date="2026-07-02" label="Context window sizes" />
   </section>
 
   <!-- Bigger isn't always better -->
-  <section class="prose-content">
+  <section class="prose-content reveal">
     <h2>Bigger isn't always better</h2>
     <p>A larger window sounds like a pure win. It mostly is — but there are real trade-offs.</p>
     <p><strong>The upside:</strong></p>
@@ -118,10 +128,10 @@ import { href } from '../../lib/site';
   </Callout>
 
   <!-- Compaction -->
-  <section class="prose-content">
+  <section class="prose-content reveal">
     <h2>What is compaction?</h2>
     <p>
-      <strong>Compaction</strong> is the cleanup that keeps a long session alive.
+      <GlossaryLink term="compaction"><strong>Compaction</strong></GlossaryLink> is the cleanup that keeps a long session alive.
       Instead of carrying every word of the conversation forward, Claude condenses
       the earlier parts into a compact summary — freeing up the whiteboard while
       keeping the key facts.
@@ -134,7 +144,7 @@ import { href } from '../../lib/site';
   </section>
 
   <!-- When to compact -->
-  <section class="prose-content">
+  <section class="prose-content reveal">
     <h2>Watch the gauge: <em>when</em> to compact</h2>
     <p>
       Keep half an eye on how full the window is. In Claude Code you can see
@@ -154,7 +164,7 @@ import { href } from '../../lib/site';
   </section>
 
   <!-- Save before you compact -->
-  <section class="prose-content">
+  <section class="prose-content reveal">
     <h2>Save before you compact</h2>
     <p>
       Since compaction is lossy, treat it like saving a document before you close
@@ -188,7 +198,7 @@ import { href } from '../../lib/site';
   </Callout>
 
   <!-- Short vs long term memory -->
-  <section class="prose-content">
+  <section class="prose-content reveal">
     <h2>Short-term vs. long-term memory</h2>
     <p>
       The context window is <strong>short-term</strong> memory — brilliant within
@@ -200,6 +210,18 @@ import { href } from '../../lib/site';
       and <a class="text-gold underline" href={href('/connectors/')}>Connectors &amp; Skills</a>.)
     </p>
   </section>
+
+  <TryItNow title="Check what Claude is holding onto">
+    <p>
+      A quick context-awareness exercise for any session that's been running a
+      while:
+    </p>
+    <CopyPrompt text="Summarize where we are in this conversation and list what context you're still holding." />
+    <p>
+      If the summary is thinner than you expected, that's your cue — save the
+      important bits to a doc, memory, or skill before you compact or move on.
+    </p>
+  </TryItNow>
 
   <KeyTakeaways>
     <ul>

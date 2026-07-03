@@ -1,0 +1,27 @@
+---
+// Canonical pill badge — colored variants or neutral.
+interface Props {
+  variant: 'gold' | 'chat' | 'cowork' | 'code' | 'neutral';
+  text: string;
+  emoji?: string;
+}
+const { variant, text, emoji } = Astro.props;
+
+const styles: Record<string, string> = {
+  gold: 'border border-gold/30 bg-gold/10 text-gold',
+  chat: 'border border-chat/40 bg-chat-dim text-chat',
+  cowork: 'border border-cowork/40 bg-cowork-dim text-cowork',
+  code: 'border border-code/40 bg-code-dim text-code',
+  neutral: 'border border-border bg-card-hover text-muted',
+};
+const cls = styles[variant] ?? styles.neutral;
+---
+<span
+  class:list={[
+    'inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-semibold',
+    cls,
+  ]}
+>
+  {emoji ? <span aria-hidden="true">{emoji}</span> : null}
+  {text}
+</span>

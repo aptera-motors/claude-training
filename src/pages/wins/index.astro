@@ -1,7 +1,10 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHeader from '../../components/PageHeader.astro';
+import Badge from '../../components/Badge.astro';
 import { getCollection, render } from 'astro:content';
+
+const WIN_FORM_URL = ''; // TODO(Jake): paste the Microsoft Form share URL — card auto-appears once set.
 
 const winEntries = (await getCollection('wins')).sort(
   (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
@@ -14,12 +17,6 @@ const modeLabel: Record<string, string> = {
   chat: 'Chat',
   cowork: 'Co-Work',
   code: 'Code',
-};
-
-const modeColor: Record<string, string> = {
-  chat: 'bg-chat-dim text-chat border border-chat/40',
-  cowork: 'bg-cowork-dim text-cowork border border-cowork/40',
-  code: 'bg-code-dim text-code border border-code/40',
 };
 
 const mailtoBody = encodeURIComponent(
@@ -53,33 +50,46 @@ const mailto = `mailto:jake@aptera.us?subject=AI%20Win%20Submission&body=${mailt
     Every win below is something someone on our team actually did. Browse for inspiration, steal the approach, then add your own at the bottom.
   </p>
 
+  {WIN_FORM_URL && (
+    <a
+      href={WIN_FORM_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="reveal hover-lift mb-6 block rounded-[12px] border-2 border-gold/50 bg-gold/5 px-6 py-6 text-center transition-colors hover:bg-gold/10"
+    >
+      <p class="m-0 mb-2 text-2xl font-extrabold tracking-tight text-text">
+        🏆 Share your win
+      </p>
+      <p class="mx-auto mb-1 max-w-[56ch] leading-relaxed text-muted">
+        Saved an hour? Solved a problem in minutes that used to take days? Takes about 2 minutes to submit via the form.
+      </p>
+      <p class="m-0 text-xs text-dim">
+        Every win is reviewed before publishing — usually live within a week.
+      </p>
+    </a>
+  )}
+
   <!-- Win card grid -->
   <div class="grid gap-5 sm:grid-cols-2">
     {wins.map(({ data, Content }) => {
       const win = { data };
       const mode = win.data.mode.toLowerCase();
-      const modeChip = modeColor[mode] ?? 'bg-card text-muted border border-border';
+      const modeVariant = (mode === 'chat' || mode === 'cowork' || mode === 'code') ? mode : 'neutral';
       const modeText = modeLabel[mode] ?? win.data.mode;
       return (
-        <article class="flex flex-col rounded-[12px] border border-border bg-card p-5 transition-colors hover:border-gold/40 hover:bg-card-hover">
+        <article class="reveal hover-lift flex flex-col rounded-[12px] border border-border bg-card p-5 transition-colors hover:border-gold/40 hover:bg-card-hover">
           <h2 class="m-0 mb-3 text-lg font-bold leading-snug text-text">
             {win.data.title}
           </h2>
 
           <div class="mb-4 flex flex-wrap gap-2">
             <!-- Who + team badge -->
-            <span class="rounded-full bg-card-hover px-3 py-1 text-xs font-medium text-muted border border-border">
-              {win.data.who} · {win.data.team}
-            </span>
+            <Badge variant="neutral" text={`${win.data.who} · ${win.data.team}`} />
             <!-- Mode chip -->
-            <span class:list={['rounded-full px-3 py-1 text-xs font-semibold', modeChip]}>
-              {modeText}
-            </span>
+            <Badge variant={modeVariant} text={modeText} />
             <!-- Time saved chip -->
             {win.data.timeSaved ? (
-              <span class="rounded-full bg-gold/10 px-3 py-1 text-xs font-semibold text-gold border border-gold/30">
-                ⏱ {win.data.timeSaved}
-              </span>
+              <Badge variant="gold" emoji="⏱" text={win.data.timeSaved} />
             ) : null}
           </div>
 
@@ -91,24 +101,30 @@ const mailto = `mailto:jake@aptera.us?subject=AI%20Win%20Submission&body=${mailt
     })}
   </div>
 
-  <!-- Submit your win -->
-  <section class="mt-14 rounded-[12px] border-2 border-gold/50 bg-gold/5 px-6 py-8 text-center">
-    <p class="mb-1 text-4xl">🏆</p>
-    <h2 class="m-0 mb-3 text-2xl font-extrabold tracking-tight text-text">
-      Got a win? We want it.
-    </h2>
-    <p class="mx-auto mb-6 max-w-[52ch] leading-relaxed text-muted">
-      Saved an hour? Solved a problem in minutes that used to take days? Turned a dreaded task into a one-liner? That counts. Submit it and get your name in lights.
+  {WIN_FORM_URL ? (
+    <p class="mt-10 text-center text-xs text-dim">
+      Prefer email? You can still <a href={mailto} class="text-muted underline hover:text-text">submit a win by email</a>.
     </p>
-    <a
-      href={mailto}
-      class="inline-block rounded-[12px] bg-gold px-6 py-3 font-bold text-canvas transition-opacity hover:opacity-90"
-    >
-      Submit your win →
-    </a>
-    <p class="mt-4 text-xs text-dim">
-      Opens a pre-filled email to jake@aptera.us. Takes about 2 minutes.
-    </p>
-  </section>
+  ) : (
+    <!-- Submit your win (fallback while the Form URL is pending) -->
+    <section class="mt-14 rounded-[12px] border-2 border-gold/50 bg-gold/5 px-6 py-8 text-center">
+      <p class="mb-1 text-4xl">🏆</p>
+      <h2 class="m-0 mb-3 text-2xl font-extrabold tracking-tight text-text">
+        Got a win? We want it.
+      </h2>
+      <p class="mx-auto mb-6 max-w-[52ch] leading-relaxed text-muted">
+        Saved an hour? Solved a problem in minutes that used to take days? Turned a dreaded task into a one-liner? That counts. Submit it and get your name in lights.
+      </p>
+      <a
+        href={mailto}
+        class="inline-block rounded-[12px] bg-gold px-6 py-3 font-bold text-canvas transition-opacity hover:opacity-90"
+      >
+        Submit your win →
+      </a>
+      <p class="mt-4 text-xs text-dim">
+        Opens a pre-filled email to jake@aptera.us. Takes about 2 minutes.
+      </p>
+    </section>
+  )}
 
 </BaseLayout>

@@ -1,7 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Tldr from '../components/Tldr.astro';
-import { NAV_GROUPS, PAGE_ORDER, href, TOTAL_PAGES, PROGRESS_KEY } from '../lib/site';
+import Quote from '../components/Quote.astro';
+import { NAV_GROUPS, PAGE_ORDER, href, TOTAL_PAGES, TOTAL_MINUTES, PROGRESS_KEY } from '../lib/site';
 
 // First three "START HERE" pages drive the step cards.
 const steps = [
@@ -11,6 +12,26 @@ const steps = [
 ];
 // All pages except Home for the big grid.
 const allPages = PAGE_ORDER.filter((p) => p.id !== 'home');
+
+// Total training time, formatted as "1 hr 41 min".
+const totalHours = Math.floor(TOTAL_MINUTES / 60);
+const totalMinsRemainder = TOTAL_MINUTES % 60;
+const totalTimeLabel =
+  totalHours > 0
+    ? `${totalHours} hr ${totalMinsRemainder} min`
+    : `${totalMinsRemainder} min`;
+
+// Minimal {id, readMinutes} pairs for the client-side progress script.
+const pageMinutes = PAGE_ORDER.map((p) => ({ id: p.id, readMinutes: p.readMinutes }));
+
+// "Start here for your role" pills.
+const roles = [
+  { key: 'finance', label: 'Finance', emoji: '💰' },
+  { key: 'marketing', label: 'Marketing', emoji: '📣' },
+  { key: 'engineering', label: 'Engineering', emoji: '🛠️' },
+  { key: 'manufacturing', label: 'Manufacturing', emoji: '🏭' },
+  { key: 'cad', label: 'CAD', emoji: '📐' },
+];
 ---
 <BaseLayout
   title="Home"
@@ -31,7 +52,7 @@ const allPages = PAGE_ORDER.filter((p) => p.id !== 'home');
       practical skills that hand the boring stuff to a robot so you can do the
       work only you can do.
     </p>
-    <div class="mt-6 flex flex-wrap gap-3">
+    <div class="mt-6 flex flex-wrap items-center gap-3">
       <a
         href={href('/getting-started/')}
         class="rounded-[12px] bg-gold px-5 py-2.5 font-semibold text-canvas transition-opacity hover:opacity-90"
@@ -44,17 +65,15 @@ const allPages = PAGE_ORDER.filter((p) => p.id !== 'home');
       >
         Explore the three modes
       </a>
+      <span class="text-sm font-semibold text-muted">
+        ⏱ ≈ {totalTimeLabel} of bite-sized lessons
+      </span>
     </div>
   </section>
 
-  <figure class="mb-10 rounded-r-[12px] border-l-[3px] border-gold bg-gold/5 px-5 py-4">
-    <blockquote class="m-0 text-lg italic leading-relaxed text-text">
-      "AI is the new electricity! Electricity transformed countless industries; AI will now do the same."
-    </blockquote>
-    <figcaption class="mt-2 text-sm font-semibold text-gold">
-      — Andrew Ng, founder of DeepLearning.AI &amp; Coursera
-    </figcaption>
-  </figure>
+  <Quote attribution="Andrew Ng" source="founder of DeepLearning.AI & Coursera">
+    "AI is the new electricity! Electricity transformed countless industries; AI will now do the same."
+  </Quote>
 
   <Tldr>
     <p>
@@ -67,14 +86,14 @@ const allPages = PAGE_ORDER.filter((p) => p.id !== 'home');
   </Tldr>
 
   <!-- Start your training -->
-  <section class="mb-14">
+  <section class="reveal mb-14">
     <h2 class="mb-5 text-2xl font-bold tracking-tight">Start your training</h2>
     <div class="grid gap-4 sm:grid-cols-3">
       {
         steps.map((step, i) => (
           <a
             href={href(step.href)}
-            class="group rounded-[12px] border border-border bg-card p-5 transition-colors hover:border-gold/50 hover:bg-card-hover"
+            class="group hover-lift rounded-[12px] border border-border bg-card p-5 transition-colors hover:border-gold/50 hover:bg-card-hover"
           >
             <div class="mb-3 flex items-center justify-between">
               <span class="text-3xl">{step.emoji}</span>
@@ -88,17 +107,35 @@ const allPages = PAGE_ORDER.filter((p) => p.id !== 'home');
         ))
       }
     </div>
+
+    <!-- Start here for your role -->
+    <div class="mt-8">
+      <p class="mb-3 text-sm text-muted">Or start here for your role:</p>
+      <div class="flex flex-wrap gap-2">
+        {
+          roles.map((role) => (
+            <a
+              href={`${href('/modes/')}?role=${role.key}`}
+              class="hover-lift inline-flex items-center gap-1.5 rounded-full border border-gold/30 bg-gold/10 px-3.5 py-1.5 text-sm font-semibold text-gold transition-colors hover:bg-gold/20"
+            >
+              <span aria-hidden="true">{role.emoji}</span>
+              {role.label}
+            </a>
+          ))
+        }
+      </div>
+    </div>
   </section>
 
   <!-- Everything on this site -->
-  <section class="mb-14">
+  <section class="reveal mb-14">
     <h2 class="mb-5 text-2xl font-bold tracking-tight">Everything on this site</h2>
     <div class="grid gap-3 sm:grid-cols-2">
       {
         allPages.map((page) => (
           <a
             href={href(page.href)}
-            class="group flex items-start gap-3 rounded-[12px] border border-border bg-card p-4 transition-colors hover:border-gold/50 hover:bg-card-hover"
+            class="group hover-lift flex items-start gap-3 rounded-[12px] border border-border bg-card p-4 transition-colors hover:border-gold/50 hover:bg-card-hover"
           >
             <span class="text-2xl leading-none">{page.emoji}</span>
             <span class="min-w-0">
@@ -114,22 +151,51 @@ const allPages = PAGE_ORDER.filter((p) => p.id !== 'home');
   </section>
 
   <!-- Progress widget -->
-  <section class="mb-14">
-    <div class="rounded-[12px] border border-gold/40 bg-gold/5 p-6">
-      <h2 class="m-0 text-xl font-bold tracking-tight">Your progress</h2>
-      <p class="mt-2 text-muted">
-        You've visited
-        <span id="progress-count" class="font-bold text-gold">0</span>
-        of {TOTAL_PAGES} pages.
-      </p>
-      <div class="mt-4 h-2.5 w-full overflow-hidden rounded-full bg-card">
-        <div id="progress-bar" class="h-full rounded-full bg-gold transition-all" style="width: 0%"></div>
+  <section class="reveal mb-14">
+    <div id="progress-widget" class="rounded-[12px] border border-gold/40 bg-gold/5 p-6">
+      <!-- In-progress state (default markup; swapped out by script on completion) -->
+      <div id="progress-in-progress">
+        <h2 class="m-0 text-xl font-bold tracking-tight">Your progress</h2>
+        <p class="mt-2 text-muted">
+          You've visited
+          <span id="progress-count" class="font-bold text-gold">0</span>
+          of {TOTAL_PAGES} pages.
+          <span id="progress-time-left"></span>
+        </p>
+        <div class="mt-4 h-2.5 w-full overflow-hidden rounded-full bg-card">
+          <div id="progress-bar" class="bar-animate h-full rounded-full bg-gold" style="width: 0%"></div>
+        </div>
+      </div>
+
+      <!-- Completion state (hidden by default; shown by script) -->
+      <div id="progress-complete" class="hidden">
+        <div class="flex items-center gap-2">
+          <span class="text-2xl" aria-hidden="true">🎉</span>
+          <h2 class="m-0 text-xl font-bold tracking-tight">You've completed the Academy</h2>
+        </div>
+        <p class="mt-2 text-muted">
+          Nice work — you've been through all {TOTAL_PAGES} pages. Here's what's next:
+        </p>
+        <div class="mt-4 flex flex-wrap gap-3 text-sm">
+          <a href={href('/wins/')} class="hover-lift rounded-[12px] border border-border bg-card px-4 py-2 font-semibold text-text transition-colors hover:border-gold/50 hover:bg-card-hover">
+            🏆 See the Win Gallery
+          </a>
+          <a href="mailto:jake@aptera.us?subject=My%20AI%20win" class="hover-lift rounded-[12px] border border-border bg-card px-4 py-2 font-semibold text-text transition-colors hover:border-gold/50 hover:bg-card-hover">
+            ✉️ Share a win with Jake
+          </a>
+          <a href={href('/glossary/')} class="hover-lift rounded-[12px] border border-border bg-card px-4 py-2 font-semibold text-text transition-colors hover:border-gold/50 hover:bg-card-hover">
+            📖 Revisit the Glossary
+          </a>
+          <a href={href('/faq/')} class="hover-lift rounded-[12px] border border-border bg-card px-4 py-2 font-semibold text-text transition-colors hover:border-gold/50 hover:bg-card-hover">
+            ❓ Revisit the FAQ
+          </a>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Why AI at Aptera -->
-  <section class="mb-6">
+  <section class="reveal mb-6">
     <h2 class="mb-3 text-2xl font-bold tracking-tight">Why AI at Aptera?</h2>
     <div class="prose-content text-muted">
       <p>
@@ -144,30 +210,47 @@ const allPages = PAGE_ORDER.filter((p) => p.id !== 'home');
   </section>
 
   <!-- Closing note -->
-  <figure class="mb-10 rounded-[12px] border border-gold/40 bg-gold/5 px-6 py-6 text-center">
-    <blockquote class="m-0 text-xl italic leading-relaxed text-text">
+  <div class="reveal">
+    <Quote attribution="Ethan Mollick" source="Co-Intelligence: Living and Working with AI" variant="boxed">
       "Assume this is the worst AI you'll ever use."
-    </blockquote>
-    <figcaption class="mt-3 text-sm font-semibold text-gold">
-      — Ethan Mollick, <em>Co-Intelligence: Living and Working with AI</em>
-    </figcaption>
-  </figure>
+    </Quote>
+  </div>
 
-  <script is:inline define:vars={{ total: TOTAL_PAGES, progressKey: PROGRESS_KEY }}>
+  <script is:inline define:vars={{ total: TOTAL_PAGES, progressKey: PROGRESS_KEY, pageMinutes }}>
     // Render the progress widget. Runs on DOMContentLoaded so the layout's
     // tracking script (later in the body) has already recorded this visit.
     function render() {
-      let count = 0;
+      let visited = [];
       try {
         const arr = JSON.parse(localStorage.getItem(progressKey) || '[]');
-        if (Array.isArray(arr)) count = arr.length;
+        if (Array.isArray(arr)) visited = arr;
       } catch {
         /* ignore */
       }
+      const count = visited.length;
+
+      const inProgressEl = document.getElementById('progress-in-progress');
+      const completeEl = document.getElementById('progress-complete');
+
+      if (count >= total) {
+        if (inProgressEl) inProgressEl.classList.add('hidden');
+        if (completeEl) completeEl.classList.remove('hidden');
+        return;
+      }
+
       const countEl = document.getElementById('progress-count');
       const barEl = document.getElementById('progress-bar');
+      const timeLeftEl = document.getElementById('progress-time-left');
       if (countEl) countEl.textContent = String(count);
       if (barEl) barEl.style.width = Math.min(100, (count / total) * 100) + '%';
+
+      if (timeLeftEl) {
+        const visitedSet = new Set(visited);
+        const minutesLeft = pageMinutes.reduce((sum, p) => {
+          return visitedSet.has(p.id) ? sum : sum + p.readMinutes;
+        }, 0);
+        timeLeftEl.textContent = minutesLeft > 0 ? ` About ${minutesLeft} min left.` : '';
+      }
     }
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', render);

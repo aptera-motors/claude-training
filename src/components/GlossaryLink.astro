@@ -1,0 +1,16 @@
+---
+// Inline link to a glossary term anchor. Use the FIRST mention per page only.
+import { href } from '../lib/site';
+
+interface Props {
+  term: string;
+}
+const { term } = Astro.props;
+---
+<a
+  href={href('/glossary/#' + term)}
+  class="text-gold underline underline-offset-2"
+  title="See glossary definition"
+>
+  <slot />
+</a>

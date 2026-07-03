@@ -6,6 +6,8 @@ import TryItNow from '../../components/TryItNow.astro';
 import CopyPrompt from '../../components/CopyPrompt.astro';
 import KeyTakeaways from '../../components/KeyTakeaways.astro';
 import Callout from '../../components/Callout.astro';
+import FeatureCard from '../../components/FeatureCard.astro';
+import Badge from '../../components/Badge.astro';
 ---
 <BaseLayout
   title="Apps Compared"
@@ -30,7 +32,7 @@ import Callout from '../../components/Callout.astro';
   </Tldr>
 
   <!-- Intro -->
-  <div class="prose-content">
+  <div class="reveal prose-content">
     <h2>Same brain, three doors in</h2>
     <p>
       No matter which app you open, you're talking to the same Claude — same models,
@@ -41,73 +43,77 @@ import Callout from '../../components/Callout.astro';
   </div>
 
   <!-- Capability matrix -->
-  <div class="prose-content">
+  <div class="reveal prose-content">
     <h2>What can each app actually do?</h2>
+    <p class="flex flex-wrap items-center gap-2 text-sm text-muted">
+      <Badge variant="code" text="Claude Code = engineers" emoji="💻" />
+      most roles will live in Desktop or Web.
+    </p>
   </div>
-  <div class="my-4 overflow-x-auto rounded-[12px] border border-border">
-    <table class="w-full text-sm">
+  <div class="table-shell reveal my-4">
+    <table class="data-table">
       <thead>
-        <tr class="border-b border-border bg-card">
-          <th class="px-4 py-3 text-left font-semibold text-text">Capability</th>
-          <th class="px-4 py-3 text-center font-semibold text-text">Desktop 🖥️</th>
-          <th class="px-4 py-3 text-center font-semibold text-text">Web 🌐</th>
-          <th class="px-4 py-3 text-center font-semibold text-text">Phone 📱</th>
+        <tr>
+          <th class="text-left">Capability</th>
+          <th class="text-center">Desktop 🖥️</th>
+          <th class="text-center">Web 🌐</th>
+          <th class="text-center">Phone 📱</th>
         </tr>
       </thead>
-      <tbody class="divide-y divide-border text-center">
-        <tr class="hover:bg-card-hover">
-          <td class="px-4 py-3 text-left text-text">Chat &amp; Artifacts</td>
-          <td class="px-4 py-3 font-bold text-gold">✓</td>
-          <td class="px-4 py-3 font-bold text-gold">✓</td>
-          <td class="px-4 py-3 font-bold text-gold">✓</td>
+      <tbody class="text-center">
+        <tr>
+          <td class="text-left">Chat &amp; Artifacts</td>
+          <td class="font-bold text-gold">✓</td>
+          <td class="font-bold text-gold">✓</td>
+          <td class="font-bold text-gold">✓</td>
         </tr>
-        <tr class="hover:bg-card-hover">
-          <td class="px-4 py-3 text-left text-text">File uploads (PDF, Word, images…)</td>
-          <td class="px-4 py-3 font-bold text-gold">✓</td>
-          <td class="px-4 py-3 font-bold text-gold">✓</td>
-          <td class="px-4 py-3 font-bold text-gold">✓</td>
+        <tr>
+          <td class="text-left">File uploads (PDF, Word, images…)</td>
+          <td class="font-bold text-gold">✓</td>
+          <td class="font-bold text-gold">✓</td>
+          <td class="font-bold text-gold">✓</td>
         </tr>
-        <tr class="hover:bg-card-hover">
-          <td class="px-4 py-3 text-left text-text">Projects (persistent memory per project)</td>
-          <td class="px-4 py-3 font-bold text-gold">✓</td>
-          <td class="px-4 py-3 font-bold text-gold">✓</td>
-          <td class="px-4 py-3 font-bold text-gold">✓</td>
+        <tr>
+          <td class="text-left">Projects (persistent memory per project)</td>
+          <td class="font-bold text-gold">✓</td>
+          <td class="font-bold text-gold">✓</td>
+          <td class="font-bold text-gold">✓</td>
         </tr>
-        <tr class="hover:bg-card-hover">
-          <td class="px-4 py-3 text-left text-text">Co-Work connectors (Jira, Confluence, Ramp…)</td>
-          <td class="px-4 py-3 font-bold text-gold">✓ Best</td>
-          <td class="px-4 py-3 text-muted">～ Limited</td>
-          <td class="px-4 py-3 text-dim">✗</td>
+        <tr>
+          <td class="text-left">Co-Work connectors (Jira, Confluence, Ramp…)</td>
+          <td class="font-bold text-gold">✓ Best</td>
+          <td class="text-muted">～ Limited</td>
+          <td class="text-dim">✗</td>
         </tr>
-        <tr class="hover:bg-card-hover">
-          <td class="px-4 py-3 text-left text-text">Local file-system access (create files in Documents)</td>
-          <td class="px-4 py-3 font-bold text-gold">✓ Only</td>
-          <td class="px-4 py-3 text-dim">✗</td>
-          <td class="px-4 py-3 text-dim">✗</td>
+        <tr>
+          <td class="text-left">Local file-system access (create files in Documents)</td>
+          <td class="font-bold text-gold">✓ Only</td>
+          <td class="text-dim">✗</td>
+          <td class="text-dim">✗</td>
         </tr>
-        <tr class="hover:bg-card-hover">
-          <td class="px-4 py-3 text-left text-text">Schedules &amp; Routines</td>
-          <td class="px-4 py-3 font-bold text-gold">✓ Only</td>
-          <td class="px-4 py-3 text-dim">✗</td>
-          <td class="px-4 py-3 text-dim">✗</td>
+        <tr>
+          <td class="text-left">Schedules &amp; Routines</td>
+          <td class="font-bold text-gold">✓ Only</td>
+          <td class="text-dim">✗</td>
+          <td class="text-dim">✗</td>
         </tr>
-        <tr class="hover:bg-card-hover">
-          <td class="px-4 py-3 text-left text-text">Voice conversations</td>
-          <td class="px-4 py-3 text-dim">✗</td>
-          <td class="px-4 py-3 text-dim">✗</td>
-          <td class="px-4 py-3 font-bold text-gold">✓</td>
+        <tr>
+          <td class="text-left">Voice conversations</td>
+          <td class="text-dim">✗</td>
+          <td class="text-dim">✗</td>
+          <td class="font-bold text-gold">✓</td>
         </tr>
-        <tr class="hover:bg-card-hover">
-          <td class="px-4 py-3 text-left text-text">Camera / photo input</td>
-          <td class="px-4 py-3 text-dim">✗</td>
-          <td class="px-4 py-3 text-dim">✗</td>
-          <td class="px-4 py-3 font-bold text-gold">✓</td>
+        <tr>
+          <td class="text-left">Camera / photo input</td>
+          <td class="text-dim">✗</td>
+          <td class="text-dim">✗</td>
+          <td class="font-bold text-gold">✓</td>
         </tr>
-        <tr class="hover:bg-card-hover">
-          <td class="px-4 py-3 text-left text-text">Claude Code (terminal / dev)</td>
-          <td class="px-4 py-3 text-muted">Separate CLI</td>
-          <td class="px-4 py-3 text-dim">✗</td>
-          <td class="px-4 py-3 text-dim">✗</td>
+        <tr>
+          <td class="text-left">Claude Code (terminal / dev)</td>
+          <td class="text-muted">Separate CLI</td>
+          <td class="text-dim">✗</td>
+          <td class="text-dim">✗</td>
         </tr>
       </tbody>
     </table>
@@ -118,43 +124,34 @@ import Callout from '../../components/Callout.astro';
   </p>
 
   <!-- Which should I use -->
-  <div class="prose-content">
+  <div class="reveal prose-content">
     <h2>Which should I use?</h2>
     <p>Three personas, three answers — find yourself:</p>
   </div>
 
-  <div class="my-6 grid gap-4 sm:grid-cols-3">
-    <!-- Daily power user -->
-    <div class="rounded-[12px] border border-border bg-card p-5">
-      <div class="mb-2 text-2xl">🖥️</div>
-      <h3 class="m-0 mb-2 font-bold text-text">The Daily Driver</h3>
-      <p class="m-0 text-sm leading-relaxed text-muted">
+  <div class="reveal my-6 grid gap-4 sm:grid-cols-3">
+    <FeatureCard emoji="🖥️" title="The Daily Driver">
+      <p>
         You're at your desk most of the day. You want Claude in Jira, Confluence, and your
         file system. You might set up a morning briefing or an end-of-day summary.
       </p>
       <p class="mt-3 text-sm font-semibold text-gold">→ Desktop app, all day long.</p>
-    </div>
-    <!-- Occasional web user -->
-    <div class="rounded-[12px] border border-border bg-card p-5">
-      <div class="mb-2 text-2xl">🌐</div>
-      <h3 class="m-0 mb-2 font-bold text-text">The Occasional Asker</h3>
-      <p class="m-0 text-sm leading-relaxed text-muted">
+    </FeatureCard>
+    <FeatureCard emoji="🌐" title="The Occasional Asker">
+      <p>
         You don't live in Claude but you want it handy when you need it. No install,
         no setup — just open a tab and go. Works great for one-off drafts and quick questions.
       </p>
       <p class="mt-3 text-sm font-semibold text-gold">→ claude.ai in your browser.</p>
-    </div>
-    <!-- On the road -->
-    <div class="rounded-[12px] border border-border bg-card p-5">
-      <div class="mb-2 text-2xl">📱</div>
-      <h3 class="m-0 mb-2 font-bold text-text">On the Road / In the Shop</h3>
-      <p class="m-0 text-sm leading-relaxed text-muted">
+    </FeatureCard>
+    <FeatureCard emoji="📱" title="On the Road / In the Shop">
+      <p>
         You're on the floor, at a supplier site, or in a meeting room without your laptop.
         Snap a photo of a part label, a spec sheet, or a whiteboard and ask Claude about it.
         Voice mode keeps your hands free.
       </p>
       <p class="mt-3 text-sm font-semibold text-gold">→ Phone app, no contest.</p>
-    </div>
+    </FeatureCard>
   </div>
 
   <Callout variant="gold" title="Heads up: Schedules run locally">

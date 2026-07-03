@@ -1,0 +1,42 @@
+---
+// Model lineup card — Haiku/Sonnet/Opus/Fable style tiles.
+interface Props {
+  emoji: string;
+  name: string;
+  tagline: string;
+  badgeText?: string;
+  badgeVariant?: 'chat' | 'gold' | 'code' | 'cowork';
+  highlight?: boolean;
+}
+const { emoji, name, tagline, badgeText, badgeVariant = 'gold', highlight = false } = Astro.props;
+
+const badgeStyles: Record<string, string> = {
+  chat: 'bg-chat-dim text-chat',
+  gold: 'bg-gold/15 text-gold',
+  code: 'bg-code-dim text-code',
+  cowork: 'bg-cowork-dim text-cowork',
+};
+const badgeCls = badgeStyles[badgeVariant] ?? badgeStyles.gold;
+
+const wrapperCls = highlight
+  ? 'hover-lift rounded-[12px] border-2 border-gold/60 bg-gold/5 p-5'
+  : 'hover-lift rounded-[12px] border border-border bg-card p-5';
+const nameCls = highlight ? 'text-gold' : 'text-text';
+---
+<div class={wrapperCls}>
+  <div class="mb-2 flex items-center justify-between">
+    <div class="text-2xl">{emoji}</div>
+    {
+      badgeText ? (
+        <span class:list={['rounded-full px-3 py-1 text-xs font-bold', badgeCls]}>
+          {badgeText}
+        </span>
+      ) : null
+    }
+  </div>
+  <h3 class:list={['m-0 mb-1 text-lg font-bold', nameCls]}>{name}</h3>
+  <p class="mb-3 text-sm font-medium text-muted">{tagline}</p>
+  <div class="text-sm leading-relaxed text-text [&_p]:m-0 [&_p+p]:mt-2 [&_ul]:mt-2">
+    <slot />
+  </div>
+</div>

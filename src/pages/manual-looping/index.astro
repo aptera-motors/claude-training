@@ -3,8 +3,10 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import Tldr from '../../components/Tldr.astro';
 import CopyPrompt from '../../components/CopyPrompt.astro';
+import TryItNow from '../../components/TryItNow.astro';
 import KeyTakeaways from '../../components/KeyTakeaways.astro';
 import Callout from '../../components/Callout.astro';
+import GlossaryLink from '../../components/GlossaryLink.astro';
 import { href } from '../../lib/site';
 ---
 <BaseLayout
@@ -40,7 +42,7 @@ import { href } from '../../lib/site';
   </figure>
 
   <!-- What is manual looping -->
-  <section class="prose-content">
+  <section class="prose-content reveal">
     <h2>What is manual looping?</h2>
     <p>
       Manual looping just means following up. You send a prompt, get a response,
@@ -57,7 +59,7 @@ import { href } from '../../lib/site';
   </section>
 
   <!-- Real-world example -->
-  <section class="prose-content">
+  <section class="prose-content reveal">
     <h2>A real-world example</h2>
     <p>
       Here's a strong opening prompt — one that gives Claude enough context to
@@ -88,7 +90,7 @@ import { href } from '../../lib/site';
   </section>
 
   <!-- Why it beats the perfect prompt -->
-  <section class="prose-content">
+  <section class="prose-content reveal">
     <h2>Why it beats the "perfect prompt" approach</h2>
     <p>
       There's a temptation to front-load everything into one massive,
@@ -111,7 +113,7 @@ import { href } from '../../lib/site';
   </section>
 
   <!-- One thing to watch -->
-  <section class="prose-content">
+  <section class="prose-content reveal">
     <h2>One thing to watch</h2>
     <p>
       Looping works best when you're refining in the right direction. If an early
@@ -153,14 +155,29 @@ import { href } from '../../lib/site';
 
   <Callout variant="chat" title="🪟 A note on the context window">
     <p>
-      As you loop, Claude holds the whole exchange in its <strong>context
-      window</strong> — its working memory for the session. In very long
+      As you loop, Claude holds the whole exchange in its <GlossaryLink term="context-window">context
+      window</GlossaryLink> — its working memory for the session. In very long
       sessions that memory fills up and recall of earlier turns can fade. It's
       worth knowing when to summarize, save your work, and start fresh — which is
       exactly what the <a class="text-chat underline" href={href('/context-window/')}>Context Window</a>
       lesson covers next.
     </p>
   </Callout>
+
+  <TryItNow title="Practice the loop">
+    <p>
+      Paste a rough, unpolished paragraph you've written, get a first draft, then
+      iterate twice with specific feedback — and compare v1 to v3:
+    </p>
+    <CopyPrompt text="Here's a rough paragraph I wrote: [paste your paragraph]. Turn this into a clean, polished version." />
+    <CopyPrompt text="Good start. Make it shorter — cut it by about a third without losing the key point." />
+    <CopyPrompt text="One more pass — add a concrete example to back up the main claim." />
+    <p>
+      Now put v1 (your rough paragraph) next to v3 (the final version). Notice
+      how much closer v3 is to something you'd actually send — and that it took
+      two rounds of specific feedback, not one perfect prompt, to get there.
+    </p>
+  </TryItNow>
 
   <Callout variant="cowork" title="🤖 Ready for the next level?">
     <p>

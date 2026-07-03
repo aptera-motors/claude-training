@@ -4,6 +4,9 @@ import PageHeader from '../../components/PageHeader.astro';
 import Tldr from '../../components/Tldr.astro';
 import KeyTakeaways from '../../components/KeyTakeaways.astro';
 import Callout from '../../components/Callout.astro';
+import TryItNow from '../../components/TryItNow.astro';
+import CopyPrompt from '../../components/CopyPrompt.astro';
+import GlossaryLink from '../../components/GlossaryLink.astro';
 import { href } from '../../lib/site';
 ---
 <BaseLayout
@@ -29,12 +32,21 @@ import { href } from '../../lib/site';
 
   <Tldr>
     <p>
-      An agentic loop gives Claude a goal, lets it act, evaluates the result,
+      An <GlossaryLink term="agentic-loop">agentic loop</GlossaryLink> gives Claude a goal, lets it act, evaluates the result,
       feeds that back in, and repeats — until the goal is met. You define the
       goal and the rules, then let it run. The competitive edge isn't any single
       output; it's the <strong>cycle rate</strong>.
     </p>
   </Tldr>
+
+  <Callout variant="code" title="👩‍💻 Mostly for Claude Code users">
+    <p>
+      This lesson is aimed mainly at people building in <strong>Claude Code</strong> —
+      that's where you'll actually construct and run agentic loops. If you work in
+      Chat or Co-Work, you can skim for the concepts (the OODA connection, the
+      design checklist) without needing to build anything yourself.
+    </p>
+  </Callout>
 
   <figure class="my-6 rounded-r-[12px] border-l-[3px] border-cowork bg-cowork/5 px-5 py-4">
     <blockquote class="m-0 text-lg italic leading-relaxed text-text">
@@ -66,41 +78,41 @@ import { href } from '../../lib/site';
   </section>
 
   <!-- OODA -->
-  <section class="prose-content">
+  <section class="prose-content reveal">
     <h2>The OODA loop connection</h2>
     <p>
       Military strategists and fighter pilots have run agentic loops for decades —
       they just call it something different. Colonel John Boyd developed the
-      <strong>OODA Loop</strong> for decision-making under pressure:
+      <GlossaryLink term="ooda-loop"><strong>OODA Loop</strong></GlossaryLink> for decision-making under pressure:
       <strong>Observe, Orient, Decide, Act</strong> — then cycle back and repeat,
       faster than your adversary. Agentic AI loops follow the exact same logic:
     </p>
   </section>
 
-  <div class="my-6 overflow-x-auto rounded-[12px] border border-border">
-    <table class="w-full text-sm">
+  <div class="table-shell reveal">
+    <table class="data-table">
       <thead>
-        <tr class="border-b border-border bg-card-hover">
-          <th class="px-4 py-3 text-left font-bold uppercase tracking-wide text-cowork">OODA</th>
-          <th class="px-4 py-3 text-left font-bold uppercase tracking-wide text-cowork">Agentic Loop</th>
+        <tr>
+          <th>OODA</th>
+          <th>Agentic Loop</th>
         </tr>
       </thead>
-      <tbody class="divide-y divide-border">
+      <tbody>
         <tr>
-          <td class="px-4 py-3 font-semibold text-cowork">Observe</td>
-          <td class="px-4 py-3 text-text">Claude reads the current state — a document, a dataset, an error message.</td>
+          <td class="font-semibold text-cowork">Observe</td>
+          <td>Claude reads the current state — a document, a dataset, an error message.</td>
         </tr>
         <tr>
-          <td class="px-4 py-3 font-semibold text-cowork">Orient</td>
-          <td class="px-4 py-3 text-text">Claude evaluates what it sees against the goal.</td>
+          <td class="font-semibold text-cowork">Orient</td>
+          <td>Claude evaluates what it sees against the goal.</td>
         </tr>
         <tr>
-          <td class="px-4 py-3 font-semibold text-cowork">Decide</td>
-          <td class="px-4 py-3 text-text">Claude determines the next best action.</td>
+          <td class="font-semibold text-cowork">Decide</td>
+          <td>Claude determines the next best action.</td>
         </tr>
         <tr>
-          <td class="px-4 py-3 font-semibold text-cowork">Act</td>
-          <td class="px-4 py-3 text-text">Claude executes — writes, edits, queries, calls a tool.</td>
+          <td class="font-semibold text-cowork">Act</td>
+          <td>Claude executes — writes, edits, queries, calls a tool.</td>
         </tr>
       </tbody>
     </table>
@@ -117,7 +129,7 @@ import { href } from '../../lib/site';
   </section>
 
   <!-- Example -->
-  <section class="prose-content">
+  <section class="prose-content reveal">
     <h2>A real-world example</h2>
     <p>
       At Anthropic's Code with Claude 2026 conference, live demos showed
@@ -136,7 +148,7 @@ import { href } from '../../lib/site';
   </section>
 
   <!-- Key ingredients -->
-  <section class="prose-content">
+  <section class="prose-content reveal">
     <h2>The key ingredients</h2>
     <p>A well-designed agentic loop needs three things:</p>
     <ul>
@@ -154,7 +166,7 @@ import { href } from '../../lib/site';
   </Callout>
 
   <!-- Design the loop -->
-  <section class="prose-content">
+  <section class="prose-content reveal">
     <h2>Design the loop before you run it</h2>
     <p>
       A loop is only as good as its design. A sloppy one produces weak output —
@@ -190,7 +202,7 @@ import { href } from '../../lib/site';
   </Callout>
 
   <!-- Who is this for -->
-  <section class="prose-content">
+  <section class="prose-content reveal">
     <h2>Who is this for at Aptera?</h2>
     <p>
       You don't need to know how to code to build an agentic loop. Claude knows
@@ -219,7 +231,7 @@ import { href } from '../../lib/site';
   </section>
 
   <!-- Resources -->
-  <section>
+  <section class="reveal">
     <h2 class="mb-1 text-2xl font-bold tracking-tight">Resources: go deeper</h2>
     <p class="mb-5 text-muted">
       Two community-built tools that pair perfectly with this lesson — one for
@@ -256,6 +268,15 @@ import { href } from '../../lib/site';
       </a>
     </div>
   </section>
+
+  <TryItNow title="Run a small self-checking loop">
+    <p>
+      In Claude Code, give Claude a self-contained loop with its own proof of
+      "done" — fix a specific issue, verify it, and keep iterating without
+      checking in after every step:
+    </p>
+    <CopyPrompt text="Fix [describe the bug or issue]. After each change, run [the test / linter / build command] yourself to verify it actually worked, and keep iterating until it passes. Don't ask me to check in between — just show me the final result and a short summary of what it took to get there." />
+  </TryItNow>
 
   <Callout variant="gold" title="💡 Have an idea?">
     <p>

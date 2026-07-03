@@ -4,6 +4,10 @@ import PageHeader from '../../components/PageHeader.astro';
 import Tldr from '../../components/Tldr.astro';
 import KeyTakeaways from '../../components/KeyTakeaways.astro';
 import Callout from '../../components/Callout.astro';
+import TryItNow from '../../components/TryItNow.astro';
+import CopyPrompt from '../../components/CopyPrompt.astro';
+import GlossaryLink from '../../components/GlossaryLink.astro';
+import Quote from '../../components/Quote.astro';
 import { href } from '../../lib/site';
 ---
 <BaseLayout
@@ -25,11 +29,11 @@ import { href } from '../../lib/site';
     </p>
   </Tldr>
 
-  <div class="prose-content">
+  <div class="reveal prose-content">
 
     <h2>Claude is a coworker, not a crystal ball</h2>
     <p>
-      Think of Claude like a brilliant new hire who reads fast, writes well, and never sleeps — but who also occasionally makes things up with complete confidence. (We call that <a href={href('/glossary/')}>hallucination</a>.) That's not a dealbreaker; it just means you treat Claude's output the same way you'd treat a first draft from any colleague: useful, but worth a second look before it goes anywhere official.
+      Think of Claude like a brilliant new hire who reads fast, writes well, and never sleeps — but who also occasionally makes things up with complete confidence. (We call that <GlossaryLink term="hallucination">hallucination</GlossaryLink>.) That's not a dealbreaker; it just means you treat Claude's output the same way you'd treat a first draft from any colleague: useful, but worth a second look before it goes anywhere official.
     </p>
     <p>
       Two rules cover the vast majority of situations. Master these and you're good:
@@ -58,14 +62,9 @@ import { href } from '../../lib/site';
       <li class="flex gap-2"><span class="text-green-400 font-bold shrink-0">✓</span><span><strong>Code and configs</strong> — as long as they don't contain embedded secrets.</span></li>
     </ul>
 
-    <figure class="my-6 rounded-r-[12px] border-l-[3px] border-gold bg-gold/5 px-5 py-4">
-      <blockquote class="m-0 text-lg italic leading-relaxed text-text">
-        "Be the human in the loop."
-      </blockquote>
-      <figcaption class="mt-2 text-sm font-semibold text-gold">
-        — Ethan Mollick, <em>Co-Intelligence: Living and Working with AI</em>
-      </figcaption>
-    </figure>
+    <Quote attribution="Ethan Mollick" source="Co-Intelligence: Living and Working with AI">
+      "Be the human in the loop."
+    </Quote>
 
     <h2>Verify before you ship</h2>
     <p>
@@ -105,6 +104,13 @@ import { href } from '../../lib/site';
       Claude Code doesn't just chat — it executes real commands on real systems. It can create files, delete things, run scripts, and push code. Before you let it proceed with any operation that touches your filesystem or a remote service, <strong>read the plan it proposes</strong>. Pay extra attention to anything destructive: deleting files, overwriting configs, resetting databases. When in doubt, ask it to explain what a command does before running it.
     </p>
   </Callout>
+
+  <TryItNow title="Not sure what's safe? Ask Claude">
+    <p>
+      When in doubt, don't guess — have Claude help you check before you paste anything sensitive:
+    </p>
+    <CopyPrompt text="I want to share <describe the document> with you. Based on Aptera's data rules — no passwords/secrets, no bulk PII, no unreleased financials, no NDA material — is there anything I should redact first?" />
+  </TryItNow>
 
   <KeyTakeaways>
     <ul>

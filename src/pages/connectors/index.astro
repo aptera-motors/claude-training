@@ -6,6 +6,8 @@ import TryItNow from '../../components/TryItNow.astro';
 import CopyPrompt from '../../components/CopyPrompt.astro';
 import KeyTakeaways from '../../components/KeyTakeaways.astro';
 import Callout from '../../components/Callout.astro';
+import GlossaryLink from '../../components/GlossaryLink.astro';
+import Badge from '../../components/Badge.astro';
 import { href } from '../../lib/site';
 ---
 <BaseLayout
@@ -23,8 +25,8 @@ import { href } from '../../lib/site';
 
   <Tldr>
     <p>
-      A <strong>connector</strong> is a secure bridge that lets Claude read and write a tool on your behalf.
-      A <strong>skill</strong> is a packaged, repeatable workflow you can run by name. Together they turn
+      A <strong><GlossaryLink term="connector-mcp">connector</GlossaryLink></strong> is a secure bridge that lets Claude read and write a tool on your behalf.
+      A <strong><GlossaryLink term="skill">skill</GlossaryLink></strong> is a packaged, repeatable workflow you can run by name. Together they turn
       Claude from a clever assistant into something that actually does work inside your systems.
     </p>
   </Tldr>
@@ -57,68 +59,42 @@ import { href } from '../../lib/site';
   </figure>
 
   <!-- Connected Today -->
-  <section class="mb-10">
+  <section class="mb-10 reveal">
     <h2 class="mb-4 text-2xl font-bold tracking-tight">Connected today</h2>
     <p class="mb-5 text-muted">These are the tools Claude is already wired into at Aptera. Open Co-Work and start asking.</p>
 
-    <div class="grid gap-4 sm:grid-cols-2">
-
-      <!-- Jira -->
-      <div class="rounded-[12px] border border-border bg-card p-5">
-        <div class="mb-3 flex items-center gap-2">
-          <span class="text-2xl">🎫</span>
-          <span class="font-bold text-text text-lg">Jira</span>
-        </div>
-        <p class="text-sm text-muted leading-relaxed mb-3">
-          Read, create, and update issues. Claude can search across projects, pull sprint status, or
-          log a new bug without you touching the Jira UI.
-        </p>
-        <p class="text-xs font-semibold uppercase tracking-wide text-dim mb-1">Try asking:</p>
-        <p class="text-sm italic text-muted">"What are the open issues in project OI assigned to me right now?"</p>
-      </div>
-
-      <!-- Confluence -->
-      <div class="rounded-[12px] border border-border bg-card p-5">
-        <div class="mb-3 flex items-center gap-2">
-          <span class="text-2xl">📚</span>
-          <span class="font-bold text-text text-lg">Confluence</span>
-        </div>
-        <p class="text-sm text-muted leading-relaxed mb-3">
-          Read, create, and update pages. Ask Claude to find documentation, summarize a space, or
-          draft a new page and publish it — straight from a conversation.
-        </p>
-        <p class="text-xs font-semibold uppercase tracking-wide text-dim mb-1">Try asking:</p>
-        <p class="text-sm italic text-muted">"Find the onboarding docs in Confluence and give me a bullet summary of what's there."</p>
-      </div>
-
-      <!-- Ramp -->
-      <div class="rounded-[12px] border border-border bg-card p-5">
-        <div class="mb-3 flex items-center gap-2">
-          <span class="text-2xl">💳</span>
-          <span class="font-bold text-text text-lg">Ramp</span>
-        </div>
-        <p class="text-sm text-muted leading-relaxed mb-3">
-          Transactions, bills, reimbursements, and spend reporting. Ask Claude to pull your recent
-          charges, flag anything that needs a receipt, or summarize team spend by category.
-        </p>
-        <p class="text-xs font-semibold uppercase tracking-wide text-dim mb-1">Try asking:</p>
-        <p class="text-sm italic text-muted">"Show me my transactions from the last 30 days and flag any that are missing receipts."</p>
-      </div>
-
-      <!-- Microsoft 365 -->
-      <div class="rounded-[12px] border border-border bg-card p-5">
-        <div class="mb-3 flex items-center gap-2">
-          <span class="text-2xl">📨</span>
-          <span class="font-bold text-text text-lg">Microsoft 365</span>
-        </div>
-        <p class="text-sm text-muted leading-relaxed mb-3">
-          Outlook mail and calendar, SharePoint file search, and Teams chat history. Claude can
-          check your schedule, hunt down a file, or search chat for that decision from last month.
-        </p>
-        <p class="text-xs font-semibold uppercase tracking-wide text-dim mb-1">Try asking:</p>
-        <p class="text-sm italic text-muted">"Search my Teams messages for any mention of the solar hood pilot from the last two weeks."</p>
-      </div>
-
+    <div class="table-shell">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Tool</th>
+            <th>What it does</th>
+            <th>Try asking</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="font-semibold">🎫 Jira</td>
+            <td class="text-muted">Read, create, and update issues. Claude can search across projects, pull sprint status, or log a new bug without you touching the Jira UI.</td>
+            <td class="italic text-muted">"What are the open issues in project OI assigned to me right now?"</td>
+          </tr>
+          <tr>
+            <td class="font-semibold">📚 Confluence</td>
+            <td class="text-muted">Read, create, and update pages. Ask Claude to find documentation, summarize a space, or draft a new page and publish it — straight from a conversation.</td>
+            <td class="italic text-muted">"Find the onboarding docs in Confluence and give me a bullet summary of what's there."</td>
+          </tr>
+          <tr>
+            <td class="font-semibold">💳 Ramp</td>
+            <td class="text-muted">Transactions, bills, reimbursements, and spend reporting. Ask Claude to pull your recent charges, flag anything that needs a receipt, or summarize team spend by category.</td>
+            <td class="italic text-muted">"Show me my transactions from the last 30 days and flag any that are missing receipts."</td>
+          </tr>
+          <tr>
+            <td class="font-semibold">📨 Microsoft 365</td>
+            <td class="text-muted">Outlook mail and calendar, SharePoint file search, and Teams chat history. Claude can check your schedule, hunt down a file, or search chat for that decision from last month.</td>
+            <td class="italic text-muted">"Search my Teams messages for any mention of the solar hood pilot from the last two weeks."</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </section>
 
@@ -145,7 +121,7 @@ import { href } from '../../lib/site';
   </Callout>
 
   <!-- Skills -->
-  <section class="mb-10">
+  <section class="mb-10 reveal">
     <h2 class="mb-2 text-2xl font-bold tracking-tight">Skills</h2>
     <p class="mb-5 text-muted leading-relaxed">
       A skill is a packaged, repeatable workflow you can invoke by name — like calling a function
@@ -158,7 +134,7 @@ import { href } from '../../lib/site';
       <div class="mb-3 flex items-center gap-2">
         <span class="text-2xl">📝</span>
         <span class="text-lg font-bold text-text">Meeting Minutes skill</span>
-        <span class="ml-auto rounded-full border border-cowork/40 bg-card px-2.5 py-0.5 text-xs font-medium text-cowork">Co-Work</span>
+        <span class="ml-auto"><Badge variant="cowork" text="Co-Work" /></span>
       </div>
       <p class="text-muted leading-relaxed mb-4">
         Drop a Teams meeting transcript (VTT or TXT file) into Co-Work, then run the Meeting Minutes
@@ -196,7 +172,7 @@ import { href } from '../../lib/site';
   </section>
 
   <!-- Build your own skill -->
-  <section class="mb-10">
+  <section class="mb-10 reveal">
     <h2 class="mb-2 text-2xl font-bold tracking-tight">Build your own skill</h2>
     <p class="mb-4 text-muted leading-relaxed">
       Here's the part most people miss: you can <strong>make your own skills</strong>, and you don't need
@@ -244,7 +220,7 @@ import { href } from '../../lib/site';
   </section>
 
   <!-- Want something connected? -->
-  <section class="mb-10">
+  <section class="mb-10 reveal">
     <h2 class="mb-2 text-2xl font-bold tracking-tight">Want something connected?</h2>
     <p class="mb-4 text-muted leading-relaxed">
       The list above is just where we started. There are connectors available for dozens of tools —
@@ -255,7 +231,7 @@ import { href } from '../../lib/site';
       <p class="text-sm font-semibold uppercase tracking-wide text-dim mb-3">Tools with connectors available</p>
       <div class="flex flex-wrap gap-2">
         {['NetSuite', 'Slack', 'Google Workspace', 'GitHub', 'Salesforce', 'HubSpot', 'Notion', 'Rippling', 'ServiceNow', 'Zendesk'].map((tool) => (
-          <span class="rounded-full border border-border bg-card-hover px-3 py-1 text-sm text-muted">{tool}</span>
+          <Badge variant="neutral" text={tool} />
         ))}
       </div>
     </div>

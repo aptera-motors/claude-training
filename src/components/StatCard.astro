@@ -1,0 +1,30 @@
+---
+// Centered stat block: label, big value, optional caption.
+interface Props {
+  label: string;
+  value: string;
+  caption?: string;
+  highlight?: boolean;
+  valueColor?: 'gold' | 'code' | 'chat' | 'cowork' | 'text';
+}
+const { label, value, caption, highlight = false, valueColor } = Astro.props;
+
+const valueColors: Record<string, string> = {
+  gold: 'text-gold',
+  code: 'text-code',
+  chat: 'text-chat',
+  cowork: 'text-cowork',
+  text: 'text-text',
+};
+const resolvedValueColor = valueColor ?? (highlight ? 'gold' : 'text');
+const valueCls = valueColors[resolvedValueColor] ?? valueColors.text;
+
+const wrapperCls = highlight
+  ? 'rounded-[12px] border-2 border-gold/60 bg-gold/5 p-5 text-center'
+  : 'rounded-[12px] border border-border bg-card p-5 text-center';
+---
+<div class={wrapperCls}>
+  <p class="m-0 text-xs font-bold uppercase tracking-wide text-muted">{label}</p>
+  <p class:list={['m-0 my-2 text-4xl font-extrabold', valueCls]}>{value}</p>
+  {caption ? <p class="m-0 text-sm text-text">{caption}</p> : null}
+</div>

@@ -38,6 +38,13 @@ const { text } = Astro.props;
       const original = btn.innerHTML;
       btn.innerHTML = '✅ Copied!';
       btn.classList.add('text-gold', 'border-gold/60');
+
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!prefersReduced) {
+        btn.classList.add('copy-bounce');
+        setTimeout(() => btn.classList.remove('copy-bounce'), 150);
+      }
+
       setTimeout(() => {
         btn.innerHTML = original;
         btn.classList.remove('text-gold', 'border-gold/60');
@@ -45,3 +52,29 @@ const { text } = Astro.props;
     });
   });
 </script>
+
+<style>
+  /* Success micro-bounce on copy; gated in JS under prefers-reduced-motion,
+     and neutralized here too as a belt-and-suspenders safeguard. */
+  .copy-btn.copy-bounce {
+    animation: copy-bounce 150ms ease-out;
+  }
+
+  @keyframes copy-bounce {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.06);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .copy-btn.copy-bounce {
+      animation: none;
+    }
+  }
+</style>

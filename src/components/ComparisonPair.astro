@@ -1,0 +1,20 @@
+---
+// Weak/Strong side-by-side comparison, matching the pattern in prompting/index.astro.
+// NOTE: red-900/red-950/red-400 are Tailwind's static theme-palette colors, not
+// site tokens. They're a documented exception here since the site has no
+// "danger" token — same pair used verbatim elsewhere on the site already.
+---
+<div class="grid gap-3 sm:grid-cols-2">
+  <div class="rounded-[12px] border-2 border-red-900/60 bg-red-950/20 p-4">
+    <p class="m-0 mb-2 text-xs font-bold uppercase tracking-wide text-red-400">✗ Weak</p>
+    <div class="text-sm italic leading-relaxed text-muted [&_p]:m-0 [&_p+p]:mt-2">
+      <slot name="weak" />
+    </div>
+  </div>
+  <div class="rounded-[12px] border-2 border-gold/60 bg-gold/5 p-4">
+    <p class="m-0 mb-2 text-xs font-bold uppercase tracking-wide text-gold">✓ Strong</p>
+    <div class="text-sm italic leading-relaxed text-muted [&_p]:m-0 [&_p+p]:mt-2">
+      <slot name="strong" />
+    </div>
+  </div>
+</div>

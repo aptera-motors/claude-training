@@ -6,6 +6,8 @@ import TryItNow from '../../components/TryItNow.astro';
 import CopyPrompt from '../../components/CopyPrompt.astro';
 import KeyTakeaways from '../../components/KeyTakeaways.astro';
 import Callout from '../../components/Callout.astro';
+import ModelCard from '../../components/ModelCard.astro';
+import GlossaryLink from '../../components/GlossaryLink.astro';
 import { href } from '../../lib/site';
 ---
 <BaseLayout
@@ -23,14 +25,14 @@ import { href } from '../../lib/site';
 
   <Tldr>
     <p>
-      Claude charges per <strong>token</strong> (roughly ¾ of a word). Every message in and out costs tokens.
+      Claude charges per <strong><GlossaryLink term="token">token</GlossaryLink></strong> (roughly ¾ of a word). Every message in and out costs tokens.
       Pick the right-sized model for the job, keep conversations focused, and you'll get
       <em>better</em> answers for less money. Win-win.
     </p>
   </Tldr>
 
   <!-- What is a token -->
-  <div class="prose-content">
+  <div class="prose-content reveal">
     <h2>What even is a token?</h2>
     <p>
       Think of tokens as chunks of text — roughly ¾ of a word each. "Aerodynamics" is one token.
@@ -45,123 +47,90 @@ import { href } from '../../lib/site';
   </div>
 
   <!-- Model picker -->
-  <div class="prose-content">
+  <div class="prose-content reveal">
     <h2>Pick the right model</h2>
     <p>
-      Anthropic makes four models of Claude. Same brain, different horsepower — and different price tags.
-      Reach for the right one and you'll finish faster <em>and</em> spend less.
+      Claude comes in several models (currently four) — same brain, different horsepower, and different
+      price tags. Reach for the right one and you'll finish faster <em>and</em> spend less.
     </p>
   </div>
 
   <!-- model cards -->
-  <div class="my-6 grid gap-4 sm:grid-cols-2">
-    <!-- Haiku -->
-    <div class="rounded-[12px] border border-border bg-card p-5">
-      <div class="mb-3 text-2xl">⚡</div>
-      <h3 class="m-0 mb-1 text-lg font-bold text-gold">Haiku</h3>
-      <p class="mb-3 text-sm font-medium text-muted">Fast & cheap</p>
-      <p class="m-0 text-sm leading-relaxed text-text">
-        <strong class="text-text">Reach for it when…</strong> you need a quick rewrite,
-        a short answer, a yes/no check, or you're doing something repetitive dozens of times.
-        Haiku is the espresso shot — small, fast, gets the job done.
-      </p>
-    </div>
-    <!-- Sonnet -->
-    <div class="rounded-[12px] border-2 border-gold/60 bg-gold/5 p-5">
-      <div class="mb-3 text-2xl">🚗</div>
-      <h3 class="m-0 mb-1 text-lg font-bold text-gold">Sonnet</h3>
-      <p class="mb-3 text-sm font-medium text-muted">The daily driver · best balance</p>
-      <p class="m-0 text-sm leading-relaxed text-text">
-        <strong class="text-text">Reach for it when…</strong> you're doing real work —
-        summarizing a meeting, drafting an email, analyzing a doc, building something in
-        Co-Work mode. 90% of your Claude time belongs here.
-      </p>
-    </div>
-    <!-- Opus -->
-    <div class="rounded-[12px] border border-border bg-card p-5">
-      <div class="mb-3 text-2xl">🏋️</div>
-      <h3 class="m-0 mb-1 text-lg font-bold text-text">Opus</h3>
-      <p class="mb-3 text-sm font-medium text-muted">The heavyweight</p>
-      <p class="m-0 text-sm leading-relaxed text-text">
-        <strong class="text-text">Reach for it when…</strong> the problem is genuinely hard:
-        deep financial analysis, complex multi-step reasoning, evaluating tradeoffs with lots
-        of context. Bring out the big gun when the job demands it.
-      </p>
-    </div>
-    <!-- Fable -->
-    <div class="rounded-[12px] border border-border bg-card p-5">
-      <div class="mb-3 text-2xl">🧙</div>
-      <h3 class="m-0 mb-1 text-lg font-bold text-text">Fable</h3>
-      <p class="mb-3 text-sm font-medium text-muted">The frontier · premium</p>
-      <p class="m-0 text-sm leading-relaxed text-text">
-        <strong class="text-text">Reach for it when…</strong> the job is huge and multi-step —
-        especially when you want one model to <strong>orchestrate</strong> a team of cheaper ones.
-        Powerful and pricey; overkill for everyday tasks. More in
-        <a href={href('/models/')}>Choosing Your Model</a>.
-      </p>
-    </div>
+  <div class="my-6 grid gap-4 sm:grid-cols-2 reveal">
+    <ModelCard emoji="⚡" name="Haiku" tagline="Fast & cheap">
+      <p><strong>Reach for it when…</strong> you need a quick rewrite, a short answer, a yes/no check, or you're doing something repetitive dozens of times. Haiku is the espresso shot — small, fast, gets the job done.</p>
+    </ModelCard>
+    <ModelCard emoji="🚗" name="Sonnet" tagline="The daily driver · best balance" highlight>
+      <p><strong>Reach for it when…</strong> you're doing real work — summarizing a meeting, drafting an email, analyzing a doc, building something in Co-Work mode. 90% of your Claude time belongs here.</p>
+    </ModelCard>
+    <ModelCard emoji="🏋️" name="Opus" tagline="The heavyweight">
+      <p><strong>Reach for it when…</strong> the problem is genuinely hard: deep financial analysis, complex multi-step reasoning, evaluating tradeoffs with lots of context. Bring out the big gun when the job demands it.</p>
+    </ModelCard>
+    <ModelCard emoji="🧙" name="Fable" tagline="The frontier · premium">
+      <p><strong>Reach for it when…</strong> the job is huge and multi-step — especially when you want one model to <strong>orchestrate</strong> a team of cheaper ones. Powerful and pricey; overkill for everyday tasks. More in <a href={href('/models/')}>Choosing Your Model</a>.</p>
+    </ModelCard>
   </div>
 
   <!-- Cheat-sheet table -->
-  <div class="prose-content">
+  <div class="prose-content reveal">
     <h3>Quick cheat sheet: task → model</h3>
   </div>
-  <div class="my-4 overflow-x-auto rounded-[12px] border border-border">
-    <table class="w-full text-sm">
+  <div class="table-shell reveal">
+    <table class="data-table">
       <thead>
-        <tr class="border-b border-border bg-card">
-          <th class="px-4 py-3 text-left font-semibold text-text">Task</th>
-          <th class="px-4 py-3 text-left font-semibold text-text">Role at Aptera</th>
-          <th class="px-4 py-3 text-left font-semibold text-gold">Model</th>
+        <tr>
+          <th>Task</th>
+          <th>Role at Aptera</th>
+          <th>Model</th>
         </tr>
       </thead>
-      <tbody class="divide-y divide-border">
-        <tr class="hover:bg-card-hover">
-          <td class="px-4 py-3 text-text">Quick email rewrite</td>
-          <td class="px-4 py-3 text-muted">Anyone</td>
-          <td class="px-4 py-3 font-medium text-gold">Haiku ⚡</td>
+      <tbody>
+        <tr>
+          <td>Quick email rewrite</td>
+          <td>Anyone</td>
+          <td>Haiku ⚡</td>
         </tr>
-        <tr class="hover:bg-card-hover">
-          <td class="px-4 py-3 text-text">Summarize a meeting recording</td>
-          <td class="px-4 py-3 text-muted">Ops / any team lead</td>
-          <td class="px-4 py-3 font-medium text-gold">Sonnet 🚗</td>
+        <tr>
+          <td>Summarize a meeting recording</td>
+          <td>Ops / any team lead</td>
+          <td>Sonnet 🚗</td>
         </tr>
-        <tr class="hover:bg-card-hover">
-          <td class="px-4 py-3 text-text">Draft a supplier RFQ</td>
-          <td class="px-4 py-3 text-muted">Procurement / Supply Chain</td>
-          <td class="px-4 py-3 font-medium text-gold">Sonnet 🚗</td>
+        <tr>
+          <td>Draft a supplier RFQ</td>
+          <td>Procurement / Supply Chain</td>
+          <td>Sonnet 🚗</td>
         </tr>
-        <tr class="hover:bg-card-hover">
-          <td class="px-4 py-3 text-text">Complex variance analysis</td>
-          <td class="px-4 py-3 text-muted">Finance</td>
-          <td class="px-4 py-3 font-medium text-gold">Opus 🏋️</td>
+        <tr>
+          <td>Complex variance analysis</td>
+          <td>Finance</td>
+          <td>Opus 🏋️</td>
         </tr>
-        <tr class="hover:bg-card-hover">
-          <td class="px-4 py-3 text-text">Translate a short label / instruction</td>
-          <td class="px-4 py-3 text-muted">Manufacturing / Assembly</td>
-          <td class="px-4 py-3 font-medium text-gold">Haiku ⚡</td>
+        <tr>
+          <td>Translate a short label / instruction</td>
+          <td>Manufacturing / Assembly</td>
+          <td>Haiku ⚡</td>
         </tr>
-        <tr class="hover:bg-card-hover">
-          <td class="px-4 py-3 text-text">Write a Jira epic with acceptance criteria</td>
-          <td class="px-4 py-3 text-muted">Engineering / PM</td>
-          <td class="px-4 py-3 font-medium text-gold">Sonnet 🚗</td>
+        <tr>
+          <td>Write a Jira epic with acceptance criteria</td>
+          <td>Engineering / PM</td>
+          <td>Sonnet 🚗</td>
         </tr>
-        <tr class="hover:bg-card-hover">
-          <td class="px-4 py-3 text-text">Deep research on a regulation or standard</td>
-          <td class="px-4 py-3 text-muted">Legal / Compliance</td>
-          <td class="px-4 py-3 font-medium text-gold">Opus 🏋️</td>
+        <tr>
+          <td>Deep research on a regulation or standard</td>
+          <td>Legal / Compliance</td>
+          <td>Opus 🏋️</td>
         </tr>
-        <tr class="hover:bg-card-hover">
-          <td class="px-4 py-3 text-text">Batch-format 50 part descriptions</td>
-          <td class="px-4 py-3 text-muted">Supply Chain / Eng</td>
-          <td class="px-4 py-3 font-medium text-gold">Haiku ⚡</td>
+        <tr>
+          <td>Batch-format 50 part descriptions</td>
+          <td>Supply Chain / Eng</td>
+          <td>Haiku ⚡</td>
         </tr>
       </tbody>
     </table>
   </div>
 
   <!-- Habits -->
-  <div class="prose-content">
+  <div class="prose-content reveal">
     <h2>Habits that save money (and get better answers)</h2>
     <p>
       The biggest lever isn't model choice — it's how you structure your conversations.

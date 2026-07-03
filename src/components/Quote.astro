@@ -1,0 +1,30 @@
+---
+// Pull-quote block, matching the figure/blockquote pattern used across pages.
+interface Props {
+  attribution: string;
+  source?: string;
+  variant?: 'left-bar' | 'boxed';
+}
+const { attribution, source, variant = 'left-bar' } = Astro.props;
+---
+{
+  variant === 'boxed' ? (
+    <figure class="my-6 rounded-[12px] border border-gold/40 bg-gold/5 px-6 py-6 text-center">
+      <blockquote class="m-0 text-xl italic leading-relaxed text-text">
+        <slot />
+      </blockquote>
+      <figcaption class="mt-3 text-sm font-semibold text-gold">
+        — {attribution}{source ? <>, {source}</> : null}
+      </figcaption>
+    </figure>
+  ) : (
+    <figure class="my-6 rounded-r-[12px] border-l-[3px] border-gold bg-gold/5 px-5 py-4">
+      <blockquote class="m-0 text-lg italic leading-relaxed text-text">
+        <slot />
+      </blockquote>
+      <figcaption class="mt-2 text-sm font-semibold text-gold">
+        — {attribution}{source ? <>, {source}</> : null}
+      </figcaption>
+    </figure>
+  )
+}

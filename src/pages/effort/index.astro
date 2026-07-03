@@ -6,6 +6,11 @@ import TryItNow from '../../components/TryItNow.astro';
 import CopyPrompt from '../../components/CopyPrompt.astro';
 import KeyTakeaways from '../../components/KeyTakeaways.astro';
 import Callout from '../../components/Callout.astro';
+import StatCard from '../../components/StatCard.astro';
+import BarRow from '../../components/BarRow.astro';
+import Badge from '../../components/Badge.astro';
+import LastReviewed from '../../components/LastReviewed.astro';
+import GlossaryLink from '../../components/GlossaryLink.astro';
 import { href } from '../../lib/site';
 ---
 <BaseLayout
@@ -31,13 +36,14 @@ import { href } from '../../lib/site';
   </Tldr>
 
   <!-- Two dials -->
-  <div class="prose-content">
+  <div class="prose-content reveal">
     <h2>The second dial</h2>
     <p>
       <a href={href('/models/')}>Choosing Your Model</a> covered the first dial: picking the right-sized
-      brain for the job. Effort is the second dial — for the same model, it controls how much reasoning
-      Claude does before answering. Low effort answers quickly and directly; higher levels think longer,
-      explore more paths, and burn far more tokens doing it.
+      brain for the job. Effort is the second dial — for the same model, it controls how much
+      <GlossaryLink term="extended-thinking">reasoning</GlossaryLink> Claude does before answering. Low
+      effort answers quickly and directly; higher levels think longer, explore more paths, and burn far
+      more <GlossaryLink term="token">tokens</GlossaryLink> doing it.
     </p>
     <p>
       You can pick the perfect model and still overpay by leaving effort maxed out on routine work.
@@ -47,38 +53,18 @@ import { href } from '../../lib/site';
   </div>
 
   <!-- Effort ladder -->
-  <div class="my-6 space-y-3 rounded-[12px] border border-border bg-card p-5">
+  <div class="reveal my-6 space-y-3 rounded-[12px] border border-border bg-card p-5">
     <p class="m-0 mb-2 text-xs font-bold uppercase tracking-wide text-muted">The five effort levels (relative token burn, illustrative)</p>
-    <div class="flex items-center gap-3">
-      <span class="w-20 shrink-0 text-sm font-semibold text-text">Low</span>
-      <div class="h-4 rounded-full bg-chat" style="width: 8%"></div>
-      <span class="text-xs text-muted">quick, direct — great default for simple tasks</span>
-    </div>
-    <div class="flex items-center gap-3">
-      <span class="w-20 shrink-0 text-sm font-semibold text-text">Medium</span>
-      <div class="h-4 rounded-full bg-gold" style="width: 20%"></div>
-      <span class="text-xs text-muted">the everyday default ★</span>
-    </div>
-    <div class="flex items-center gap-3">
-      <span class="w-20 shrink-0 text-sm font-semibold text-text">High</span>
-      <div class="h-4 rounded-full bg-code" style="width: 45%"></div>
-      <span class="text-xs text-muted">genuinely hard problems, planning</span>
-    </div>
-    <div class="flex items-center gap-3">
-      <span class="w-20 shrink-0 text-sm font-semibold text-text">XHigh</span>
-      <div class="h-4 rounded-full bg-code" style="width: 70%"></div>
-      <span class="text-xs text-muted">the hardest architecture &amp; analysis work</span>
-    </div>
-    <div class="flex items-center gap-3">
-      <span class="w-20 shrink-0 text-sm font-semibold text-text">Max</span>
-      <div class="h-4 rounded-full bg-cowork" style="width: 100%"></div>
-      <span class="text-xs text-muted">rare — when a wrong answer is very expensive</span>
-    </div>
+    <BarRow label="Low" widthPct={8} color="chat" note="quick, direct — great default for simple tasks" />
+    <BarRow label="Medium" widthPct={20} color="gold" note="the everyday default ★" />
+    <BarRow label="High" widthPct={45} color="code" note="genuinely hard problems, planning" />
+    <BarRow label="XHigh" widthPct={70} color="code" note="the hardest architecture &amp; analysis work" />
+    <BarRow label="Max" widthPct={100} color="cowork" note="rare — when a wrong answer is very expensive" />
     <p class="m-0 mt-2 text-xs text-dim">Not every model supports every level — Sonnet, for example, tops out below XHigh.</p>
   </div>
 
   <!-- Core insight + benchmark -->
-  <div class="prose-content">
+  <div class="prose-content reveal">
     <h2>Same answer, 7× the price</h2>
     <p>
       Here's the counterintuitive part: on most tasks — coding, refactoring, drafting, analysis —
@@ -86,29 +72,21 @@ import { href } from '../../lib/site';
       slower, for several times the cost.
     </p>
     <p>
-      This isn't just vibes. AI builder Morgan Linton benchmarked Fable 5 at <strong>Low</strong> effort
-      against Sonnet 5 and another frontier model at <strong>High</strong> effort across 10 real
+      This isn't just vibes. AI builder Morgan Linton benchmarked Fable at <strong>Low</strong> effort
+      against Sonnet and another frontier model at <strong>High</strong> effort across 10 real
       engineering tasks. All three landed the same 80% accuracy. The bill:
     </p>
   </div>
 
   <!-- benchmark stat card -->
-  <div class="my-6 grid gap-4 sm:grid-cols-2">
-    <div class="rounded-[12px] border-2 border-gold/60 bg-gold/5 p-5 text-center">
-      <p class="m-0 text-xs font-bold uppercase tracking-wide text-muted">Fable 5 · Low effort</p>
-      <p class="m-0 my-2 text-4xl font-extrabold text-gold">$2.27</p>
-      <p class="m-0 text-sm text-text">80% accuracy</p>
-    </div>
-    <div class="rounded-[12px] border border-border bg-card p-5 text-center">
-      <p class="m-0 text-xs font-bold uppercase tracking-wide text-muted">Sonnet 5 · High effort</p>
-      <p class="m-0 my-2 text-4xl font-extrabold text-code">$15.81</p>
-      <p class="m-0 text-sm text-text">80% accuracy — same score, ~7× the cost</p>
-    </div>
+  <div class="reveal my-6 grid gap-4 sm:grid-cols-2">
+    <StatCard label="Fable · Low effort" value="$2.27" caption="80% accuracy" highlight />
+    <StatCard label="Sonnet · High effort" value="$15.81" caption="80% accuracy — same score, ~7× the cost" valueColor="code" />
   </div>
 
   <div class="prose-content">
     <p>
-      Other engineers have confirmed the same pattern independently: running Fable 5 at High/XHigh burns
+      Other engineers have confirmed the same pattern independently: running Fable at High/XHigh burns
       through budget fast, while Low/Medium is more than enough for most day-to-day work. Going higher
       generally means <em>paying more to do the task slower, at the same accuracy</em> — not a better
       outcome, just a more expensive and sluggish one.
@@ -123,10 +101,11 @@ import { href } from '../../lib/site';
       move; <strong>"use Fable at Low/Medium effort"</strong> is. Run carelessly at High/XHigh, Fable is
       our priciest possible way to get work done.
     </p>
+    <LastReviewed date="2026-07-02" label="Pricing and benchmark figures" />
   </Callout>
 
   <!-- Plan high execute low -->
-  <div class="prose-content">
+  <div class="prose-content reveal">
     <h2>The power move: plan High, execute Low 🎚️</h2>
     <p>
       The highest-ROI pattern is splitting your work into two phases with different effort settings:
@@ -151,22 +130,27 @@ import { href } from '../../lib/site';
   </div>
 
   <!-- Orchestrator + effort -->
-  <div class="prose-content">
+  <div class="prose-content reveal">
     <h2>Level up: let the orchestrator set both dials</h2>
     <p>
+      <Badge variant="code" text="Mainly for Claude Code users" emoji="⌨️" /> If you're in Chat or
+      Co-Work, the short version is simple: more thinking costs more tokens, so don't crank effort up out
+      of habit. The rest of this section is about automating that trade-off in Claude Code.
+    </p>
+    <p>
       If you're working in Claude Code, you can push this further. Remember the
-      <a href={href('/models/')}>orchestrator pattern</a> — a big model conducting cheaper sub-agents?
-      Sub-agents accept an <strong>effort setting as well as a model</strong>. So instead of switching
-      dials by hand, ask your planning model to choose the right model <em>and</em> effort level for
-      every step of the plan, and bake it into the sub-agents it dispatches: a Haiku agent at Low for
-      exploring the codebase, a Sonnet agent at Medium for the implementation, an Opus agent at High for
-      the one security-sensitive piece — all automatic.
+      <GlossaryLink term="orchestrator">orchestrator pattern</GlossaryLink> — a big model conducting
+      cheaper sub-agents? Sub-agents accept an <strong>effort setting as well as a model</strong>. So
+      instead of switching dials by hand, ask your planning model to choose the right model <em>and</em>
+      effort level for every step of the plan, and bake it into the sub-agents it dispatches: a Haiku
+      agent at Low for exploring the codebase, a Sonnet agent at Medium for the implementation, an Opus
+      agent at High for the one security-sensitive piece — all automatic.
     </p>
   </div>
 
   <Callout variant="code" title="Caveat: check effort compatibility first">
     <p>
-      Not every model supports every effort level (Sonnet 5 doesn't go up to XHigh, for example). If the
+      Not every model supports every effort level (Sonnet doesn't go up to XHigh, for example). If the
       orchestrator assigns a level a model can't run, Claude Code <strong>silently falls back</strong> to
       the highest level that model supports — not necessarily what you intended. Explicitly tell the
       orchestrator to verify which effort levels each model supports <em>before</em> assigning them, so
@@ -183,7 +167,7 @@ import { href } from '../../lib/site';
   </TryItNow>
 
   <!-- Recommendations -->
-  <div class="prose-content">
+  <div class="prose-content reveal">
     <h2>The playbook</h2>
     <ol>
       <li><strong>Default to Medium</strong> (or Low for simple asks) for day-to-day work.</li>
@@ -207,7 +191,7 @@ import { href } from '../../lib/site';
     <ul>
       <li>Effort is the second dial after model choice: Low/Medium delivers the same accuracy as High on most tasks — for a fraction of the cost.</li>
       <li>Plan at High effort, execute at Low/Medium. Planning is cheap and benefits from deep thinking; execution is the bulk of your tokens.</li>
-      <li>Fable 5 is our most expensive model per token — it only saves money when you run it at Low/Medium effort.</li>
+      <li>Fable is our most expensive model per token — it only saves money when you run it at Low/Medium effort.</li>
     </ul>
   </KeyTakeaways>
 </BaseLayout>
