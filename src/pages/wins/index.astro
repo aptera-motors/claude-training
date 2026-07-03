@@ -4,7 +4,7 @@ import PageHeader from '../../components/PageHeader.astro';
 import Badge from '../../components/Badge.astro';
 import { getCollection, render } from 'astro:content';
 
-const WIN_FORM_URL = ''; // TODO(Jake): paste the Microsoft Form share URL — card auto-appears once set.
+const WIN_FORM_URL = 'https://forms.office.com/Pages/ResponsePage.aspx?id=s0De5IZXIECbcc-Tdhnk1oVy0x9kpH5Ho0VoaEAGmYdUMlYwTzNBSFdUV04zT0VHTDBDWTU4VFNSRi4u';
 
 const winEntries = (await getCollection('wins')).sort(
   (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
