@@ -6,153 +6,202 @@ import TryItNow from '../../components/TryItNow.astro';
 import CopyPrompt from '../../components/CopyPrompt.astro';
 import KeyTakeaways from '../../components/KeyTakeaways.astro';
 import Callout from '../../components/Callout.astro';
+import { href } from '../../lib/site';
 ---
 <BaseLayout
   title="M365 Plugins"
-  description="Use Claude inside Outlook, Word, PowerPoint, and Excel — no tab-switching required."
+  description="Use Claude inside Excel, Word, PowerPoint, and Outlook — building, editing, and drafting right inside your files without breaking your formulas or formatting."
   pageId="m365"
   readMinutes={6}
 >
   <PageHeader
     icon="📎"
     title="Claude in Microsoft 365"
-    subtitle="You don't always have to go to Claude. Sometimes Claude comes to you."
+    subtitle="You don't always have to go to Claude. Sometimes Claude comes to you — into a sidebar inside the Office apps your day already runs on."
     readMinutes={6}
   />
 
   <Tldr>
     <p>
-      Claude plugins live <strong>inside Outlook, Word, PowerPoint, and Excel</strong> — the apps
-      you're already in all day. No tab-switching, no copy-pasting. Just highlight, click, and get
-      the help you need right where the work is happening.
+      Claude add-ins live <strong>inside Excel, Word, PowerPoint, and Outlook</strong> — in a sidebar,
+      working directly in your file. The theme throughout: Claude isn't generating a <em>new</em> file
+      off to the side and handing it back. It's working <em>inside your file</em>, respecting the
+      formulas, styles, and structure that are already there.
     </p>
   </Tldr>
 
   <div class="prose-content">
     <p>
-      There's a version of Claude that lives on a tab in your browser. Then there's the version
-      that shows up inside the app you already have open. The M365 plugins are the latter — a
-      Claude sidebar (or right-click menu) embedded directly into the Microsoft tools your day
-      already runs on. Less friction, faster results.
+      There's a version of Claude that lives on a tab in your browser. Then there's the version that
+      shows up inside the app you already have open. The M365 add-ins are the latter — a Claude sidebar
+      embedded directly into the Microsoft tools your day runs on. Here's what that actually unlocks,
+      app by app.
     </p>
   </div>
 
-  <!-- Outlook -->
+  <!-- Excel -->
   <section class="mb-10 reveal">
-    <h2 class="mb-1 text-2xl font-bold tracking-tight">📧 Outlook</h2>
-    <p class="mb-4 text-muted">Your inbox is not a to-do list. Let Claude help you triage it like one.</p>
+    <h2 class="mb-1 text-2xl font-bold tracking-tight">📈 Excel — the one finance should care about most</h2>
+    <p class="mb-4 text-muted">This is the deepest of the integrations. Claude reads your whole workbook — not just the cell you're on, but the formulas, the dependencies, and how the tabs connect.</p>
 
-    <div class="grid gap-3 sm:grid-cols-3 mb-5">
+    <div class="grid gap-3 sm:grid-cols-2 mb-5">
       <div class="hover-lift rounded-[12px] border border-border bg-card p-4">
-        <p class="mb-1 font-semibold text-text">Draft replies in your voice</p>
-        <p class="text-sm text-muted leading-relaxed">Give Claude the context ("I need to push back on this deadline but stay friendly") and it writes the reply. You edit, you send. Done in 30 seconds.</p>
+        <p class="mb-1 font-semibold text-text">Build from scratch or a template</p>
+        <p class="text-sm text-muted leading-relaxed">A DCF, a budget-vs-actual, a cash-flow projection with scenario toggles — created from your assumptions or dropped into a template you already use.</p>
       </div>
       <div class="hover-lift rounded-[12px] border border-border bg-card p-4">
-        <p class="mb-1 font-semibold text-text">Summarize long threads</p>
-        <p class="text-sm text-muted leading-relaxed">That 47-message chain from last Tuesday? Ask Claude "what do I actually need to do?" and get the action items without reading the whole saga.</p>
+        <p class="mb-1 font-semibold text-text">Modify without breaking things</p>
+        <p class="text-sm text-muted leading-relaxed">It changes values and inputs while <em>preserving your formulas and dependencies</em>, so the model still works after — and it can sort, filter, edit pivot tables, and apply conditional formatting.</p>
       </div>
       <div class="hover-lift rounded-[12px] border border-border bg-card p-4">
-        <p class="mb-1 font-semibold text-text">Turn chaos into a crisp follow-up</p>
-        <p class="text-sm text-muted leading-relaxed">Rambling thread, no clear owner, no next steps. Claude synthesizes it into a clean follow-up email ready to send to the whole group.</p>
+        <p class="mb-1 font-semibold text-text">Debug formulas</p>
+        <p class="text-sm text-muted leading-relaxed">Point it at a <code>#REF!</code> mess or a circular reference and ask what broke — it traces the source and proposes a fix that keeps the sheet intact.</p>
+      </div>
+      <div class="hover-lift rounded-[12px] border border-border bg-card p-4">
+        <p class="mb-1 font-semibold text-text">Full transparency</p>
+        <p class="text-sm text-muted leading-relaxed">Every change is highlighted and explained, with citations you can click straight to the referenced cells. Nothing happens off in the dark.</p>
       </div>
     </div>
 
-    <CopyPrompt text="Summarize this email thread and tell me: (1) what decisions were made, (2) what I need to do, and (3) if there's anything still unresolved." />
+    <CopyPrompt text="Build a 12-month cash-runway model from the assumptions on the Inputs tab, with a row for each capital draw. Preserve the existing formulas, and highlight every cell you change so I can review it." />
   </section>
 
   <!-- Word -->
   <section class="mb-10 reveal">
-    <h2 class="mb-1 text-2xl font-bold tracking-tight">📄 Word</h2>
-    <p class="mb-4 text-muted">Your document, improved — without leaving the document.</p>
+    <h2 class="mb-1 text-2xl font-bold tracking-tight">📄 Word — long documents, done right</h2>
+    <p class="mb-4 text-muted">Word is where Claude earns its keep on the heavy stuff: policies, procedures, proposals, spec documents.</p>
 
     <div class="grid gap-3 sm:grid-cols-3 mb-5">
       <div class="hover-lift rounded-[12px] border border-border bg-card p-4">
-        <p class="mb-1 font-semibold text-text">Summarize & critique in place</p>
-        <p class="text-sm text-muted leading-relaxed">Open a doc, ask Claude for a one-paragraph summary and what's missing. Great for reviewing vendor proposals or policy drafts without reading every word.</p>
+        <p class="mb-1 font-semibold text-text">Native tracked changes</p>
+        <p class="text-sm text-muted leading-relaxed">Claude's edits arrive as real tracked changes — you review and accept or reject them exactly like edits from a colleague, not as a mystery rewrite.</p>
       </div>
       <div class="hover-lift rounded-[12px] border border-border bg-card p-4">
-        <p class="mb-1 font-semibold text-text">Rewrite for a different audience</p>
-        <p class="text-sm text-muted leading-relaxed">Engineering spec that needs to become an exec summary? Highlight the section, ask Claude to rewrite it for a non-technical audience. No separate doc needed.</p>
+        <p class="mb-1 font-semibold text-text">Template-aware drafting</p>
+        <p class="text-sm text-muted leading-relaxed">Hand it your template and it drafts <em>into</em> your format, inheriting your heading and paragraph styles instead of pasting in something generic.</p>
       </div>
       <div class="hover-lift rounded-[12px] border border-border bg-card p-4">
-        <p class="mb-1 font-semibold text-text">First drafts from outlines</p>
-        <p class="text-sm text-muted leading-relaxed">Paste a bullet outline and ask Claude to expand it into a full section. You get a draft that's 80% there — you bring the last 20% of judgment and nuance.</p>
+        <p class="mb-1 font-semibold text-text">Read a redline back</p>
+        <p class="text-sm text-muted leading-relaxed">When a counterparty returns a document full of tracked changes, Claude can summarize what they changed and group it by severity — so you know what to look at first.</p>
       </div>
     </div>
 
-    <CopyPrompt text="I've pasted an outline below. Expand it into a full draft. Use clear, direct language — no buzzwords. Flag anywhere you're uncertain about the details so I can fill them in." />
+    <CopyPrompt text="Review this SOP against our template, fix the formatting to match, and leave your changes as tracked edits so I can approve them one by one." />
   </section>
 
   <!-- PowerPoint -->
   <section class="mb-10 reveal">
-    <h2 class="mb-1 text-2xl font-bold tracking-tight">📊 PowerPoint</h2>
+    <h2 class="mb-1 text-2xl font-bold tracking-tight">📊 PowerPoint — outline to deck</h2>
     <p class="mb-4 text-muted">Because nobody ever said "I wish I spent more time making slides."</p>
 
     <div class="grid gap-3 sm:grid-cols-3 mb-5">
       <div class="hover-lift rounded-[12px] border border-border bg-card p-4">
-        <p class="mb-1 font-semibold text-text">Outline a deck from a doc</p>
-        <p class="text-sm text-muted leading-relaxed">Paste a report or brief and ask Claude to propose a slide outline with titles and one-line summaries per slide. Skeleton in seconds, not hours.</p>
+        <p class="mb-1 font-semibold text-text">Reads your template</p>
+        <p class="text-sm text-muted leading-relaxed">Slide master, layouts, fonts, colors — Claude uses them when it builds slides, so you get <em>your</em> brand instead of an off-brand generic deck.</p>
       </div>
       <div class="hover-lift rounded-[12px] border border-border bg-card p-4">
-        <p class="mb-1 font-semibold text-text">Punch up slide headlines</p>
-        <p class="text-sm text-muted leading-relaxed">"Q3 Results" is a topic, not a headline. Ask Claude to rewrite your titles as declarative statements that tell the story even if someone only reads the headers.</p>
+        <p class="mb-1 font-semibold text-text">Outline → deck</p>
+        <p class="text-sm text-muted leading-relaxed">Give it the structure or the source content and it drafts the slides — a skeleton in seconds, not hours.</p>
       </div>
       <div class="hover-lift rounded-[12px] border border-border bg-card p-4">
-        <p class="mb-1 font-semibold text-text">Speaker notes from slides</p>
-        <p class="text-sm text-muted leading-relaxed">Paste your slide content and ask Claude to write speaker notes that anticipate audience questions and hit the key talking points — without sounding like a script.</p>
+        <p class="mb-1 font-semibold text-text">Reformat existing decks</p>
+        <p class="text-sm text-muted leading-relaxed">Clean up spacing, restyle to the template, or condense a bloated deck down to what actually needs to be said.</p>
       </div>
     </div>
 
-    <CopyPrompt text="Here are my slide titles and bullet points. Write speaker notes for each slide — 3–5 sentences, conversational tone, and flag any slide where the content might need more data or a stronger point." />
+    <CopyPrompt text="Turn this one-page project summary into a six-slide deck using our template, with speaker notes. Follow the slide master's fonts and colors — don't introduce any new styling." />
   </section>
 
-  <!-- Excel -->
+  <!-- Outlook -->
   <section class="mb-10 reveal">
-    <h2 class="mb-1 text-2xl font-bold tracking-tight">📈 Excel</h2>
-    <p class="mb-4 text-muted">Formulas are a language. Claude is fluent.</p>
+    <h2 class="mb-1 text-2xl font-bold tracking-tight">📧 Outlook — your chief of staff</h2>
+    <p class="mb-4 text-muted">Rolling out across the suite: in Outlook, Claude helps you triage the inbox, arrange meetings, and draft replies in your voice.</p>
 
     <div class="grid gap-3 sm:grid-cols-3 mb-5">
       <div class="hover-lift rounded-[12px] border border-border bg-card p-4">
-        <p class="mb-1 font-semibold text-text">Plain-English formula explainer</p>
-        <p class="text-sm text-muted leading-relaxed">Paste any formula — even a nested horror show — and ask Claude to explain it step by step in plain English. Your future self will thank you.</p>
+        <p class="mb-1 font-semibold text-text">Draft replies in your voice</p>
+        <p class="text-sm text-muted leading-relaxed">Give Claude the context ("push back on this deadline but stay friendly") and it writes the reply. You edit, you send.</p>
       </div>
       <div class="hover-lift rounded-[12px] border border-border bg-card p-4">
-        <p class="mb-1 font-semibold text-text">Suggest formulas from a description</p>
-        <p class="text-sm text-muted leading-relaxed">"I want to look up a value in another sheet based on two matching columns." Just describe what you need and Claude returns the formula, ready to paste.</p>
+        <p class="mb-1 font-semibold text-text">Summarize long threads</p>
+        <p class="text-sm text-muted leading-relaxed">That 47-message chain from last Tuesday? Ask "what do I actually need to do?" and get the action items without reading the whole saga.</p>
       </div>
       <div class="hover-lift rounded-[12px] border border-border bg-card p-4">
-        <p class="mb-1 font-semibold text-text">Summarize what a worksheet is telling you</p>
-        <p class="text-sm text-muted leading-relaxed">Paste a table of data and ask "what's the story here?" Claude spots trends, outliers, and the headline number — handy before you present to the team.</p>
+        <p class="mb-1 font-semibold text-text">Turn chaos into a follow-up</p>
+        <p class="text-sm text-muted leading-relaxed">Rambling thread, no clear owner. Claude synthesizes it into a clean follow-up email ready to send to the whole group.</p>
       </div>
     </div>
 
-    <CopyPrompt text="Here's a formula: [paste formula]. Explain exactly what it does, step by step, in plain English. Then tell me if there are any common edge cases or errors I should watch out for." />
+    <CopyPrompt text="Summarize this email thread and tell me: (1) what decisions were made, (2) what I need to do, and (3) anything still unresolved." />
   </section>
 
-  <Callout variant="gold" title="📣 Availability & rollout">
+  <!-- Shared context -->
+  <section class="mb-10 reveal">
+    <h2 class="mb-1 text-2xl font-bold tracking-tight">🔗 The real magic: shared context</h2>
+    <p class="mb-4 text-muted">Here's the part that ties it together.</p>
+    <div class="prose-content">
+      <p>
+        Once the add-ins are installed, <strong>context travels across your Office apps in one
+        conversation</strong>. Start a model in Excel, move to PowerPoint to build the deck, pull the
+        numbers into a Word memo — Claude already knows what everything means, no re-explaining. As
+        Anthropic puts it: change one thing, and every open file catches up. For anyone who's ever
+        manually redone a slide every time a spreadsheet cell changed, that's the whole ballgame.
+      </p>
+    </div>
+    <Callout variant="cowork" title="Which apps share context">
+      <p>
+        Shared context spans <strong>Word, Excel, and PowerPoint</strong> — all generally available on
+        our plan. <strong>Outlook</strong> is in beta and joining the same conversation, so treat it as
+        the newest, still-settling member of the family.
+      </p>
+    </Callout>
+  </section>
+
+  <Callout variant="code" title="⚠️ Watch for prompt injection here too">
     <p>
-      The M365 Claude plugins are being rolled out at Aptera now. If you open Outlook, Word,
-      PowerPoint, or Excel and don't see a Claude sidebar or add-in option yet — you're probably
-      just in the queue. Reach out to <strong><a href="mailto:jake@aptera.us" class="text-gold underline underline-offset-2">jake@aptera.us</a></strong> to get bumped up or to ask about your specific app.
+      A spreadsheet or template from an outside party can hide malicious instructions in cells or
+      comments — the same risk you'll read about on the
+      <a href={href('/chrome/')} class="text-gold underline underline-offset-2">Claude in Chrome</a> page.
+      Only point Claude at files you trust, and never at a random workbook downloaded from the internet.
     </p>
   </Callout>
 
-  <TryItNow title="Try it in Outlook">
+  <Callout variant="gold" title="✅ One reassurance worth repeating">
     <p>
-      Find the longest unread email thread in your inbox. Open it, then open the Claude sidebar
-      in Outlook. Paste the thread (or use the plugin's summarize feature) and send this prompt:
+      Because we're on <strong>Claude Enterprise</strong>, your conversations and files aren't used to
+      train the model. When you point Claude at a financial model or a contract, that work stays yours.
+      More on the <a href={href('/safety/')} class="text-gold underline underline-offset-2">Safety &amp; Data</a> page.
     </p>
-    <CopyPrompt text="Read this email thread and give me: a one-paragraph summary of what happened, a bullet list of action items with owners (if mentioned), and any open questions that still need a decision." />
+  </Callout>
+
+  <TryItNow title="Try it in Excel">
     <p>
-      You should have a clean briefing in under a minute — instead of reading 40 emails.
+      Open a workbook you know well — ideally one with a few tabs that feed each other. Open the Claude
+      sidebar and ask it to explain how the file actually works:
+    </p>
+    <CopyPrompt text="Walk me through how this workbook calculates its final number, tab by tab. Cite the specific cells and formulas you're referencing so I can follow along." />
+    <p>
+      You'll get a guided tour of your own model — the fastest way to feel how deep the Excel
+      integration really goes.
     </p>
   </TryItNow>
 
+  <Callout variant="gold" title="📣 Availability & rollout">
+    <p>
+      The Claude Office add-ins are generally available on our plan and rolling out across Aptera now.
+      To install, open Excel, Word, or PowerPoint → <strong>Insert</strong> tab → <strong>Get Add-ins</strong>
+      → search <em>"Claude by Anthropic."</em> Don't see it, or want a hand getting set up? Email
+      <strong><a href="mailto:jake@aptera.us" class="text-gold underline underline-offset-2">jake@aptera.us</a></strong>.
+    </p>
+  </Callout>
+
   <KeyTakeaways>
     <ul>
-      <li>Claude plugins live <strong>inside</strong> Outlook, Word, PowerPoint, and Excel — you don't have to leave the app you're working in.</li>
-      <li>The highest-value moves: summarizing long threads, rewriting for a different audience, and explaining or generating formulas.</li>
-      <li>Plugins are rolling out now — if you don't see them yet, email <a href="mailto:jake@aptera.us" class="text-gold underline underline-offset-2">jake@aptera.us</a>.</li>
+      <li>Claude add-ins work <strong>inside</strong> Excel, Word, PowerPoint, and Outlook — editing your file, not handing back a new one.</li>
+      <li><strong>Excel</strong> is the deepest: it modifies models while preserving formulas and dependencies, and explains every change with clickable cell citations.</li>
+      <li><strong>Word</strong> edits arrive as native tracked changes; <strong>PowerPoint</strong> follows your slide master and brand.</li>
+      <li><strong>Shared context</strong> lets one conversation flow across Word, Excel, and PowerPoint without re-explaining a thing — change one input and every open file catches up (Outlook is in beta).</li>
+      <li>Chain this with <a href={href('/chrome/')} class="text-gold underline underline-offset-2">Claude in Chrome</a> — gather in the browser, produce the deliverable in Office, no copy-paste seam.</li>
     </ul>
   </KeyTakeaways>
 </BaseLayout>
