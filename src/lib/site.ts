@@ -58,6 +58,7 @@ export const NAV_GROUPS: NavGroup[] = [
       { id: 'agentic-looping', label: 'Agentic Looping', href: '/agentic-looping/', emoji: '🤖', blurb: 'Let Claude run its own loop until the job is done.', readMinutes: 8 },
       { id: 'apps', label: 'Apps Compared', href: '/apps/', emoji: '⚖️', blurb: 'Which Claude app for which job.', readMinutes: 5 },
       { id: 'm365', label: 'M365 Plugins', href: '/m365/', emoji: '📎', blurb: 'Claude inside the Microsoft tools you already use.', readMinutes: 6 },
+      { id: 'email-triage', label: 'Email Triage', href: '/email-triage/', emoji: '📬', blurb: 'Your inbox sorted every morning — only what actually needs you.', readMinutes: 6 },
       { id: 'chrome', label: 'Claude in Chrome', href: '/chrome/', emoji: '🌐', blurb: 'Claude working inside your browser — on the sites without a connector.', readMinutes: 7 },
     ],
   },

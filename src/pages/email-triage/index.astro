@@ -1,0 +1,178 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import Tldr from '../../components/Tldr.astro';
+import TryItNow from '../../components/TryItNow.astro';
+import CopyPrompt from '../../components/CopyPrompt.astro';
+import KeyTakeaways from '../../components/KeyTakeaways.astro';
+import Callout from '../../components/Callout.astro';
+import GlossaryLink from '../../components/GlossaryLink.astro';
+import { href } from '../../lib/site';
+---
+<BaseLayout
+  title="Email Triage"
+  description="The email-triage skill pulls your Outlook inbox every morning, sorts it into four quadrants using YOUR rules, and hands you a one-pager of only what actually needs you — with draft replies ready to go."
+  pageId="email-triage"
+  readMinutes={6}
+>
+  <PageHeader
+    icon="📬"
+    title="Email Triage — your inbox, sorted every morning"
+    subtitle="Most of your email doesn't need you. This skill finds the handful of messages that do — and drafts the replies."
+    readMinutes={6}
+  />
+
+  <Tldr>
+    <p>
+      Say <strong>"triage my inbox"</strong> to Claude. The first time, it asks you six quick questions
+      to learn your job. Every time after, it reads your recent Outlook email and hands you a
+      one-page report: what to <strong>do</strong>, what to <strong>schedule</strong>, what to
+      <strong>delegate</strong>, and how much it safely <strong>dropped</strong> — with draft replies
+      written for the items that genuinely need you. It never sends anything. Ever.
+    </p>
+  </Tldr>
+
+  <div class="prose-content">
+    <p>
+      This skill started life as Richard Kilshaw's personal morning routine — a codified filter for
+      deciding which emails were actually <em>his</em> problem. It worked so well we generalized it
+      for everyone. The core insight survives: you are not the owner of most email in your inbox.
+      Someone else owns it, a machine sent it, or nobody needs it. The skill's whole job is to be
+      ruthless about that on your behalf.
+    </p>
+  </div>
+
+  <!-- The four quadrants -->
+  <section class="mb-10 reveal">
+    <h2 class="mb-1 text-2xl font-bold tracking-tight">🗂️ The four quadrants</h2>
+    <p class="mb-4 text-muted">Every email lands in exactly one bucket — a classic called the Eisenhower matrix.</p>
+
+    <div class="grid gap-3 sm:grid-cols-2 mb-5">
+      <div class="hover-lift rounded-[12px] border border-border bg-card p-4">
+        <p class="mb-1 font-semibold text-gold">Q1 · DO</p>
+        <p class="text-sm text-muted leading-relaxed">Actions only <em>you</em> can take — an approval with your name on it, a direct question nobody else is handling. Each one comes with a link to the email and a <strong>draft reply ready to copy</strong>.</p>
+      </div>
+      <div class="hover-lift rounded-[12px] border border-border bg-card p-4">
+        <p class="mb-1 font-semibold text-chat">Q2 · SCHEDULE</p>
+        <p class="text-sm text-muted leading-relaxed">Important awareness you don't own — results in someone else's area, a deck to read, admin that can wait. Skim it when you choose to, not when it arrives.</p>
+      </div>
+      <div class="hover-lift rounded-[12px] border border-border bg-card p-4">
+        <p class="mb-1 font-semibold text-cowork">Q3 · DELEGATE</p>
+        <p class="text-sm text-muted leading-relaxed">Urgent, but owned by someone else. The report names the owner from <em>your</em> delegation map, so forwarding takes ten seconds.</p>
+      </div>
+      <div class="hover-lift rounded-[12px] border border-border bg-card p-4">
+        <p class="mb-1 font-semibold text-dim">Q4 · DROP</p>
+        <p class="text-sm text-muted leading-relaxed">Automated notifications, tracking emails, out-of-office replies, newsletters. You get a <em>count</em>, not a list — because you were never going to read them anyway.</p>
+      </div>
+    </div>
+
+    <Callout variant="gold" title="An empty DO list is a win">
+      <p>
+        The skill is deliberately strict: when it's unsure whether something is truly yours, it files
+        it under awareness rather than action. Some mornings the report says
+        <em>"0 of 25 emails need you."</em> That's not a failure — that's the whole point.
+      </p>
+    </Callout>
+  </section>
+
+  <!-- First run -->
+  <section class="mb-10 reveal">
+    <h2 class="mb-1 text-2xl font-bold tracking-tight">🎬 Your first run: six questions</h2>
+    <p class="mb-4 text-muted">The skill doesn't guess what matters to you — it asks. Once. Your answers become a personal rules file it uses every morning after.</p>
+
+    <div class="prose-content">
+      <ol>
+        <li><strong>What's your role — what decisions can only you make?</strong> Be honest about your actual function, not your title. "I approve purchase requests over $500" beats "I'm a manager."</li>
+        <li><strong>Which email types always need action from you?</strong> Approvals, access requests, direct questions, data handoffs.</li>
+        <li><strong>Who do you delegate to, and what do they own?</strong> This becomes the map that powers the DELEGATE quadrant.</li>
+        <li><strong>What never needs to be seen individually?</strong> Jira pings, HR reminders, shipping trackers — your personal noise list.</li>
+        <li><strong>Where should your rules live?</strong> So they persist between sessions.</li>
+        <li><strong>Want it to run automatically every weekday morning — and at what time?</strong> Optional, and only offered where your setup supports it (see below).</li>
+      </ol>
+      <p>
+        The better your answers, the sharper the triage — and you can refine them forever. Whenever a
+        classification is wrong, just say so and the skill updates your rules on the spot:
+      </p>
+    </div>
+    <CopyPrompt text="That vendor quote email is actually mine to handle — quotes for IT equipment always come to me. Update my triage rules." />
+  </section>
+
+  <!-- Scheduling -->
+  <section class="mb-10 reveal">
+    <h2 class="mb-1 text-2xl font-bold tracking-tight">⏰ Making it automatic</h2>
+    <div class="prose-content">
+      <p>
+        In the <strong>Claude Desktop app</strong> (including <GlossaryLink term="cowork">Co-Work</GlossaryLink>),
+        question six can set up a scheduled task that runs the triage every weekday at a time you pick —
+        so the report is waiting with your coffee.
+      </p>
+    </div>
+    <Callout variant="cowork" title="Two things to know about scheduled runs">
+      <p>
+        <strong>1. Your computer must be on</strong> with the Claude app open at the scheduled time — if
+        it isn't, the triage simply runs the next time you open the app, so you never miss a morning
+        entirely. <strong>2. Click "Run now" once</strong> (Scheduled section, sidebar) right after
+        setup — the permissions you approve on that first run carry forward, so future mornings never
+        stall waiting for you to click "allow."
+      </p>
+    </Callout>
+    <div class="prose-content">
+      <p>
+        Using Claude in the <strong>browser (chat)</strong> instead? Scheduled tasks aren't available
+        there, but the skill works fine on demand — your rules live in Claude's
+        <a href={href('/memory/')} class="text-gold underline underline-offset-2">memory</a> instead of
+        a file, and the report arrives right in the conversation. Just make "triage my inbox" the first
+        thing you type each morning.
+      </p>
+    </div>
+  </section>
+
+  <!-- Safety -->
+  <section class="mb-10 reveal">
+    <h2 class="mb-1 text-2xl font-bold tracking-tight">🛡️ What it will never do</h2>
+    <div class="grid gap-3 sm:grid-cols-2 mb-5">
+      <div class="hover-lift rounded-[12px] border border-border bg-card p-4">
+        <p class="mb-1 font-semibold text-text">Read-only, always</p>
+        <p class="text-sm text-muted leading-relaxed">It never sends, replies, forwards, archives, or deletes anything. Draft replies live in the report for <em>you</em> to copy, edit, and send. Your inbox is untouched.</p>
+      </div>
+      <div class="hover-lift rounded-[12px] border border-border bg-card p-4">
+        <p class="mb-1 font-semibold text-text">Built-in fraud guard</p>
+        <p class="text-sm text-muted leading-relaxed">Emails asking you to pay a bill, change a PO, or grant access get extra scrutiny. If anything smells off — a mismatched sender, artificial urgency — the skill flags it for out-of-band verification instead of drafting a compliant reply. Fake payment requests are the most common way companies get robbed by email.</p>
+      </div>
+    </div>
+    <Callout variant="gold" title="✅ And the usual reassurance">
+      <p>
+        We're on <strong>Claude Enterprise</strong>: your email and your rules are never used to train
+        the model. Details on the <a href={href('/safety/')} class="text-gold underline underline-offset-2">Safety &amp; Data</a> page.
+      </p>
+    </Callout>
+  </section>
+
+  <Callout variant="chat" title="📋 Before your first run: one requirement">
+    <p>
+      The skill reads your inbox through the <strong>Microsoft 365 connector</strong>. Check that it's
+      enabled: Claude → Settings → Connectors → Microsoft 365. If it's missing or you hit a wall, email
+      <strong><a href="mailto:jake@aptera.us" class="text-gold underline underline-offset-2">jake@aptera.us</a></strong>.
+      More on connectors on the <a href={href('/connectors/')} class="text-gold underline underline-offset-2">Connectors &amp; Skills</a> page.
+    </p>
+  </Callout>
+
+  <TryItNow title="Try it right now">
+    <p>Open Claude — chat, Desktop, or Co-Work — and say:</p>
+    <CopyPrompt text="Triage my inbox." />
+    <p>
+      That's it. If it's your first time, budget five minutes for the six setup questions — then watch
+      it cut 25 emails down to the two that matter.
+    </p>
+  </TryItNow>
+
+  <KeyTakeaways>
+    <ul>
+      <li>Say <strong>"triage my inbox"</strong> — the skill sorts your Outlook email into <strong>Do / Schedule / Delegate / Drop</strong> using rules built from <em>your</em> answers.</li>
+      <li>Q1 items come with <strong>draft replies ready to copy</strong>; Q4 noise is counted, not shown.</li>
+      <li>It's <strong>read-only</strong> — it never sends or touches your email — and payment or access requests that look suspicious get flagged, not drafted.</li>
+      <li>On the Desktop app it can <strong>run automatically every weekday morning</strong> (computer on, app open); in browser chat, just ask each morning.</li>
+      <li>Wrong call? Tell it — <em>"that one's actually mine"</em> — and your rules improve for every morning after.</li>
+    </ul>
+  </KeyTakeaways>
+</BaseLayout>
