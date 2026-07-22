@@ -148,6 +148,16 @@ import { href } from '../../lib/site';
     </Callout>
   </section>
 
+  <Callout variant="gold" title="🎛️ Which model? Sonnet, medium effort">
+    <p>
+      Your inbox doesn't need the biggest brain — the skill's judgment lives in <em>your rules file</em>,
+      so <a href={href('/models/')} class="text-gold underline underline-offset-2">Sonnet</a> at
+      <a href={href('/effort/')} class="text-gold underline underline-offset-2">medium effort</a> gives the
+      same triage quality as Opus at a fraction of the token spend. Set both next to the model picker
+      before your first run — scheduled runs inherit whatever the task was created with.
+    </p>
+  </Callout>
+
   <Callout variant="chat" title="📋 Before your first run: one requirement">
     <p>
       The skill reads your inbox through the <strong>Microsoft 365 connector</strong>. Check that it's
@@ -162,7 +172,9 @@ import { href } from '../../lib/site';
     <CopyPrompt text="Triage my inbox." />
     <p>
       That's it. If it's your first time, budget five minutes for the six setup questions — then watch
-      it cut 25 emails down to the two that matter.
+      it cut a day's worth of email down to the two that matter. It reads everything from the past
+      24 hours (72 on Mondays), and if you're back from vacation, just say how far to go:
+      <em>"triage my inbox — I've been out since the 10th."</em>
     </p>
   </TryItNow>
 
