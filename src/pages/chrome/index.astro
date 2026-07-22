@@ -1,214 +1,31 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import PageHeader from '../../components/PageHeader.astro';
-import Tldr from '../../components/Tldr.astro';
-import TryItNow from '../../components/TryItNow.astro';
-import CopyPrompt from '../../components/CopyPrompt.astro';
-import KeyTakeaways from '../../components/KeyTakeaways.astro';
-import Callout from '../../components/Callout.astro';
-import Quote from '../../components/Quote.astro';
-import { href } from '../../lib/site';
+// Redirect stub — this site moved to the Aptera AI Academy app.
+const target = "https://ai-training.apteraops.com/tracks/claude/browser";
 ---
-<BaseLayout
-  title="Claude in Chrome"
-  description="Claude works directly in your browser — navigating pages, filling forms, and pulling data from sites that don't have a connector."
-  pageId="chrome"
-  readMinutes={7}
->
-  <PageHeader
-    icon="🌐"
-    title="Claude in Chrome"
-    subtitle="For most of this training, using Claude has meant opening a conversation. This is Claude leaving the chat window — and showing up inside the browser where the work already happens."
-    readMinutes={7}
-  />
-
-  <Tldr>
-    <p>
-      Claude can now work <strong>directly in your Chrome browser</strong> — reading pages,
-      clicking, filling forms, and stepping through multi-page workflows on your behalf. It's built
-      for the tools that <em>don't</em> have a
-      <a class="text-gold underline underline-offset-2" href={href('/connectors/')}>connector</a> — the vendor
-      portal, the SaaS dashboard, the supplier site. Same golden rules apply: Claude acts as you, it
-      confirms before anything consequential, and the
-      <a class="text-gold underline underline-offset-2" href={href('/safety/')}>Safety &amp; Data</a> rules
-      still hold.
-    </p>
-  </Tldr>
-
-  <div class="prose-content">
-    <p>
-      Claude in Chrome is a browser extension that sits in a side panel while you browse. It sees the
-      page you're on, and — when you ask — it can click buttons, fill out forms, move between tabs, and
-      work through multi-step tasks for you. Anthropic sums it up plainly: Claude can read, click, and
-      navigate websites right in your browser.
-    </p>
-    <p>
-      Here's the mental model that matters: <strong>this is different from pasting a URL into a
-      chat.</strong> When you drop a link into Chat, Claude reads a snapshot of that one page. In
-      Chrome, Claude is <em>operating the browser</em> — it can work inside a dashboard you're already
-      signed into, page through results, compare several open tabs, and take action on live pages. It's
-      the difference between describing a website to a colleague and handing them your keyboard.
-    </p>
-    <p>
-      It's also distinct from the
-      <a class="text-gold underline underline-offset-2" href={href('/connectors/')}>connectors</a> you learned
-      about earlier. A connector talks to a tool through its API — that's how Claude reads Jira or Ramp.
-      Chrome is for everything <em>without</em> a clean API: the dashboard nobody's wired up, the vendor
-      portal, the government form, the supplier site. If you can do it in a browser tab, Claude can help
-      you do it there.
-    </p>
-    <p>
-      You can also choose which model handles a Chrome task — the same
-      <a class="text-gold underline underline-offset-2" href={href('/models/')}>model-choice</a> instinct you
-      use everywhere else. Reach for a heavier model when a workflow is complex or high-stakes, and a
-      faster one for quick, routine steps. Model choice is your first dial here too.
-    </p>
-  </div>
-
-  <h2 class="mb-3 mt-10 text-2xl font-bold tracking-tight">What you'd actually use it for</h2>
-
-  <div class="table-shell reveal my-4">
-    <table class="data-table">
-      <thead>
-        <tr>
-          <th>Team</th>
-          <th>Try asking Claude in Chrome</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="font-semibold">🧾 Finance</td>
-          <td class="text-muted">"Log into this vendor portal, pull our last six invoices into a table, and flag any that don't match our PO numbers."</td>
-        </tr>
-        <tr>
-          <td class="font-semibold">🔧 Engineering</td>
-          <td class="text-muted">"Compare the spec sheets open in these three supplier tabs and give me a side-by-side of lead time, min order qty, and price."</td>
-        </tr>
-        <tr>
-          <td class="font-semibold">🏭 Manufacturing / Quality</td>
-          <td class="text-muted">"Fill out this supplier corrective-action web form using the details I'll paste, then stop before submitting so I can review."</td>
-        </tr>
-        <tr>
-          <td class="font-semibold">📣 Marketing</td>
-          <td class="text-muted">"Go through these five competitor pages and summarize how each one is positioning range and price."</td>
-        </tr>
-        <tr>
-          <td class="font-semibold">💻 Ops / IT</td>
-          <td class="text-muted">"Pull the open ticket counts from this dashboard across all four tabs and total them by category."</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <p class="prose-content">
-    A few of the higher-leverage moves worth knowing:
-  </p>
-
-  <div class="grid gap-3 sm:grid-cols-3 my-5">
-    <div class="hover-lift rounded-[12px] border border-border bg-card p-4">
-      <p class="mb-1 font-semibold text-text">Multi-tab workflows</p>
-      <p class="text-sm text-muted leading-relaxed">Drag a set of tabs into Claude's tab group and it can read and work across all of them at once — no manual switching to compile information from six places.</p>
-    </div>
-    <div class="hover-lift rounded-[12px] border border-border bg-card p-4">
-      <p class="mb-1 font-semibold text-text">Record a workflow</p>
-      <p class="text-sm text-muted leading-relaxed">For something you do the same way every week, hit record, walk through the steps once, and save it as a shortcut. Claude learns to repeat it — teaching by showing instead of describing.</p>
-    </div>
-    <div class="hover-lift rounded-[12px] border border-border bg-card p-4">
-      <p class="mb-1 font-semibold text-text">Scheduled tasks</p>
-      <p class="text-sm text-muted leading-relaxed">Set a browser task to run on its own — daily, weekly, monthly. Great for a Monday-morning dashboard pull that lands before you're even at your desk.</p>
-    </div>
-  </div>
-
-  <TryItNow title="Try it — low stakes to start">
-    <p>
-      Open a few articles or product pages in tabs, drag them into a group, and ask Claude to pull the
-      key facts into one comparison table. It's a safe, read-only way to feel out how the side panel
-      works before you point it at anything that <em>writes</em> data.
-    </p>
-    <CopyPrompt text="I've grouped a few tabs. Read all of them and build a single comparison table of the key facts — one row per page, columns for the details that actually differ. Don't click or submit anything." />
-  </TryItNow>
-
-  <h2 class="mb-3 mt-10 text-2xl font-bold tracking-tight">⚠️ The guardrails (read this part)</h2>
-
-  <div class="prose-content">
-    <p>
-      Browser automation is powerful, which means it deserves respect. Two things to internalize:
-    </p>
-  </div>
-
-  <Callout variant="gold" title="1. Claude acts as you">
-    <p>
-      Same as connectors — it operates with your login and your permissions. If it submits a form,
-      <em>you</em> submitted it. Claude will always ask before high-risk actions like making a purchase,
-      publishing something, or sharing personal data — but you're accountable for the outcome.
-    </p>
-  </Callout>
-
-  <Callout variant="code" title="2. Watch for prompt injection">
-    <p>
-      This is the browser-specific risk. Malicious websites can hide instructions in a page trying to
-      hijack what Claude does — the AI equivalent of a phishing email. Anthropic builds defenses against
-      this and Claude blocks itself on genuinely risky sites, but the practical rule is simple:
-      <strong>start with trusted sites, and review anything sensitive before you let Claude act.</strong>
-      If Claude does something unexpected, pause and look.
-    </p>
-  </Callout>
-
-  <div class="prose-content">
-    <p>
-      You're not alone on this, either. Aptera IT is putting guardrails in place at the org level — the
-      Chrome extension will be centrally managed, and certain high-risk systems (our financial, HR, and
-      infrastructure tools) will be blocked from browser automation by policy. So the "be careful" advice
-      has real backstops behind it, not just good intentions.
-    </p>
-  </div>
-
-  <Quote attribution="Anthropic" source="Claude for Chrome safety guidance">
-    "Only grant permissions to familiar websites while learning how Claude works. Always confirm before
-    Claude handles financial, personal, or work-critical tasks."
-  </Quote>
-
-  <div class="prose-content">
-    <p>
-      It's a beta feature in the browser. Treat it like a sharp tool: incredibly useful, worth handling
-      carefully. When in doubt, the
-      <a class="text-gold underline underline-offset-2" href={href('/safety/')}>Safety &amp; Data</a> rules are
-      your backstop.
-    </p>
-  </div>
-
-  <h2 class="mb-3 mt-10 text-2xl font-bold tracking-tight">Chrome + Office: one workflow, no handoff</h2>
-
-  <div class="prose-content">
-    <p>
-      The real payoff is chaining Chrome together with the
-      <a class="text-gold underline underline-offset-2" href={href('/m365/')}>M365 add-ins</a>. Chrome becomes
-      the <em>research and gather</em> layer; the Office add-ins become the <em>produce the deliverable</em>
-      layer — with no copy-paste seam in the middle:
-    </p>
-  </div>
-
-  <Callout variant="gold" title="A real example, start to finish">
-    <p><strong>1. In Chrome:</strong> "Pull the published pricing from these four competitor tabs into a table."</p>
-    <p><strong>2. In Excel:</strong> "Drop that into a comparison model and calculate our position against each."</p>
-    <p><strong>3. In PowerPoint:</strong> "Turn the Excel comparison into three slides for Thursday's review, using our template."</p>
-    <p class="!mt-3">What used to be an afternoon of tab-juggling and reformatting becomes one connected flow.</p>
-  </Callout>
-
-  <KeyTakeaways>
-    <ul>
-      <li>Claude in Chrome works <strong>inside your browser</strong> — navigating, clicking, and filling forms on live pages, including tools that don't have a connector.</li>
-      <li>It's different from pasting a link (it <em>operates</em> the page) and different from connectors (it's for sites <em>without</em> an API).</li>
-      <li>The higher-leverage moves: multi-tab groups, recording a workflow once to replay it, and scheduled browser tasks.</li>
-      <li><strong>Watch for prompt injection</strong> — start with trusted sites and review anything sensitive before letting Claude act.</li>
-      <li>Claude acts as you and confirms before consequential actions; the <a class="text-gold underline underline-offset-2" href={href('/safety/')}>Safety &amp; Data</a> rules always apply.</li>
-    </ul>
-  </KeyTakeaways>
-
-  <Callout variant="gold" title="📣 Getting set up">
-    <p>
-      Want the Chrome extension enabled, or hit something odd? Email
-      <strong><a href="mailto:jake@aptera.us" class="text-gold underline underline-offset-2">jake@aptera.us</a></strong>.
-    </p>
-  </Callout>
-</BaseLayout>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="refresh" content={"1; url=" + target} />
+    <link rel="canonical" href={target} />
+    <meta name="robots" content="noindex" />
+    <title>Aptera AI Academy has moved</title>
+    <script is:inline define:vars={{ target }}>window.location.replace(target);</script>
+    <style>
+      body { font-family: system-ui, sans-serif; background: #121413; color: #e7e9e7;
+             display: grid; place-items: center; min-height: 100vh; margin: 0; text-align: center; }
+      a { color: #8dc73f; font-weight: 700; }
+      .mark { width: 14px; height: 14px; background: #8dc73f; transform: rotate(45deg);
+              display: inline-block; margin-bottom: 1rem; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <span class="mark"></span>
+      <h1>We moved.</h1>
+      <p>The Aptera AI Academy now lives at its new home — sign in with your Rippling account.</p>
+      <p><a href={target}>Continue to the new AI Academy &rarr;</a></p>
+    </main>
+  </body>
+</html>

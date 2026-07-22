@@ -1,47 +1,31 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import PageHeader from '../../components/PageHeader.astro';
-import Tldr from '../../components/Tldr.astro';
-import { getCollection, render } from 'astro:content';
-
-const faqItems = await getCollection('faq');
-// Sort by order field in frontmatter
-const sorted = faqItems.sort((a, b) => a.data.order - b.data.order);
-const entries = await Promise.all(
-  sorted.map(async (item) => ({ item, Content: (await render(item)).Content }))
-);
+// Redirect stub — this site moved to the Aptera AI Academy app.
+const target = "https://ai-training.apteraops.com/faq";
 ---
-<BaseLayout
-  title="FAQ"
-  description="The questions everyone asks, answered."
-  pageId="faq"
-  readMinutes={4}
->
-  <PageHeader
-    icon="❓"
-    title="FAQ"
-    subtitle="The questions everyone asks, answered."
-    readMinutes={4}
-  />
-
-  <Tldr>
-    <p>
-      Can't find an answer? Reach out to Jake at jake@aptera.us.
-    </p>
-  </Tldr>
-
-  <div class="space-y-3 reveal">
-    {
-      entries.map(({ item, Content }) => (
-        <details class="rounded-xl border border-border bg-card p-4 transition-colors hover:border-gold/50 hover:bg-card-hover">
-          <summary class="cursor-pointer font-semibold text-text hover:text-gold">
-            {item.data.question}
-          </summary>
-          <div class="prose-content mt-4 text-muted [&_p]:m-0 [&_p+p]:mt-2 [&_a]:text-gold [&_a]:underline">
-            <Content />
-          </div>
-        </details>
-      ))
-    }
-  </div>
-</BaseLayout>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="refresh" content={"1; url=" + target} />
+    <link rel="canonical" href={target} />
+    <meta name="robots" content="noindex" />
+    <title>Aptera AI Academy has moved</title>
+    <script is:inline define:vars={{ target }}>window.location.replace(target);</script>
+    <style>
+      body { font-family: system-ui, sans-serif; background: #121413; color: #e7e9e7;
+             display: grid; place-items: center; min-height: 100vh; margin: 0; text-align: center; }
+      a { color: #8dc73f; font-weight: 700; }
+      .mark { width: 14px; height: 14px; background: #8dc73f; transform: rotate(45deg);
+              display: inline-block; margin-bottom: 1rem; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <span class="mark"></span>
+      <h1>We moved.</h1>
+      <p>The Aptera AI Academy now lives at its new home — sign in with your Rippling account.</p>
+      <p><a href={target}>Continue to the new AI Academy &rarr;</a></p>
+    </main>
+  </body>
+</html>

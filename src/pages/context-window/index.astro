@@ -1,235 +1,31 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import PageHeader from '../../components/PageHeader.astro';
-import Tldr from '../../components/Tldr.astro';
-import KeyTakeaways from '../../components/KeyTakeaways.astro';
-import Callout from '../../components/Callout.astro';
-import TryItNow from '../../components/TryItNow.astro';
-import CopyPrompt from '../../components/CopyPrompt.astro';
-import LastReviewed from '../../components/LastReviewed.astro';
-import GlossaryLink from '../../components/GlossaryLink.astro';
-import { href } from '../../lib/site';
+// Redirect stub — this site moved to the Aptera AI Academy app.
+const target = "https://ai-training.apteraops.com/tracks/foundations/context";
 ---
-<BaseLayout
-  title="Context Window"
-  description="What the context window is, why it's finite, what 'compaction' does, and how to save your work before you compact so nothing important gets lost."
-  pageId="context-window"
-  readMinutes={7}
->
-  <PageHeader
-    icon="🪟"
-    title="The Context Window"
-    subtitle="Claude's working memory for your session — and it's finite. Knowing how it fills, when to compact, and how to save your work first is the difference between a smooth long session and a frustrating one."
-    readMinutes={7}
-  />
-
-  <Tldr>
-    <p>
-      The context window is Claude's working memory for a session — measured in
-      <a class="text-gold underline" href={href('/tokenomics/')}>tokens</a>, not
-      messages. Watch it as it grows, <strong>compact at the right moments</strong>
-      to keep going, and — because compaction is lossy — save anything important
-      to a document, a memory, or a skill <em>before</em> you compact.
-    </p>
-  </Tldr>
-
-  <!-- What is it -->
-  <section class="prose-content reveal">
-    <h2>What is a context window?</h2>
-    <p>
-      Picture a whiteboard Claude works at during your session. Everything
-      currently in play is written on it: the system instructions, every message
-      you've sent, every reply Claude has given — plus any files, PDFs, images,
-      and tool or search results you've pulled in. That whiteboard is the
-      <GlossaryLink term="context-window"><strong>context window</strong></GlossaryLink>, and it's how Claude "remembers" what you're
-      working on.
-    </p>
-    <p>
-      It's measured in <a class="text-gold underline" href={href('/tokenomics/')}>tokens</a>
-      (roughly ¾ of a word each), not words or messages. A long PDF can cost
-      thousands of tokens; a quick question costs a handful. And the whiteboard
-      has edges — once it's full, something has to give.
-    </p>
-  </section>
-
-  <figure class="my-6 rounded-r-[12px] border-l-[3px] border-gold bg-gold/5 px-5 py-4">
-    <blockquote class="m-0 text-lg italic leading-relaxed text-text">
-      "Context engineering is the art and science of curating what will go into
-      the limited context window from that constantly evolving universe of
-      possible information."
-    </blockquote>
-    <figcaption class="mt-2 text-sm font-semibold text-gold">
-      — Anthropic, <em>Effective context engineering for AI agents</em>
-    </figcaption>
-  </figure>
-
-  <section class="prose-content">
-    <p>
-      A useful mental model comes from AI researcher Andrej Karpathy, who likens
-      an LLM to a computer: if the model is the CPU, the <strong>context window is
-      the RAM</strong> — fast, working memory that holds what you're actively
-      thinking about, but limited in size and wiped when the session ends.
-    </p>
-  </section>
-
-  <!-- Different sizes -->
-  <section class="prose-content reveal">
-    <h2>Not all windows are the same size</h2>
-    <p>
-      Different models ship with different context-window sizes, and some offer
-      extended long-context modes. A bigger model is a bigger whiteboard — it can
-      hold more of your documents and history at once. Which one you're using
-      affects how much room you have to work with, so it's worth knowing your
-      model. (See <a class="text-gold underline" href={href('/models/')}>Choosing Your Model</a>.)
-    </p>
-    <p>
-      As a rough guide, current Claude models offer roughly <strong>200K-token
-      windows</strong> — about <strong>150,000 words</strong>, or a few hundred
-      pages of text — with some configurations supporting longer context.
-    </p>
-    <LastReviewed date="2026-07-02" label="Context window sizes" />
-  </section>
-
-  <!-- Bigger isn't always better -->
-  <section class="prose-content reveal">
-    <h2>Bigger isn't always better</h2>
-    <p>A larger window sounds like a pure win. It mostly is — but there are real trade-offs.</p>
-    <p><strong>The upside:</strong></p>
-    <ul>
-      <li>More documents and conversation history in play at once.</li>
-      <li>Fewer restarts on long, multi-step work.</li>
-      <li>Whole-document analysis instead of feeding things in piece by piece.</li>
-    </ul>
-    <p><strong>The catch:</strong></p>
-    <ul>
-      <li><strong>Cost &amp; speed.</strong> More tokens in play means slower, pricier turns — every turn re-reads the window. (More in <a class="text-gold underline" href={href('/tokenomics/')}>Tokenomics</a>.)</li>
-      <li><strong>Context rot.</strong> Quality and recall degrade <em>as the window fills</em>, well before you hit the hard limit. The advertised size isn't the same as the comfortably usable size.</li>
-      <li><strong>Lost in the middle.</strong> Models tend to recall the start and end of a long context better than the middle.</li>
-    </ul>
-  </section>
-
-  <figure class="my-6 rounded-r-[12px] border-l-[3px] border-gold bg-gold/5 px-5 py-4">
-    <blockquote class="m-0 text-lg italic leading-relaxed text-text">
-      "As the number of tokens in the context window increases, the model's
-      ability to accurately recall information from that context decreases."
-    </blockquote>
-    <figcaption class="mt-2 text-sm font-semibold text-gold">
-      — Anthropic, on the phenomenon known as <em>context rot</em>
-    </figcaption>
-  </figure>
-
-  <Callout variant="chat" title="🧭 Two practical moves">
-    <p>
-      Because of context rot and "lost in the middle," <strong>front-load your
-      most important instructions</strong>, and in a long prompt, <strong>restate
-      the key constraints near the end</strong>. The stuff that matters most
-      should sit where the model pays the most attention.
-    </p>
-  </Callout>
-
-  <!-- Compaction -->
-  <section class="prose-content reveal">
-    <h2>What is compaction?</h2>
-    <p>
-      <GlossaryLink term="compaction"><strong>Compaction</strong></GlossaryLink> is the cleanup that keeps a long session alive.
-      Instead of carrying every word of the conversation forward, Claude condenses
-      the earlier parts into a compact summary — freeing up the whiteboard while
-      keeping the key facts.
-    </p>
-    <ul>
-      <li><strong>What it does:</strong> swaps verbose history for a summary so you can keep working in the same session.</li>
-      <li><strong>Why it's needed:</strong> it lets you continue past what would otherwise overflow the window — and it pushes back on context rot by trimming the clutter.</li>
-      <li><strong>The catch:</strong> compaction is <em>lossy</em>. A summary can drop details the original conversation contained. That's the whole reason for the next section.</li>
-    </ul>
-  </section>
-
-  <!-- When to compact -->
-  <section class="prose-content reveal">
-    <h2>Watch the gauge: <em>when</em> to compact</h2>
-    <p>
-      Keep half an eye on how full the window is. In Claude Code you can see
-      context usage as you work; in a chat, watch the length of the conversation
-      and any length warnings.
-    </p>
-    <ul>
-      <li><strong>Good moments:</strong> a phase of the work is finished, you're about to start a big new sub-task, or you notice Claude's recall starting to slip.</li>
-      <li><strong>Bad moment:</strong> in the middle of a delicate, multi-step reasoning chain — compacting mid-thought can drop the very details you need.</li>
-    </ul>
-    <p>
-      And sometimes the best move isn't to compact at all — a crisp summary prompt
-      in a <em>brand-new</em> conversation can beat compacting a bloated thread.
-      (That's the "start fresh" option from
-      <a class="text-gold underline" href={href('/manual-looping/')}>Manual Looping</a>.)
-    </p>
-  </section>
-
-  <!-- Save before you compact -->
-  <section class="prose-content reveal">
-    <h2>Save before you compact</h2>
-    <p>
-      Since compaction is lossy, treat it like saving a document before you close
-      it. Capture the important state <strong>first</strong>:
-    </p>
-    <ul>
-      <li><strong>Have Claude write a handoff doc.</strong> Ask it to summarize decisions made, file paths, open questions, and next steps into a document you keep.</li>
-      <li><strong>Persist durable facts to a <a class="text-gold underline" href={href('/connectors/')}>memory or a skill</a>.</strong> Anything that should outlive this session — not just this window — belongs somewhere permanent.</li>
-      <li><strong>Export key artifacts to files.</strong> Code, configs, and final drafts should live in a file, not only in the chat.</li>
-    </ul>
-  </section>
-
-  <Callout variant="gold" title="🛠️ Real Aptera example: the Engineering Team Server Setup">
-    <p>
-      When Jake used Claude Code to build and deploy a new server for the
-      engineering team on Hetzner, it was a long, multi-step session — exactly the
-      kind where the context window fills up. His rhythm:
-    </p>
-    <ol class="mt-2 list-decimal pl-5 [&_li]:mb-1">
-      <li><strong>Watch the window</strong> as it grew.</li>
-      <li>When it got large, have Claude <strong>write up the steps so far into a Confluence page</strong> (using the Atlassian connector).</li>
-      <li><strong>Compact</strong> — clearing the board, with the work safely documented.</li>
-      <li>Keep going; when it filled again, have Claude <strong>update the same Confluence doc</strong> with the new steps plus any extra documentation worth keeping.</li>
-      <li>Repeat until done.</li>
-    </ol>
-    <p class="mt-2">
-      The payoff: nothing was lost across compaction cycles — <em>and</em> the
-      session ended with a complete, polished setup runbook in Confluence as a
-      byproduct. Documentation he'd have had to write anyway. Two birds, one loop.
-    </p>
-  </Callout>
-
-  <!-- Short vs long term memory -->
-  <section class="prose-content reveal">
-    <h2>Short-term vs. long-term memory</h2>
-    <p>
-      The context window is <strong>short-term</strong> memory — brilliant within
-      a session, gone after it. For anything that needs to last, reach past the
-      window: <strong>Memory, Projects, files, and skills</strong> are Claude's
-      long-term memory. Knowing which is which is what lets you work confidently
-      across many sessions without losing the thread. (See
-      <a class="text-gold underline" href={href('/memory/')}>Memory &amp; Projects</a>
-      and <a class="text-gold underline" href={href('/connectors/')}>Connectors &amp; Skills</a>.)
-    </p>
-  </section>
-
-  <TryItNow title="Check what Claude is holding onto">
-    <p>
-      A quick context-awareness exercise for any session that's been running a
-      while:
-    </p>
-    <CopyPrompt text="Summarize where we are in this conversation and list what context you're still holding." />
-    <p>
-      If the summary is thinner than you expected, that's your cue — save the
-      important bits to a doc, memory, or skill before you compact or move on.
-    </p>
-  </TryItNow>
-
-  <KeyTakeaways>
-    <ul>
-      <li>The context window is finite working memory, measured in tokens — everything you type, paste, attach, and run fills it.</li>
-      <li>Quality degrades <em>as it fills</em> ("context rot"), not just at the limit — so watch the gauge.</li>
-      <li>Compaction frees space by summarizing — compact at natural breakpoints, never mid-thought.</li>
-      <li>Compaction is lossy: save to a doc, memory, or skill <strong>before</strong> you compact.</li>
-      <li>For knowledge that must last, reach past the window — files, memory, and skills are the long-term store.</li>
-    </ul>
-  </KeyTakeaways>
-</BaseLayout>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="refresh" content={"1; url=" + target} />
+    <link rel="canonical" href={target} />
+    <meta name="robots" content="noindex" />
+    <title>Aptera AI Academy has moved</title>
+    <script is:inline define:vars={{ target }}>window.location.replace(target);</script>
+    <style>
+      body { font-family: system-ui, sans-serif; background: #121413; color: #e7e9e7;
+             display: grid; place-items: center; min-height: 100vh; margin: 0; text-align: center; }
+      a { color: #8dc73f; font-weight: 700; }
+      .mark { width: 14px; height: 14px; background: #8dc73f; transform: rotate(45deg);
+              display: inline-block; margin-bottom: 1rem; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <span class="mark"></span>
+      <h1>We moved.</h1>
+      <p>The Aptera AI Academy now lives at its new home — sign in with your Rippling account.</p>
+      <p><a href={target}>Continue to the new AI Academy &rarr;</a></p>
+    </main>
+  </body>
+</html>

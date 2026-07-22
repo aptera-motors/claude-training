@@ -1,130 +1,31 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import PageHeader from '../../components/PageHeader.astro';
-import Badge from '../../components/Badge.astro';
-import { getCollection, render } from 'astro:content';
-
-const WIN_FORM_URL = 'https://forms.office.com/Pages/ResponsePage.aspx?id=s0De5IZXIECbcc-Tdhnk1oVy0x9kpH5Ho0VoaEAGmYdUMlYwTzNBSFdUV04zT0VHTDBDWTU4VFNSRi4u';
-
-const winEntries = (await getCollection('wins')).sort(
-  (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
-);
-const wins = await Promise.all(
-  winEntries.map(async (win) => ({ data: win.data, Content: (await render(win)).Content }))
-);
-
-const modeLabel: Record<string, string> = {
-  chat: 'Chat',
-  cowork: 'Co-Work',
-  code: 'Code',
-};
-
-const mailtoBody = encodeURIComponent(
-  [
-    'What I did:',
-    '',
-    'Which mode (Chat / Co-Work / Code):',
-    '',
-    'Time saved (rough estimate):',
-    '',
-    "OK to publish my name? (Yes / No, use 'A team member' instead):",
-  ].join('\r\n')
-);
-
-const mailto = `mailto:jake@aptera.us?subject=AI%20Win%20Submission&body=${mailtoBody}`;
+// Redirect stub — this site moved to the Aptera AI Academy app.
+const target = "https://ai-training.apteraops.com/wins";
 ---
-<BaseLayout
-  title="Win Gallery"
-  description="Real AI wins from real Aptera teams. Get inspired — then submit your own."
-  pageId="wins"
-  readMinutes={3}
->
-  <PageHeader
-    icon="🏆"
-    title="Win Gallery"
-    subtitle="Real time saved. Real problems solved. Real Aptera people using Claude to do more with less drag."
-    readMinutes={3}
-  />
-
-  <p class="mb-8 text-muted leading-relaxed">
-    Every win below is something someone on our team actually did. Browse for inspiration, steal the approach, then add your own at the bottom.
-  </p>
-
-  {WIN_FORM_URL && (
-    <a
-      href={WIN_FORM_URL}
-      target="_blank"
-      rel="noopener noreferrer"
-      class="reveal hover-lift mb-6 block rounded-[12px] border-2 border-gold/50 bg-gold/5 px-6 py-6 text-center transition-colors hover:bg-gold/10"
-    >
-      <p class="m-0 mb-2 text-2xl font-extrabold tracking-tight text-text">
-        🏆 Share your win
-      </p>
-      <p class="mx-auto mb-1 max-w-[56ch] leading-relaxed text-muted">
-        Saved an hour? Solved a problem in minutes that used to take days? Takes about 2 minutes to submit via the form.
-      </p>
-      <p class="m-0 text-xs text-dim">
-        Every win is reviewed before publishing — usually live within a week.
-      </p>
-    </a>
-  )}
-
-  <!-- Win card grid -->
-  <div class="grid gap-5 sm:grid-cols-2">
-    {wins.map(({ data, Content }) => {
-      const win = { data };
-      const mode = win.data.mode.toLowerCase();
-      const modeVariant = (mode === 'chat' || mode === 'cowork' || mode === 'code') ? mode : 'neutral';
-      const modeText = modeLabel[mode] ?? win.data.mode;
-      return (
-        <article class="reveal hover-lift flex flex-col rounded-[12px] border border-border bg-card p-5 transition-colors hover:border-gold/40 hover:bg-card-hover">
-          <h2 class="m-0 mb-3 text-lg font-bold leading-snug text-text">
-            {win.data.title}
-          </h2>
-
-          <div class="mb-4 flex flex-wrap gap-2">
-            <!-- Who + team badge -->
-            <Badge variant="neutral" text={`${win.data.who} · ${win.data.team}`} />
-            <!-- Mode chip -->
-            <Badge variant={modeVariant} text={modeText} />
-            <!-- Time saved chip -->
-            {win.data.timeSaved ? (
-              <Badge variant="gold" emoji="⏱" text={win.data.timeSaved} />
-            ) : null}
-          </div>
-
-          <div class="prose-content flex-1 text-sm leading-relaxed text-muted [&_p]:m-0 [&_p+p]:mt-2">
-            <Content />
-          </div>
-        </article>
-      );
-    })}
-  </div>
-
-  {WIN_FORM_URL ? (
-    <p class="mt-10 text-center text-xs text-dim">
-      Prefer email? You can still <a href={mailto} class="text-muted underline hover:text-text">submit a win by email</a>.
-    </p>
-  ) : (
-    <!-- Submit your win (fallback while the Form URL is pending) -->
-    <section class="mt-14 rounded-[12px] border-2 border-gold/50 bg-gold/5 px-6 py-8 text-center">
-      <p class="mb-1 text-4xl">🏆</p>
-      <h2 class="m-0 mb-3 text-2xl font-extrabold tracking-tight text-text">
-        Got a win? We want it.
-      </h2>
-      <p class="mx-auto mb-6 max-w-[52ch] leading-relaxed text-muted">
-        Saved an hour? Solved a problem in minutes that used to take days? Turned a dreaded task into a one-liner? That counts. Submit it and get your name in lights.
-      </p>
-      <a
-        href={mailto}
-        class="inline-block rounded-[12px] bg-gold px-6 py-3 font-bold text-canvas transition-opacity hover:opacity-90"
-      >
-        Submit your win →
-      </a>
-      <p class="mt-4 text-xs text-dim">
-        Opens a pre-filled email to jake@aptera.us. Takes about 2 minutes.
-      </p>
-    </section>
-  )}
-
-</BaseLayout>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="refresh" content={"1; url=" + target} />
+    <link rel="canonical" href={target} />
+    <meta name="robots" content="noindex" />
+    <title>Aptera AI Academy has moved</title>
+    <script is:inline define:vars={{ target }}>window.location.replace(target);</script>
+    <style>
+      body { font-family: system-ui, sans-serif; background: #121413; color: #e7e9e7;
+             display: grid; place-items: center; min-height: 100vh; margin: 0; text-align: center; }
+      a { color: #8dc73f; font-weight: 700; }
+      .mark { width: 14px; height: 14px; background: #8dc73f; transform: rotate(45deg);
+              display: inline-block; margin-bottom: 1rem; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <span class="mark"></span>
+      <h1>We moved.</h1>
+      <p>The Aptera AI Academy now lives at its new home — sign in with your Rippling account.</p>
+      <p><a href={target}>Continue to the new AI Academy &rarr;</a></p>
+    </main>
+  </body>
+</html>

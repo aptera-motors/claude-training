@@ -1,265 +1,31 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import PageHeader from '../../components/PageHeader.astro';
-import Tldr from '../../components/Tldr.astro';
-import TryItNow from '../../components/TryItNow.astro';
-import CopyPrompt from '../../components/CopyPrompt.astro';
-import KeyTakeaways from '../../components/KeyTakeaways.astro';
-import Callout from '../../components/Callout.astro';
-import GlossaryLink from '../../components/GlossaryLink.astro';
-import Badge from '../../components/Badge.astro';
-import { href } from '../../lib/site';
+// Redirect stub — this site moved to the Aptera AI Academy app.
+const target = "https://ai-training.apteraops.com/tracks/claude/connectors";
 ---
-<BaseLayout
-  title="Connectors & Skills"
-  description="What Claude is wired into at Aptera — and the repeatable skills you can run by name."
-  pageId="connectors"
-  readMinutes={8}
->
-  <PageHeader
-    icon="🔌"
-    title="Connectors & Skills"
-    subtitle="Claude isn't just a chatbot. At Aptera it's wired into your actual tools — and it knows some tricks."
-    readMinutes={8}
-  />
-
-  <Tldr>
-    <p>
-      A <strong><GlossaryLink term="connector-mcp">connector</GlossaryLink></strong> is a secure bridge that lets Claude read and write a tool on your behalf.
-      A <strong><GlossaryLink term="skill">skill</GlossaryLink></strong> is a packaged, repeatable workflow you can run by name. Together they turn
-      Claude from a clever assistant into something that actually does work inside your systems.
-    </p>
-  </Tldr>
-
-  <div class="prose-content">
-    <p>
-      Out of the box, Claude knows a lot — but it doesn't know what's in your Jira board, your
-      Confluence wiki, or last month's Ramp statement. Connectors fix that. They give Claude
-      permission to look things up, create records, and take actions in the tools you already use.
-      You stay in control: Claude acts as you, with your permissions, and asks before it does
-      anything consequential.
-    </p>
-  </div>
-
-  <div class="prose-content">
-    <p>
-      Under the hood, connectors are built on the <strong>Model Context Protocol (MCP)</strong> — an
-      open standard for plugging AI into outside tools and data. You don't need to think about it day to
-      day; it's simply the common "plug" that lets Claude reach the systems you already use.
-    </p>
-  </div>
-
-  <figure class="my-6 rounded-r-[12px] border-l-[3px] border-gold bg-gold/5 px-5 py-4">
-    <blockquote class="m-0 text-lg italic leading-relaxed text-text">
-      "Think of MCP like a USB-C port for AI applications. Just as USB-C provides a standardized way to
-      connect electronic devices, MCP provides a standardized way to connect AI applications to external
-      systems."
-    </blockquote>
-    <figcaption class="mt-2 text-sm font-semibold text-gold">— Anthropic, Model Context Protocol documentation</figcaption>
-  </figure>
-
-  <!-- Connected Today -->
-  <section class="mb-10 reveal">
-    <h2 class="mb-4 text-2xl font-bold tracking-tight">Connected today</h2>
-    <p class="mb-5 text-muted">These are the tools Claude is already wired into at Aptera. Open Co-Work and start asking.</p>
-
-    <div class="table-shell">
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th>Tool</th>
-            <th>What it does</th>
-            <th>Try asking</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="font-semibold">🎫 Jira</td>
-            <td class="text-muted">Read, create, and update issues. Claude can search across projects, pull sprint status, or log a new bug without you touching the Jira UI.</td>
-            <td class="italic text-muted">"What are the open issues in project OI assigned to me right now?"</td>
-          </tr>
-          <tr>
-            <td class="font-semibold">📚 Confluence</td>
-            <td class="text-muted">Read, create, and update pages. Ask Claude to find documentation, summarize a space, or draft a new page and publish it — straight from a conversation.</td>
-            <td class="italic text-muted">"Find the onboarding docs in Confluence and give me a bullet summary of what's there."</td>
-          </tr>
-          <tr>
-            <td class="font-semibold">💳 Ramp</td>
-            <td class="text-muted">Transactions, bills, reimbursements, and spend reporting. Ask Claude to pull your recent charges, flag anything that needs a receipt, or summarize team spend by category.</td>
-            <td class="italic text-muted">"Show me my transactions from the last 30 days and flag any that are missing receipts."</td>
-          </tr>
-          <tr>
-            <td class="font-semibold">📨 Microsoft 365</td>
-            <td class="text-muted">Outlook mail and calendar, SharePoint file search, and Teams chat history. Claude can check your schedule, hunt down a file, or search chat for that decision from last month.</td>
-            <td class="italic text-muted">"Search my Teams messages for any mention of the solar hood pilot from the last two weeks."</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <Callout variant="chat" title="🔌 How do I turn one on?">
-    <p>
-      Connectors live in the <strong>Claude desktop app</strong> (Co-Work) — see
-      <a class="text-chat underline" href={href('/apps/')}>Apps Compared</a> and
-      <a class="text-chat underline" href={href('/getting-started/')}>Getting Started</a>. The ones above
-      are already set up for Aptera, so you can open Co-Work and start asking. The first time Claude uses a
-      connector it may ask you to sign in and authorize it; after that, it acts as you.
-    </p>
-  </Callout>
-
-  <Callout variant="gold" title="⚠️ Connectors act as you">
-    <p>
-      When Claude uses a connector, it's acting with <strong>your identity and your permissions</strong>.
-      If you ask Claude to create a Jira issue, it creates it as you. If you ask it to send an email,
-      it sends it from your address. Claude will always confirm before taking actions that write or
-      modify data — but you're the one responsible for what gets done. Treat it like handing your
-      keyboard to a very capable colleague: you're still accountable. A connector can only reach what
-      <strong>you</strong> already have access to, and the same rules from
-      <a class="text-gold underline" href={href('/safety/')}>Safety &amp; Data</a> apply.
-    </p>
-  </Callout>
-
-  <!-- Skills -->
-  <section class="mb-10 reveal">
-    <h2 class="mb-2 text-2xl font-bold tracking-tight">Skills</h2>
-    <p class="mb-5 text-muted leading-relaxed">
-      A skill is a packaged, repeatable workflow you can invoke by name — like calling a function
-      instead of writing it from scratch every time. Skills combine multiple steps (including connector
-      calls) into a single, reliable flow — <strong>and you can build your own</strong> (more on that
-      below). The flagship one available right now:
-    </p>
-
-    <div class="rounded-[12px] border border-cowork/40 bg-cowork-dim/20 p-6">
-      <div class="mb-3 flex items-center gap-2">
-        <span class="text-2xl">📝</span>
-        <span class="text-lg font-bold text-text">Meeting Minutes skill</span>
-        <span class="ml-auto"><Badge variant="cowork" text="Co-Work" /></span>
-      </div>
-      <p class="text-muted leading-relaxed mb-4">
-        Drop a Teams meeting transcript (VTT or TXT file) into Co-Work, then run the Meeting Minutes
-        skill. It takes care of the rest — formatted Confluence notes and Jira action items, all linked
-        together. Here's exactly how it goes:
-      </p>
-
-      <ol class="space-y-3 text-text text-sm leading-relaxed list-none p-0 m-0">
-        <li class="flex gap-3">
-          <span class="flex-shrink-0 flex items-center justify-center w-7 h-7 rounded-full bg-cowork/20 text-cowork font-bold text-xs">1</span>
-          <span><strong>Upload the transcript.</strong> Drag your .vtt or .txt Teams export into the Co-Work file area. Claude reads the whole thing.</span>
-        </li>
-        <li class="flex gap-3">
-          <span class="flex-shrink-0 flex items-center justify-center w-7 h-7 rounded-full bg-cowork/20 text-cowork font-bold text-xs">2</span>
-          <span><strong>Claude confirms the details.</strong> It identifies attendees and the meeting title, then asks you to verify before writing anything. You approve, correct, or add context.</span>
-        </li>
-        <li class="flex gap-3">
-          <span class="flex-shrink-0 flex items-center justify-center w-7 h-7 rounded-full bg-cowork/20 text-cowork font-bold text-xs">3</span>
-          <span><strong>Confluence page is created.</strong> A formatted meeting minutes page goes into the correct Confluence space — attendees, summary, discussion points, decisions, and action items.</span>
-        </li>
-        <li class="flex gap-3">
-          <span class="flex-shrink-0 flex items-center justify-center w-7 h-7 rounded-full bg-cowork/20 text-cowork font-bold text-xs">4</span>
-          <span><strong>Jira issues are filed.</strong> Each action item becomes a Jira ticket, assigned to the right person, linked back to the Confluence page. No copy-paste, no missed items.</span>
-        </li>
-        <li class="flex gap-3">
-          <span class="flex-shrink-0 flex items-center justify-center w-7 h-7 rounded-full bg-cowork/20 text-cowork font-bold text-xs">5</span>
-          <span><strong>You review and share.</strong> Claude gives you links to everything it created. You spot-check, tweak anything that needs it, and send the Confluence link to the team.</span>
-        </li>
-      </ol>
-
-      <p class="mt-4 text-sm text-muted">
-        A 90-minute meeting that used to take 45 minutes to document now takes about 3.
-      </p>
-    </div>
-  </section>
-
-  <!-- Build your own skill -->
-  <section class="mb-10 reveal">
-    <h2 class="mb-2 text-2xl font-bold tracking-tight">Build your own skill</h2>
-    <p class="mb-4 text-muted leading-relaxed">
-      Here's the part most people miss: you can <strong>make your own skills</strong>, and you don't need
-      to know how to code. If you keep doing the same multi-step task the same way, that's a skill waiting
-      to happen — a weekly report Finance rebuilds by hand, a QA checklist Manufacturing fills out the same
-      way each time, a change-order summary in CAD, issue triage in Engineering. (It's the close cousin of
-      an <a class="text-gold underline" href={href('/agentic-looping/')}>agentic loop</a>.)
-    </p>
-
-    <figure class="my-6 rounded-r-[12px] border-l-[3px] border-gold bg-gold/5 px-5 py-4">
-      <blockquote class="m-0 text-lg italic leading-relaxed text-text">
-        "Anyone can now specialize their agents with composable capabilities by capturing and sharing their
-        procedural knowledge."
-      </blockquote>
-      <figcaption class="mt-2 text-sm font-semibold text-gold">— Anthropic, on Agent Skills</figcaption>
-    </figure>
-
-    <p class="mb-2 text-muted leading-relaxed">The way to build one is to describe it to Claude:</p>
-    <ol class="mb-5 space-y-2 text-text text-sm leading-relaxed list-decimal pl-5">
-      <li><strong>Talk it through.</strong> Tell Claude the repetitive task — the steps, the inputs, what "done" looks like — and ask whether it's a good skill candidate.</li>
-      <li><strong>Claude drafts the skill.</strong> It packages the instructions (and any connector steps) into a skill you can run by name.</li>
-      <li><strong>Test it</strong> on a real example and refine until it's reliable.</li>
-      <li><strong>Bring it to IT to publish.</strong> We'll help make it available to you — and share it with your team if it's broadly useful.</li>
-    </ol>
-
-    <TryItNow title="Start a skill with Claude">
-      <p>Describe a task you repeat. Paste this to kick it off — fill in the brackets:</p>
-      <CopyPrompt text="I do this repetitive task and want to turn it into a reusable skill: [describe the task — the trigger, the steps you take, the tools involved, and what the finished result looks like]. First, tell me whether this is a good candidate for a skill. Then help me build it, and flag anything you'd need access to (like a connector)." />
-    </TryItNow>
-
-    <Callout variant="cowork" title="⌨️ For Claude Code users">
-      <p>
-        Claude Code includes a built-in <strong>skill-creator</strong> — ask it to make a skill and it
-        scaffolds the files for you, version-controlled alongside your project.
-      </p>
-    </Callout>
-
-    <Callout variant="gold" title="💡 Not sure if it's a good fit?">
-      <p>
-        Ask Claude first — it'll help you judge whether a task is worth turning into a skill. Then reach
-        out to IT (<a class="text-gold underline" href="mailto:jake@aptera.us">jake@aptera.us</a>) when
-        you're ready to publish it.
-      </p>
-    </Callout>
-  </section>
-
-  <!-- Want something connected? -->
-  <section class="mb-10 reveal">
-    <h2 class="mb-2 text-2xl font-bold tracking-tight">Want something connected?</h2>
-    <p class="mb-4 text-muted leading-relaxed">
-      The list above is just where we started. There are connectors available for dozens of tools —
-      and if your team has a tool that's eating time, there's a good chance we can wire Claude into it.
-    </p>
-
-    <div class="rounded-[12px] border border-border bg-card p-5 mb-4">
-      <p class="text-sm font-semibold uppercase tracking-wide text-dim mb-3">Tools with connectors available</p>
-      <div class="flex flex-wrap gap-2">
-        {['NetSuite', 'Slack', 'Google Workspace', 'GitHub', 'Salesforce', 'HubSpot', 'Notion', 'Rippling', 'ServiceNow', 'Zendesk'].map((tool) => (
-          <Badge variant="neutral" text={tool} />
-        ))}
-      </div>
-    </div>
-
-    <p class="text-muted leading-relaxed">
-      To request a new connector or skill, or to report an issue with an existing one, email
-      <a href="mailto:jake@aptera.us" class="text-gold underline underline-offset-2 font-semibold">jake@aptera.us</a>.
-      Include the tool name and a quick description of what you'd like Claude to be able to do with it.
-    </p>
-  </section>
-
-  <TryItNow title="Try a connector">
-    <p>
-      Open Co-Work and use the Confluence connector to run a real search. Paste this prompt exactly:
-    </p>
-    <CopyPrompt text="Search Confluence for our onboarding docs and summarize what's there. Tell me: what topics are covered, what looks out of date, and what seems to be missing for a new employee." />
-    <p>
-      Claude will query Confluence on your behalf, pull back the relevant pages, and give you a
-      structured summary — no Confluence tab required.
-    </p>
-  </TryItNow>
-
-  <KeyTakeaways>
-    <ul>
-      <li>Connectors give Claude <strong>live access to your tools</strong> — Jira, Confluence, Ramp, and Microsoft 365 are wired in today.</li>
-      <li>Skills are <strong>named, repeatable workflows</strong> — the Meeting Minutes skill turns a Teams transcript into Confluence notes + Jira tickets in minutes.</li>
-      <li><strong>You can build your own skill</strong> — describe a repetitive task to Claude, test it, and bring it to IT to publish.</li>
-      <li>Connectors act as you and with your permissions — you're always the one approving consequential actions.</li>
-    </ul>
-  </KeyTakeaways>
-</BaseLayout>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="refresh" content={"1; url=" + target} />
+    <link rel="canonical" href={target} />
+    <meta name="robots" content="noindex" />
+    <title>Aptera AI Academy has moved</title>
+    <script is:inline define:vars={{ target }}>window.location.replace(target);</script>
+    <style>
+      body { font-family: system-ui, sans-serif; background: #121413; color: #e7e9e7;
+             display: grid; place-items: center; min-height: 100vh; margin: 0; text-align: center; }
+      a { color: #8dc73f; font-weight: 700; }
+      .mark { width: 14px; height: 14px; background: #8dc73f; transform: rotate(45deg);
+              display: inline-block; margin-bottom: 1rem; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <span class="mark"></span>
+      <h1>We moved.</h1>
+      <p>The Aptera AI Academy now lives at its new home — sign in with your Rippling account.</p>
+      <p><a href={target}>Continue to the new AI Academy &rarr;</a></p>
+    </main>
+  </body>
+</html>

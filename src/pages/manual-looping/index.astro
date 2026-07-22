@@ -1,199 +1,31 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import PageHeader from '../../components/PageHeader.astro';
-import Tldr from '../../components/Tldr.astro';
-import CopyPrompt from '../../components/CopyPrompt.astro';
-import TryItNow from '../../components/TryItNow.astro';
-import KeyTakeaways from '../../components/KeyTakeaways.astro';
-import Callout from '../../components/Callout.astro';
-import GlossaryLink from '../../components/GlossaryLink.astro';
-import { href } from '../../lib/site';
+// Redirect stub — this site moved to the Aptera AI Academy app.
+const target = "https://ai-training.apteraops.com/tracks/foundations/looping";
 ---
-<BaseLayout
-  title="Manual Looping"
-  description="Stop one-shot prompting. The real unlock with Claude is looping — iterating in a conversation until the output actually fits the work."
-  pageId="manual-looping"
-  readMinutes={6}
->
-  <PageHeader
-    icon="🔁"
-    title="Manual Looping"
-    subtitle="Most of us treat AI like a search engine — type something in, take the first answer, move on. The unlock is treating Claude as a collaborator you iterate with, not a vending machine you query once."
-    readMinutes={6}
-  />
-
-  <Tldr>
-    <p>
-      One prompt gets you a draft. <strong>Looping</strong> gets you something
-      worth using. Send a prompt, read what comes back, then refine — adjust the
-      tone, push for depth, reformat, try a new angle — until it fits the work.
-      You don't need to be a great prompt writer. You just need to be a good
-      reviewer.
-    </p>
-  </Tldr>
-
-  <figure class="my-6 rounded-r-[12px] border-l-[3px] border-gold bg-gold/5 px-5 py-4">
-    <blockquote class="m-0 text-lg italic leading-relaxed text-text">
-      "Prompting is not a one-and-done task — it's a process of refinement. Like
-      moderating an interview or probing during a focus group, working with AI
-      requires you to build context gradually and follow the thread of insight."
-    </blockquote>
-    <figcaption class="mt-2 text-sm font-semibold text-gold">— Indeemo Research</figcaption>
-  </figure>
-
-  <!-- What is manual looping -->
-  <section class="prose-content reveal">
-    <h2>What is manual looping?</h2>
-    <p>
-      Manual looping just means following up. You send a prompt, get a response,
-      and then refine — adjust the tone, push for more depth, reformat the
-      output, try a different angle. You stay in the conversation and build
-      toward something genuinely useful, rather than accepting the first draft or
-      starting over from scratch.
-    </p>
-    <p>
-      Think of it like working with a talented contractor. You don't hand them a
-      napkin sketch, walk away, and hope for a finished product. You review, give
-      feedback, and build toward something right together.
-    </p>
-  </section>
-
-  <!-- Real-world example -->
-  <section class="prose-content reveal">
-    <h2>A real-world example</h2>
-    <p>
-      Here's a strong opening prompt — one that gives Claude enough context to
-      produce something useful on the first pass:
-    </p>
-  </section>
-
-  <CopyPrompt text="I need to draft an email to a new parts supplier we're onboarding — a small machine shop called Precision Fabrication Group based in San Diego. This is our first communication after they signed our NDA. The goal is to kick off the supplier qualification process. They'll need to submit three things: a completed W-9, a copy of their quality certification (we accept ISO 9001 or AS9100), and a filled-out Aptera Supplier Questionnaire (I'll attach the form separately). Tone should be professional but warm — we want them to feel like a partner, not like they're being processed. Keep it under 200 words." />
-
-  <section class="prose-content">
-    <p>
-      That's a prompt worth sending. It names the supplier, states the context,
-      lists the exact deliverables, specifies tone, and sets a length constraint.
-      Claude now has everything it needs to produce a first draft that's
-      genuinely close.
-    </p>
-    <p>Then the loop begins:</p>
-  </section>
-
-  <CopyPrompt text="Good. Now tighten the opening line — it's a little stiff. And move the list of required documents into a numbered list so it's easier to scan." />
-  <CopyPrompt text="Perfect. One more pass — swap 'please submit the following' for something that sounds less like a form letter." />
-
-  <section class="prose-content">
-    <p>
-      Three turns. Specific feedback each time. The result is something you'd
-      actually send.
-    </p>
-  </section>
-
-  <!-- Why it beats the perfect prompt -->
-  <section class="prose-content reveal">
-    <h2>Why it beats the "perfect prompt" approach</h2>
-    <p>
-      There's a temptation to front-load everything into one massive,
-      hyper-detailed prompt. Resist it. Iteration is faster and more reliable —
-      perfect prompts take longer to write and still rarely produce perfect
-      outputs.
-    </p>
-    <p>Manual looping lets you:</p>
-    <ul>
-      <li><strong>Start strong, not perfect</strong> — a good context-rich prompt gets you 80% there on the first pass.</li>
-      <li><strong>Course-correct early</strong> — before you're deep in the wrong direction.</li>
-      <li><strong>Stay in control</strong> — you shape the output through dialogue rather than trying to anticipate everything upfront.</li>
-    </ul>
-    <p>
-      The best outputs usually come after a few refinements — and the moves are
-      simpler than most people think: "Make it shorter." "Make it more casual."
-      "Give me another version of option two." "Change this section but keep the
-      rest."
-    </p>
-  </section>
-
-  <!-- One thing to watch -->
-  <section class="prose-content reveal">
-    <h2>One thing to watch</h2>
-    <p>
-      Looping works best when you're refining in the right direction. If an early
-      response is fundamentally off — wrong scope, wrong format, wrong
-      assumptions — you have two good options:
-    </p>
-  </section>
-
-  <div class="my-6 grid gap-4 sm:grid-cols-2">
-    <div class="rounded-[12px] border border-border bg-card p-5">
-      <p class="m-0 mb-1.5 font-bold text-gold">✏️ Option 1 · Edit the original prompt</p>
-      <p class="m-0 text-sm leading-relaxed text-muted">
-        Claude lets you go back and edit a previous message. Often the cleanest
-        fix — you correct the source of the problem rather than layering
-        corrections on a bad foundation. Use this when the issue is how you set
-        things up, not just the output.
-      </p>
-    </div>
-    <div class="rounded-[12px] border border-border bg-card p-5">
-      <p class="m-0 mb-1.5 font-bold text-gold">🆕 Option 2 · Start a new conversation</p>
-      <p class="m-0 text-sm leading-relaxed text-muted">
-        If the whole direction needs to change, a fresh start with a better
-        prompt beats steering a derailed thread. Not wasted effort — what you
-        learned in the first conversation is exactly what makes the second one
-        better.
-      </p>
-    </div>
-  </div>
-
-  <section class="prose-content">
-    <p>
-      That said, starting fresh doesn't mean losing everything. Claude can
-      remember context from past conversations, and you can resume a previous
-      chat right where you left off. The richest context is always within the
-      active session — so for complex, multi-step work, staying in one
-      conversation gives you the most continuity.
-    </p>
-  </section>
-
-  <Callout variant="chat" title="🪟 A note on the context window">
-    <p>
-      As you loop, Claude holds the whole exchange in its <GlossaryLink term="context-window">context
-      window</GlossaryLink> — its working memory for the session. In very long
-      sessions that memory fills up and recall of earlier turns can fade. It's
-      worth knowing when to summarize, save your work, and start fresh — which is
-      exactly what the <a class="text-chat underline" href={href('/context-window/')}>Context Window</a>
-      lesson covers next.
-    </p>
-  </Callout>
-
-  <TryItNow title="Practice the loop">
-    <p>
-      Paste a rough, unpolished paragraph you've written, get a first draft, then
-      iterate twice with specific feedback — and compare v1 to v3:
-    </p>
-    <CopyPrompt text="Here's a rough paragraph I wrote: [paste your paragraph]. Turn this into a clean, polished version." />
-    <CopyPrompt text="Good start. Make it shorter — cut it by about a third without losing the key point." />
-    <CopyPrompt text="One more pass — add a concrete example to back up the main claim." />
-    <p>
-      Now put v1 (your rough paragraph) next to v3 (the final version). Notice
-      how much closer v3 is to something you'd actually send — and that it took
-      two rounds of specific feedback, not one perfect prompt, to get there.
-    </p>
-  </TryItNow>
-
-  <Callout variant="cowork" title="🤖 Ready for the next level?">
-    <p>
-      Manual looping is you having a back-and-forth with Claude. The natural next
-      step is <strong>agentic looping</strong> — stepping back and letting Claude
-      run its own loop until the work is done. See
-      <a class="text-cowork underline" href={href('/agentic-looping/')}>Agentic Looping</a>.
-    </p>
-  </Callout>
-
-  <KeyTakeaways>
-    <ul>
-      <li>One prompt is a draft. Looping is how you get something worth using.</li>
-      <li>Start strong, see what comes back, then refine with short, specific feedback.</li>
-      <li>If a response is fundamentally off, edit the original prompt or start fresh — don't pile fixes on a bad foundation.</li>
-      <li>You don't need to be a great prompt writer — just a good reviewer.</li>
-    </ul>
-  </KeyTakeaways>
-</BaseLayout>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="refresh" content={"1; url=" + target} />
+    <link rel="canonical" href={target} />
+    <meta name="robots" content="noindex" />
+    <title>Aptera AI Academy has moved</title>
+    <script is:inline define:vars={{ target }}>window.location.replace(target);</script>
+    <style>
+      body { font-family: system-ui, sans-serif; background: #121413; color: #e7e9e7;
+             display: grid; place-items: center; min-height: 100vh; margin: 0; text-align: center; }
+      a { color: #8dc73f; font-weight: 700; }
+      .mark { width: 14px; height: 14px; background: #8dc73f; transform: rotate(45deg);
+              display: inline-block; margin-bottom: 1rem; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <span class="mark"></span>
+      <h1>We moved.</h1>
+      <p>The Aptera AI Academy now lives at its new home — sign in with your Rippling account.</p>
+      <p><a href={target}>Continue to the new AI Academy &rarr;</a></p>
+    </main>
+  </body>
+</html>

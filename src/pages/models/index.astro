@@ -1,236 +1,31 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import PageHeader from '../../components/PageHeader.astro';
-import Tldr from '../../components/Tldr.astro';
-import TryItNow from '../../components/TryItNow.astro';
-import CopyPrompt from '../../components/CopyPrompt.astro';
-import KeyTakeaways from '../../components/KeyTakeaways.astro';
-import Callout from '../../components/Callout.astro';
-import ModelCard from '../../components/ModelCard.astro';
-import BarRow from '../../components/BarRow.astro';
-import LastReviewed from '../../components/LastReviewed.astro';
-import GlossaryLink from '../../components/GlossaryLink.astro';
-import { href } from '../../lib/site';
+// Redirect stub — this site moved to the Aptera AI Academy app.
+const target = "https://ai-training.apteraops.com/tracks/claude/models";
 ---
-<BaseLayout
-  title="Choosing Your Model"
-  description="Haiku, Sonnet, Opus, and Fable — what each Claude model is best at, what they cost, and how to pick the right brain for the job."
-  pageId="models"
-  readMinutes={7}
->
-  <PageHeader
-    icon="🧠"
-    title="Choosing Your Model"
-    subtitle="The first of two dials: which brain does the job. Picking the right one is the single easiest way to get better results for less money."
-    readMinutes={7}
-  />
-
-  <Tldr>
-    <p>
-      Getting the most out of Claude comes down to two dials. This page covers the <strong>first
-      dial: which model</strong>. Claude comes in several models (currently four). <strong>Haiku</strong>
-      is fast and nearly free — use it for quick, simple tasks. <strong>Sonnet</strong> is the daily
-      driver — it should handle ~90% of your work. <strong>Opus</strong> and <strong>Fable</strong> are
-      the expensive heavyweights — reach for them only when the problem is genuinely hard. When in doubt:
-      start with Sonnet, escalate only if it struggles. Once you've picked the model, the
-      <a href={href('/effort/')}>second dial</a> — how hard that brain thinks — is where the next round
-      of savings lives.
-    </p>
-  </Tldr>
-
-  <!-- The lineup -->
-  <div class="prose-content reveal">
-    <h2>Meet the lineup</h2>
-    <p>
-      Think of the models like vehicles in a fleet. You don't take the semi truck to grab coffee, and you
-      don't haul a battery pack in a hatchback. Same idea here — every model can answer your question, but
-      the cost and the depth of thinking vary enormously. That's dial one. Dial two — covered on the
-      <a href={href('/effort/')}>Effort Levels</a> page — is how hard whichever model you pick actually
-      thinks about the problem.
-    </p>
-  </div>
-
-  <div class="my-6 grid gap-4 sm:grid-cols-2 reveal">
-    <ModelCard emoji="⚡" name="Haiku" tagline="The espresso shot — small, fast, done." badgeText="$ · cheapest" badgeVariant="chat">
-      <p>
-        <strong>Best at:</strong> quick rewrites, short answers, simple lookups, formatting, repetitive
-        tasks you'll run dozens of times.
-      </p>
-      <ul class="list-disc pl-5">
-        <li>"Make this email friendlier."</li>
-        <li>"What does this acronym mean?"</li>
-        <li>"Reformat these 40 part numbers into a table."</li>
-      </ul>
-    </ModelCard>
-
-    <ModelCard emoji="🚗" name="Sonnet" tagline="The daily driver. Start here, always." badgeText="$$ · the default ★" badgeVariant="gold" highlight>
-      <p>
-        <strong>Best at:</strong> real everyday work — drafting docs, summarizing meetings, analyzing
-        spreadsheets, Co-Work tasks, most coding. The best balance of smarts, speed, and cost.
-      </p>
-      <ul class="list-disc pl-5">
-        <li>"Summarize this meeting transcript with action items."</li>
-        <li>"Draft a variance analysis from these numbers."</li>
-        <li>"Build me a content calendar for Q3."</li>
-      </ul>
-    </ModelCard>
-
-    <ModelCard emoji="🏋️" name="Opus" tagline="The heavyweight. Deep thinking, deep pockets." badgeText="$$$$ · expensive" badgeVariant="code">
-      <p>
-        <strong>Best at:</strong> genuinely hard problems — complex multi-step reasoning, large-context
-        analysis, tricky architecture decisions, work where a wrong answer is costly.
-      </p>
-      <ul class="list-disc pl-5">
-        <li>"Analyze these 3 supplier contracts and flag conflicting terms."</li>
-        <li>"Refactor this module and reason through the edge cases."</li>
-        <li>"Evaluate these competing battery sourcing strategies."</li>
-      </ul>
-    </ModelCard>
-
-    <ModelCard emoji="🧙" name="Fable" tagline="The frontier. Anthropic's most capable model." badgeText="$$$$$ · premium" badgeVariant="cowork">
-      <p>
-        <strong>Best at:</strong> the hardest problems, long autonomous multi-step work, and — crucially —
-        <strong>orchestrating other models</strong> (more on that below). Overkill for everyday tasks.
-      </p>
-      <ul class="list-disc pl-5">
-        <li>"Plan and build this entire internal tool end-to-end."</li>
-        <li>"Coordinate a team of agents to audit our whole wiki."</li>
-        <li>"Untangle this gnarly cross-system data problem."</li>
-      </ul>
-    </ModelCard>
-  </div>
-
-  <!-- Cost intuition -->
-  <div class="prose-content reveal">
-    <h2>The cost gap is bigger than you think</h2>
-    <p>
-      This isn't a 10–20% difference. Depending on the pair you compare, the most expensive models cost
-      <strong>10–60× more per <GlossaryLink term="token">token</GlossaryLink></strong> than Haiku. Running
-      your everyday email rewrites through Fable is like commissioning an architect to assemble IKEA
-      furniture — they'll do a great job, and you'll have paid an absurd amount for an identical bookshelf.
-    </p>
-  </div>
-
-  <!-- relative cost bars -->
-  <div class="my-6 space-y-3 rounded-[12px] border border-border bg-card p-5 reveal">
-    <p class="m-0 mb-2 text-xs font-bold uppercase tracking-wide text-muted">Relative cost per task (illustrative)</p>
-    <BarRow label="Haiku" widthPct={4} color="chat" note="$" labelWidthClass="w-16" />
-    <BarRow label="Sonnet" widthPct={14} color="gold" note="$$" labelWidthClass="w-16" />
-    <BarRow label="Opus" widthPct={55} color="code" note="$$$$" labelWidthClass="w-16" />
-    <BarRow label="Fable" widthPct={100} color="cowork" note="$$$$$" labelWidthClass="w-16" />
-    <LastReviewed date="2026-07-02" label="Cost comparisons" />
-  </div>
-
-  <Callout variant="gold" title="The golden rule of model choice">
-    <p>
-      <strong>Start with Sonnet. Escalate only when it struggles.</strong> If Sonnet's answer is good —
-      and it usually is — you just saved real money. If it's clearly out of its depth on a hard problem,
-      <em>then</em> re-run with Opus or Fable. Going the other direction (defaulting to the big models
-      "just in case") quietly burns budget for zero benefit. Opus and Fable are not "better Sonnet for
-      everything" — they're specialists you call in when the job demands it.
-    </p>
-  </Callout>
-
-  <!-- Decision flow -->
-  <div class="prose-content reveal">
-    <h2>The 10-second decision</h2>
-    <ol>
-      <li><strong>Is it quick and simple?</strong> (rewrite, lookup, reformat) → <strong>Haiku</strong></li>
-      <li><strong>Is it normal work?</strong> (draft, summarize, analyze, build) → <strong>Sonnet</strong></li>
-      <li><strong>Did Sonnet struggle, or is a wrong answer expensive?</strong> → <strong>Opus</strong></li>
-      <li><strong>Is it a huge multi-step project needing an <GlossaryLink term="orchestrator">orchestrator</GlossaryLink>?</strong> → <strong>Fable</strong> (see below)</li>
-    </ol>
-  </div>
-
-  <!-- Orchestrator pattern -->
-  <div class="prose-content reveal">
-    <h2>The power move: Fable as the orchestrator 🎼</h2>
-    <p>
-      Here's where it gets clever. In Claude Code (and increasingly in Co-Work), the model you're talking to
-      can <strong>spawn sub-agents</strong> — separate Claude instances that each handle a piece of the work.
-      And each sub-agent can run on a <em>different model</em>.
-    </p>
-    <p>
-      So instead of paying Fable prices for every word of a big project, you use Fable as the orchestrator:
-      it does the high-level thinking — planning, breaking down the work, reviewing results — and delegates
-      the actual labor to cheaper models matched to each task. Haiku formats the data. Sonnet writes the
-      pages. Opus handles the one gnarly part. Fable, acting a bit like a conductor, keeps it all moving.
-    </p>
-    <p>
-      Fun fact: <strong>this very website was built that way.</strong> One Fable orchestrator planned the
-      site and spawned Opus agents for the complex pages, Sonnet agents for the content pages, and Haiku
-      agents for the FAQ and glossary — all running in parallel. Premium thinking, economy labor. This July
-      2026 site refresh was orchestrated the same way: a Fable orchestrator planned the work and dispatched
-      Opus, Sonnet, and Haiku agents — each with its own <a href={href('/effort/')}>effort level</a> — to
-      execute it.
-    </p>
-  </div>
-
-  <TryItNow title="Try the orchestrator pattern">
-    <p>
-      Paste this into Claude Code on a project — it explicitly asks Fable to conduct and delegate.
-      Watch the sub-agents spin up:
-    </p>
-    <CopyPrompt text="You're running as Fable — act as the orchestrator for this task and spawn sub-agents on the cheapest model that can handle each piece. Task: audit our /docs folder. Spawn Haiku agents to inventory every file and flag anything not touched in 12+ months, Sonnet agents to summarize each stale doc and draft an updated version, and a single Opus agent to review the three most business-critical docs in depth. You handle the plan, coordinate the agents, and give me one consolidated report at the end. Don't do the grunt work yourself — delegate it." />
-  </TryItNow>
-
-  <!-- Super-user tips -->
-  <div class="prose-content reveal">
-    <h2>Becoming a super user: what the pros know</h2>
-    <ul>
-      <li>
-        <strong>You can switch models mid-conversation.</strong> Use the model picker (or
-        <code>/model</code> in Claude Code) to drop from Opus back to Sonnet once the hard part is done.
-        The conversation context carries over; the price per token drops immediately.
-      </li>
-      <li>
-        <strong>Model is dial one; effort is dial two.</strong> Once you've picked the brain, how hard it
-        thinks is the second dial. <GlossaryLink term="extended-thinking">Extended thinking</GlossaryLink>
-        (effort levels in Claude Code) makes any model reason more carefully on hard problems — often
-        Sonnet-thinking-harder beats Opus-without, at a fraction of the cost. That dial gets its own
-        lesson: <a href={href('/effort/')}>Effort Levels</a>.
-      </li>
-      <li>
-        <strong>The model can't fix a vague prompt.</strong> A sharp prompt to Sonnet beats a lazy prompt
-        to Fable every single time. If you're not getting good answers, upgrade your
-        <a href={href('/prompting/')}>prompt</a> before you upgrade your model.
-      </li>
-      <li>
-        <strong>Fresh chats matter more on big models.</strong> Long conversations re-read everything
-        every turn — and on Opus or Fable that re-reading is expensive. Hard problem solved? Start a new
-        chat for the next topic.
-      </li>
-      <li>
-        <strong>Every model has a finite <GlossaryLink term="context-window">context window</GlossaryLink>.</strong>
-        The bigger models give you more room, but quality can dip as it fills — and the size varies by
-        model. The <a href={href('/context-window/')}>Context Window</a> lesson covers how to watch it and
-        when to compact.
-      </li>
-      <li>
-        <strong>Batch the cheap stuff.</strong> Got 30 product descriptions to clean up? That's one
-        Haiku conversation, not 30 Sonnet ones.
-      </li>
-      <li>
-        <strong>When the stakes are high, get a second opinion.</strong> For an important deliverable,
-        have Sonnet draft it, then ask Opus to critique it. Two models for less than the price of
-        drafting everything on the big one.
-      </li>
-    </ul>
-  </div>
-
-  <Callout variant="cowork" title="Where do I actually pick the model?">
-    <p>
-      In the Claude apps, the model picker is in the chat input area (look for the model name — click it to
-      switch). In Claude Code, type <code>/model</code>. If you don't see Opus or Fable as options, that may
-      be by design — ask Jake (jake@aptera.us) if your work genuinely needs them.
-    </p>
-  </Callout>
-
-  <KeyTakeaways>
-    <ul>
-      <li>Start with Sonnet. Drop to Haiku for quick/repetitive tasks. Escalate to Opus or Fable only when the problem genuinely demands it.</li>
-      <li>Opus and Fable cost many times more per token — they're specialists, not upgrades for everyday work.</li>
-      <li>For big projects, use Fable as an orchestrator that delegates the labor to cheaper sub-agents — premium thinking, economy execution.</li>
-    </ul>
-  </KeyTakeaways>
-</BaseLayout>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="refresh" content={"1; url=" + target} />
+    <link rel="canonical" href={target} />
+    <meta name="robots" content="noindex" />
+    <title>Aptera AI Academy has moved</title>
+    <script is:inline define:vars={{ target }}>window.location.replace(target);</script>
+    <style>
+      body { font-family: system-ui, sans-serif; background: #121413; color: #e7e9e7;
+             display: grid; place-items: center; min-height: 100vh; margin: 0; text-align: center; }
+      a { color: #8dc73f; font-weight: 700; }
+      .mark { width: 14px; height: 14px; background: #8dc73f; transform: rotate(45deg);
+              display: inline-block; margin-bottom: 1rem; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <span class="mark"></span>
+      <h1>We moved.</h1>
+      <p>The Aptera AI Academy now lives at its new home — sign in with your Rippling account.</p>
+      <p><a href={target}>Continue to the new AI Academy &rarr;</a></p>
+    </main>
+  </body>
+</html>

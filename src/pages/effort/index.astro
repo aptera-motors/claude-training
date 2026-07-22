@@ -1,197 +1,31 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import PageHeader from '../../components/PageHeader.astro';
-import Tldr from '../../components/Tldr.astro';
-import TryItNow from '../../components/TryItNow.astro';
-import CopyPrompt from '../../components/CopyPrompt.astro';
-import KeyTakeaways from '../../components/KeyTakeaways.astro';
-import Callout from '../../components/Callout.astro';
-import StatCard from '../../components/StatCard.astro';
-import BarRow from '../../components/BarRow.astro';
-import Badge from '../../components/Badge.astro';
-import LastReviewed from '../../components/LastReviewed.astro';
-import GlossaryLink from '../../components/GlossaryLink.astro';
-import { href } from '../../lib/site';
+// Redirect stub — this site moved to the Aptera AI Academy app.
+const target = "https://ai-training.apteraops.com/tracks/foundations/effort";
 ---
-<BaseLayout
-  title="Effort Levels"
-  description="The second dial after model choice: how hard Claude thinks, what each effort level costs, and the plan-high / execute-low workflow that saves real money."
-  pageId="effort"
-  readMinutes={6}
->
-  <PageHeader
-    icon="🎚️"
-    title="Effort Levels"
-    subtitle="Model choice answers 'which brain?' Effort answers 'how hard should it think?' Getting both dials right is where the real savings live."
-    readMinutes={6}
-  />
-
-  <Tldr>
-    <p>
-      Higher effort = deeper reasoning = a lot more tokens — and we pay per token.
-      <strong>Low and Medium handle the vast majority of work</strong> at the same accuracy as High.
-      Cranking effort up on routine tasks usually buys you a slower, more expensive version of the
-      <em>same answer</em>. Reserve High and above for genuinely hard problems — and for planning.
-    </p>
-  </Tldr>
-
-  <!-- Two dials -->
-  <div class="prose-content reveal">
-    <h2>The second dial</h2>
-    <p>
-      <a href={href('/models/')}>Choosing Your Model</a> covered the first dial: picking the right-sized
-      brain for the job. Effort is the second dial — for the same model, it controls how much
-      <GlossaryLink term="extended-thinking">reasoning</GlossaryLink> Claude does before answering. Low
-      effort answers quickly and directly; higher levels think longer, explore more paths, and burn far
-      more <GlossaryLink term="token">tokens</GlossaryLink> doing it.
-    </p>
-    <p>
-      You can pick the perfect model and still overpay by leaving effort maxed out on routine work.
-      And the reverse is the superpower: the right effort setting makes a model
-      <strong>punch well above its weight class for a fraction of the cost</strong>.
-    </p>
-  </div>
-
-  <!-- Effort ladder -->
-  <div class="reveal my-6 space-y-3 rounded-[12px] border border-border bg-card p-5">
-    <p class="m-0 mb-2 text-xs font-bold uppercase tracking-wide text-muted">The five effort levels (relative token burn, illustrative)</p>
-    <BarRow label="Low" widthPct={8} color="chat" note="quick, direct — great default for simple tasks" />
-    <BarRow label="Medium" widthPct={20} color="gold" note="the everyday default ★" />
-    <BarRow label="High" widthPct={45} color="code" note="genuinely hard problems, planning" />
-    <BarRow label="XHigh" widthPct={70} color="code" note="the hardest architecture &amp; analysis work" />
-    <BarRow label="Max" widthPct={100} color="cowork" note="rare — when a wrong answer is very expensive" />
-    <p class="m-0 mt-2 text-xs text-dim">Not every model supports every level — Sonnet, for example, tops out below XHigh.</p>
-  </div>
-
-  <!-- Core insight + benchmark -->
-  <div class="prose-content reveal">
-    <h2>Same answer, 7× the price</h2>
-    <p>
-      Here's the counterintuitive part: on most tasks — coding, refactoring, drafting, analysis —
-      <strong>High effort doesn't produce a better answer than Low.</strong> It produces the same answer,
-      slower, for several times the cost.
-    </p>
-    <p>
-      This isn't just vibes. AI builder Morgan Linton benchmarked Fable at <strong>Low</strong> effort
-      against Sonnet and another frontier model at <strong>High</strong> effort across 10 real
-      engineering tasks. All three landed the same 80% accuracy. The bill:
-    </p>
-  </div>
-
-  <!-- benchmark stat card -->
-  <div class="reveal my-6 grid gap-4 sm:grid-cols-2">
-    <StatCard label="Fable · Low effort" value="$2.27" caption="80% accuracy" highlight />
-    <StatCard label="Sonnet · High effort" value="$15.81" caption="80% accuracy — same score, ~7× the cost" valueColor="code" />
-  </div>
-
-  <div class="prose-content">
-    <p>
-      Other engineers have confirmed the same pattern independently: running Fable at High/XHigh burns
-      through budget fast, while Low/Medium is more than enough for most day-to-day work. Going higher
-      generally means <em>paying more to do the task slower, at the same accuracy</em> — not a better
-      outcome, just a more expensive and sluggish one.
-    </p>
-  </div>
-
-  <Callout variant="gold" title="⚠️ Fable is NOT a cheap model">
-    <p>
-      The savings above come entirely from <strong>Low effort using fewer tokens</strong> — not from
-      Fable being priced low. At $10/$50 per million tokens, Fable 5 is actually <strong>double</strong>
-      Opus 4.8's rate ($5/$25) — the most expensive model we have. "Use Fable" is not the money-saving
-      move; <strong>"use Fable at Low/Medium effort"</strong> is. Run carelessly at High/XHigh, Fable is
-      our priciest possible way to get work done.
-    </p>
-    <LastReviewed date="2026-07-02" label="Pricing and benchmark figures" />
-  </Callout>
-
-  <!-- Plan high execute low -->
-  <div class="prose-content reveal">
-    <h2>The power move: plan High, execute Low 🎚️</h2>
-    <p>
-      The highest-ROI pattern is splitting your work into two phases with different effort settings:
-    </p>
-    <ul>
-      <li>
-        <strong>Planning phase → High (or XHigh).</strong> Architecture, high-level design, tricky
-        decisions, writing the detailed plan. This is where deep reasoning actually pays off — and it's
-        a small fraction of your total tokens.
-      </li>
-      <li>
-        <strong>Execution phase → Low/Medium.</strong> Implementation, refactoring, testing, iteration.
-        This is where the bulk of tokens get spent — so lowering effort here is where the real savings
-        come from, with no quality hit because the plan is already strong.
-      </li>
-    </ul>
-    <p>
-      <strong>Pro tip:</strong> ask the planning model to output a clear, executable checklist. Then the
-      low-effort execution pass just works down the list. Only escalate back to High for major revisions
-      or when you hit a genuine blocker.
-    </p>
-  </div>
-
-  <!-- Orchestrator + effort -->
-  <div class="prose-content reveal">
-    <h2>Level up: let the orchestrator set both dials</h2>
-    <p>
-      <Badge variant="code" text="Mainly for Claude Code users" emoji="⌨️" /> If you're in Chat or
-      Co-Work, the short version is simple: more thinking costs more tokens, so don't crank effort up out
-      of habit. The rest of this section is about automating that trade-off in Claude Code.
-    </p>
-    <p>
-      If you're working in Claude Code, you can push this further. Remember the
-      <GlossaryLink term="orchestrator">orchestrator pattern</GlossaryLink> — a big model conducting
-      cheaper sub-agents? Sub-agents accept an <strong>effort setting as well as a model</strong>. So
-      instead of switching dials by hand, ask your planning model to choose the right model <em>and</em>
-      effort level for every step of the plan, and bake it into the sub-agents it dispatches: a Haiku
-      agent at Low for exploring the codebase, a Sonnet agent at Medium for the implementation, an Opus
-      agent at High for the one security-sensitive piece — all automatic.
-    </p>
-  </div>
-
-  <Callout variant="code" title="Caveat: check effort compatibility first">
-    <p>
-      Not every model supports every effort level (Sonnet doesn't go up to XHigh, for example). If the
-      orchestrator assigns a level a model can't run, Claude Code <strong>silently falls back</strong> to
-      the highest level that model supports — not necessarily what you intended. Explicitly tell the
-      orchestrator to verify which effort levels each model supports <em>before</em> assigning them, so
-      the plan is valid instead of getting quietly downgraded at execution time.
-    </p>
-  </Callout>
-
-  <TryItNow title="Try plan-high / execute-low with automatic routing">
-    <p>
-      Paste this into Claude Code at the start of a decent-sized task. It runs the planning at high
-      effort, then delegates execution at the cheapest viable settings:
-    </p>
-    <CopyPrompt text="Plan this task at high effort: break it into an executable checklist of steps. For each step, choose the cheapest model AND effort level that can handle it reliably — but first verify which effort levels each model actually supports, and only assign valid combinations. Then execute the plan by dispatching sub-agents with your chosen model + effort per step. Only escalate a step back to a bigger model or higher effort if it fails or the result doesn't pass your review." />
-  </TryItNow>
-
-  <!-- Recommendations -->
-  <div class="prose-content reveal">
-    <h2>The playbook</h2>
-    <ol>
-      <li><strong>Default to Medium</strong> (or Low for simple asks) for day-to-day work.</li>
-      <li><strong>Plan High, execute Low</strong> on bigger tasks.</li>
-      <li>In Claude Code, <strong>let the planning model assign model + effort per sub-agent</strong> — after checking compatibility.</li>
-      <li><strong>Test before assuming you need High.</strong> Run the same task at Medium and compare — you'll usually find no difference but the price.</li>
-      <li><strong>Fable is our priciest model per token.</strong> Reserve High/XHigh on it for work that genuinely needs it.</li>
-    </ol>
-  </div>
-
-  <Callout variant="cowork" title="Where do I actually set effort?">
-    <p>
-      Effort is mainly a <strong>Claude Code</strong> dial — type <code>/effort</code> to see and change
-      the current level (and sub-agents can set it per task, as above). In the Chat and Co-Work apps, the
-      closest equivalent is toggling <strong>extended thinking</strong> for hard problems. Either way the
-      principle is the same: more thinking costs more tokens — spend it where it matters.
-    </p>
-  </Callout>
-
-  <KeyTakeaways>
-    <ul>
-      <li>Effort is the second dial after model choice: Low/Medium delivers the same accuracy as High on most tasks — for a fraction of the cost.</li>
-      <li>Plan at High effort, execute at Low/Medium. Planning is cheap and benefits from deep thinking; execution is the bulk of your tokens.</li>
-      <li>Fable is our most expensive model per token — it only saves money when you run it at Low/Medium effort.</li>
-    </ul>
-  </KeyTakeaways>
-</BaseLayout>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="refresh" content={"1; url=" + target} />
+    <link rel="canonical" href={target} />
+    <meta name="robots" content="noindex" />
+    <title>Aptera AI Academy has moved</title>
+    <script is:inline define:vars={{ target }}>window.location.replace(target);</script>
+    <style>
+      body { font-family: system-ui, sans-serif; background: #121413; color: #e7e9e7;
+             display: grid; place-items: center; min-height: 100vh; margin: 0; text-align: center; }
+      a { color: #8dc73f; font-weight: 700; }
+      .mark { width: 14px; height: 14px; background: #8dc73f; transform: rotate(45deg);
+              display: inline-block; margin-bottom: 1rem; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <span class="mark"></span>
+      <h1>We moved.</h1>
+      <p>The Aptera AI Academy now lives at its new home — sign in with your Rippling account.</p>
+      <p><a href={target}>Continue to the new AI Academy &rarr;</a></p>
+    </main>
+  </body>
+</html>

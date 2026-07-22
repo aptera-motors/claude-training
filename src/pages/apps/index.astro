@@ -1,186 +1,31 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import PageHeader from '../../components/PageHeader.astro';
-import Tldr from '../../components/Tldr.astro';
-import TryItNow from '../../components/TryItNow.astro';
-import CopyPrompt from '../../components/CopyPrompt.astro';
-import KeyTakeaways from '../../components/KeyTakeaways.astro';
-import Callout from '../../components/Callout.astro';
-import FeatureCard from '../../components/FeatureCard.astro';
-import Badge from '../../components/Badge.astro';
+// Redirect stub — this site moved to the Aptera AI Academy app.
+const target = "https://ai-training.apteraops.com/tracks/claude/apps";
 ---
-<BaseLayout
-  title="Apps Compared"
-  description="Claude desktop app vs. website vs. phone app — which one to use and when."
-  pageId="apps"
-  readMinutes={5}
->
-  <PageHeader
-    icon="⚖️"
-    title="Apps Compared"
-    subtitle="Same Claude brain. Three different doors in. Here's which one to knock on."
-    readMinutes={5}
-  />
-
-  <Tldr>
-    <p>
-      Claude lives in a <strong>desktop app</strong>, a <strong>website</strong>, and a
-      <strong>phone app</strong>. They all chat. But only the desktop app can touch your
-      local files, run Schedules, and power Co-Work connectors like Jira and Ramp.
-      Phone wins when you're out in the world and need a camera.
-    </p>
-  </Tldr>
-
-  <!-- Intro -->
-  <div class="reveal prose-content">
-    <h2>Same brain, three doors in</h2>
-    <p>
-      No matter which app you open, you're talking to the same Claude — same models,
-      same smarts, same data policies. The difference is what each surface can <em>connect to</em>.
-      Think of it like your work laptop vs. your phone vs. the browser on the conference room TV.
-      Same you, different superpowers available.
-    </p>
-  </div>
-
-  <!-- Capability matrix -->
-  <div class="reveal prose-content">
-    <h2>What can each app actually do?</h2>
-    <p class="flex flex-wrap items-center gap-2 text-sm text-muted">
-      <Badge variant="code" text="Claude Code = engineers" emoji="💻" />
-      most roles will live in Desktop or Web.
-    </p>
-  </div>
-  <div class="table-shell reveal my-4">
-    <table class="data-table">
-      <thead>
-        <tr>
-          <th class="text-left">Capability</th>
-          <th class="text-center">Desktop 🖥️</th>
-          <th class="text-center">Web 🌐</th>
-          <th class="text-center">Phone 📱</th>
-        </tr>
-      </thead>
-      <tbody class="text-center">
-        <tr>
-          <td class="text-left">Chat &amp; Artifacts</td>
-          <td class="font-bold text-gold">✓</td>
-          <td class="font-bold text-gold">✓</td>
-          <td class="font-bold text-gold">✓</td>
-        </tr>
-        <tr>
-          <td class="text-left">File uploads (PDF, Word, images…)</td>
-          <td class="font-bold text-gold">✓</td>
-          <td class="font-bold text-gold">✓</td>
-          <td class="font-bold text-gold">✓</td>
-        </tr>
-        <tr>
-          <td class="text-left">Projects (persistent memory per project)</td>
-          <td class="font-bold text-gold">✓</td>
-          <td class="font-bold text-gold">✓</td>
-          <td class="font-bold text-gold">✓</td>
-        </tr>
-        <tr>
-          <td class="text-left">Co-Work connectors (Jira, Confluence, Ramp…)</td>
-          <td class="font-bold text-gold">✓ Best</td>
-          <td class="text-muted">～ Limited</td>
-          <td class="text-dim">✗</td>
-        </tr>
-        <tr>
-          <td class="text-left">Local file-system access (create files in Documents)</td>
-          <td class="font-bold text-gold">✓ Only</td>
-          <td class="text-dim">✗</td>
-          <td class="text-dim">✗</td>
-        </tr>
-        <tr>
-          <td class="text-left">Schedules &amp; Routines</td>
-          <td class="font-bold text-gold">✓ Only</td>
-          <td class="text-dim">✗</td>
-          <td class="text-dim">✗</td>
-        </tr>
-        <tr>
-          <td class="text-left">Voice conversations</td>
-          <td class="text-dim">✗</td>
-          <td class="text-dim">✗</td>
-          <td class="font-bold text-gold">✓</td>
-        </tr>
-        <tr>
-          <td class="text-left">Camera / photo input</td>
-          <td class="text-dim">✗</td>
-          <td class="text-dim">✗</td>
-          <td class="font-bold text-gold">✓</td>
-        </tr>
-        <tr>
-          <td class="text-left">Claude Code (terminal / dev)</td>
-          <td class="text-muted">Separate CLI</td>
-          <td class="text-dim">✗</td>
-          <td class="text-dim">✗</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <p class="mt-2 text-xs text-dim">
-    ✓ = fully supported · ～ = partial / web-only version · ✗ = not available
-  </p>
-
-  <!-- Which should I use -->
-  <div class="reveal prose-content">
-    <h2>Which should I use?</h2>
-    <p>Three personas, three answers — find yourself:</p>
-  </div>
-
-  <div class="reveal my-6 grid gap-4 sm:grid-cols-3">
-    <FeatureCard emoji="🖥️" title="The Daily Driver">
-      <p>
-        You're at your desk most of the day. You want Claude in Jira, Confluence, and your
-        file system. You might set up a morning briefing or an end-of-day summary.
-      </p>
-      <p class="mt-3 text-sm font-semibold text-gold">→ Desktop app, all day long.</p>
-    </FeatureCard>
-    <FeatureCard emoji="🌐" title="The Occasional Asker">
-      <p>
-        You don't live in Claude but you want it handy when you need it. No install,
-        no setup — just open a tab and go. Works great for one-off drafts and quick questions.
-      </p>
-      <p class="mt-3 text-sm font-semibold text-gold">→ claude.ai in your browser.</p>
-    </FeatureCard>
-    <FeatureCard emoji="📱" title="On the Road / In the Shop">
-      <p>
-        You're on the floor, at a supplier site, or in a meeting room without your laptop.
-        Snap a photo of a part label, a spec sheet, or a whiteboard and ask Claude about it.
-        Voice mode keeps your hands free.
-      </p>
-      <p class="mt-3 text-sm font-semibold text-gold">→ Phone app, no contest.</p>
-    </FeatureCard>
-  </div>
-
-  <Callout variant="gold" title="Heads up: Schedules run locally">
-    <p>
-      Schedules and Routines are <strong>local automations</strong> — they live on your
-      machine, inside the desktop app. That means they only run while your computer is on
-      and the Claude app is open. Close the laptop, the schedule sleeps. They are not
-      cloud jobs that run in the background on Anthropic's servers. If you need something
-      to fire overnight or on weekends, plan accordingly.
-    </p>
-  </Callout>
-
-  <TryItNow title="Get set up in 5 minutes">
-    <p>
-      Install the desktop app and connect one tool you actually use. Pick one from this prompt
-      and follow Claude's instructions:
-    </p>
-    <CopyPrompt text="I just installed the Claude desktop app. Walk me through connecting it to Jira so I can search issues and create tasks without leaving this chat. I'm not technical — give me step-by-step instructions with screenshots described." />
-    <p class="mt-4 text-muted">
-      Already on desktop? Try the phone app too — snap a photo of something on your desk and ask:
-    </p>
-    <CopyPrompt text="What is this? [photo of component/label/part]. Give me a plain-English explanation of what it does and why it matters." />
-  </TryItNow>
-
-  <KeyTakeaways>
-    <ul>
-      <li>All three apps use the same Claude — the difference is what they can connect to and access.</li>
-      <li>Desktop is the power seat: local files, Schedules, and full Co-Work connector support live here.</li>
-      <li>Phone is the field tool — camera input and voice make it uniquely useful away from your desk.</li>
-    </ul>
-  </KeyTakeaways>
-</BaseLayout>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="refresh" content={"1; url=" + target} />
+    <link rel="canonical" href={target} />
+    <meta name="robots" content="noindex" />
+    <title>Aptera AI Academy has moved</title>
+    <script is:inline define:vars={{ target }}>window.location.replace(target);</script>
+    <style>
+      body { font-family: system-ui, sans-serif; background: #121413; color: #e7e9e7;
+             display: grid; place-items: center; min-height: 100vh; margin: 0; text-align: center; }
+      a { color: #8dc73f; font-weight: 700; }
+      .mark { width: 14px; height: 14px; background: #8dc73f; transform: rotate(45deg);
+              display: inline-block; margin-bottom: 1rem; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <span class="mark"></span>
+      <h1>We moved.</h1>
+      <p>The Aptera AI Academy now lives at its new home — sign in with your Rippling account.</p>
+      <p><a href={target}>Continue to the new AI Academy &rarr;</a></p>
+    </main>
+  </body>
+</html>

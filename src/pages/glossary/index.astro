@@ -1,75 +1,31 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import PageHeader from '../../components/PageHeader.astro';
-import { getCollection, render } from 'astro:content';
-
-const glossaryItems = await getCollection('glossary');
-// Sort by term alphabetically
-const sorted = glossaryItems.sort((a, b) => a.data.term.localeCompare(b.data.term));
-const rendered = await Promise.all(
-  sorted.map(async (item) => ({ id: item.id, data: item.data, Content: (await render(item)).Content }))
-);
-
-// Group by letter and get unique letters
-const grouped = rendered.reduce(
-  (acc, item) => {
-    const letter = item.data.letter.toUpperCase();
-    if (!acc[letter]) acc[letter] = [];
-    acc[letter].push(item);
-    return acc;
-  },
-  {} as Record<string, typeof rendered>
-);
-
-const letters = Object.keys(grouped).sort();
+// Redirect stub — this site moved to the Aptera AI Academy app.
+const target = "https://ai-training.apteraops.com/glossary";
 ---
-<BaseLayout
-  title="Glossary"
-  description="Plain-English definitions for all the AI jargon."
-  pageId="glossary"
-  readMinutes={4}
->
-  <PageHeader
-    icon="📖"
-    title="Glossary"
-    subtitle="Plain-English definitions for all the AI jargon."
-    readMinutes={4}
-  />
-
-  <!-- Letter jump nav -->
-  <nav class="mb-8 flex flex-wrap gap-2">
-    {
-      letters.map((letter) => (
-        <a
-          href={`#letter-${letter}`}
-          class="rounded-full border border-border bg-card px-3 py-1.5 text-sm font-medium text-text transition-colors hover:border-gold/50 hover:bg-card-hover hover:text-gold"
-        >
-          {letter}
-        </a>
-      ))
-    }
-  </nav>
-
-  <!-- Terms grouped by letter -->
-  <div class="space-y-10">
-    {
-      letters.map((letter) => (
-        <section id={`letter-${letter}`}>
-          <h2 class="mb-5 text-2xl font-bold text-text">{letter}</h2>
-          <div class="space-y-4">
-            {
-              grouped[letter].map(({ id, data, Content }) => (
-                <div class="scroll-mt-20 rounded-[12px] border border-border bg-card p-4 hover:border-gold/50 hover:bg-card-hover" id={id}>
-                  <h3 class="font-bold text-gold">{data.term}</h3>
-                  <div class="prose-content mt-2 text-muted [&_p]:m-0 [&_p+p]:mt-2">
-                    <Content />
-                  </div>
-                </div>
-              ))
-            }
-          </div>
-        </section>
-      ))
-    }
-  </div>
-</BaseLayout>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="refresh" content={"1; url=" + target} />
+    <link rel="canonical" href={target} />
+    <meta name="robots" content="noindex" />
+    <title>Aptera AI Academy has moved</title>
+    <script is:inline define:vars={{ target }}>window.location.replace(target);</script>
+    <style>
+      body { font-family: system-ui, sans-serif; background: #121413; color: #e7e9e7;
+             display: grid; place-items: center; min-height: 100vh; margin: 0; text-align: center; }
+      a { color: #8dc73f; font-weight: 700; }
+      .mark { width: 14px; height: 14px; background: #8dc73f; transform: rotate(45deg);
+              display: inline-block; margin-bottom: 1rem; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <span class="mark"></span>
+      <h1>We moved.</h1>
+      <p>The Aptera AI Academy now lives at its new home — sign in with your Rippling account.</p>
+      <p><a href={target}>Continue to the new AI Academy &rarr;</a></p>
+    </main>
+  </body>
+</html>
